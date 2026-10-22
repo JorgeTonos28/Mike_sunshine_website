@@ -1,13 +1,20 @@
-import '../css/app.css';
-import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import "../css/app.css";
+import "../css/store.css";
+import { createApp, h, type DefineComponent } from "vue";
+import { createInertiaApp } from "@inertiajs/vue3";
+import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
 createInertiaApp({
     title: (title) => `${title} | Mike Sunshine`,
-    resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob('./pages/**/*.vue')),
+    resolve: (name) =>
+        resolvePageComponent<DefineComponent>(
+            `./pages/${name}.vue`,
+            import.meta.glob<DefineComponent>("./pages/**/*.vue"),
+        ),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) }).use(plugin).mount(el);
+        createApp({ render: () => h(App, props) })
+            .use(plugin)
+            .mount(el);
     },
-    progress: { color: '#d9ad62' },
+    progress: { color: "#d9ad62" },
 });

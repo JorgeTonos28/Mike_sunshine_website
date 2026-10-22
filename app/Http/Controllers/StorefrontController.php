@@ -28,7 +28,7 @@ class StorefrontController extends Controller
             default => $query->latest(),
         };
 
-        return Inertia::render('Catalog', ['kind' => $kind, 'products' => $query->paginate(12)->withQueryString()->through(fn ($p) => $p->publicData()), 'categories' => $categories, 'filters' => $filters]);
+        return Inertia::render('Catalog', ['kind' => $kind, 'products' => $query->paginate(12)->withQueryString()->through(fn ($p) => $p->publicData()), 'categories' => $categories, 'filters' => ['search' => $filters['search'] ?? '', 'category' => $filters['category'] ?? '', 'sort' => $filters['sort'] ?? 'recent']]);
     }
 
     public function show(Product $product)

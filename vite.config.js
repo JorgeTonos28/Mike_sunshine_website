@@ -10,7 +10,7 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
-        vue(),
+        vue({ template: { transformAssetUrls: { base: null, includeAbsolute: false } } }),
     ],
     server: {
         watch: {
