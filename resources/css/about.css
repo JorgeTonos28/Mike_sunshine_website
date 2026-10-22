@@ -74,6 +74,125 @@
 .portrait-orbit-front {
     z-index: 2;
 }
+.portrait-trail {
+    fill: var(--gold);
+    transition: opacity 190ms ease;
+}
+.portrait-light {
+    position: absolute;
+    z-index: 0;
+    left: 13%;
+    top: 23%;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.portrait-light-core {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow:
+        0 0 8px 2px #e3b45d73,
+        0 0 22px 7px #d49b3526;
+    transition:
+        opacity 190ms ease,
+        transform 190ms ease;
+}
+.portrait-light-core::after {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border-radius: 50%;
+    background: #e3b45d16;
+    animation: portrait-glimmer 2.8s ease-in-out infinite alternate;
+}
+.portrait-light:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 3px;
+}
+.orbit-jumping .portrait-light-core {
+    opacity: 0;
+    transform: scale(0.15);
+}
+.orbit-jumping .portrait-trail {
+    opacity: 0;
+}
+.portrait-light-burst {
+    position: absolute;
+    z-index: 0;
+    width: 13px;
+    height: 13px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px #e3b45d5c;
+    pointer-events: none;
+    animation: portrait-burst 420ms ease-out both;
+}
+.portrait-motion-toggle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--gold);
+    background: #161410;
+    cursor: pointer;
+}
+.portrait-motion-toggle:hover,
+.portrait-motion-toggle:focus-visible {
+    border-color: var(--gold);
+}
+.portrait-motion-toggle:disabled {
+    opacity: 0.45;
+    cursor: default;
+}
+.orbit-paused .portrait-light-core::after {
+    animation-play-state: paused;
+}
+@keyframes portrait-glimmer {
+    from {
+        opacity: 0.45;
+        transform: scale(0.75);
+    }
+    to {
+        opacity: 0.95;
+        transform: scale(1.2);
+    }
+}
+@keyframes portrait-burst {
+    from {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3.5);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .portrait-light-core::after,
+    .portrait-light-burst {
+        animation: none;
+    }
+    .portrait-light-core,
+    .portrait-trail {
+        transition: none;
+    }
+}
 .about-portrait figcaption {
     display: flex;
     flex-wrap: wrap;
