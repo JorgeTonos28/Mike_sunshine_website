@@ -149,7 +149,7 @@ useHomeMotion(home);
             <section class="container artist-section">
                 <div class="artist-art" data-reveal>
                     <img
-                        src="/images/art/mandrill.webp"
+                        src="/images/compositions/artist-mandrill.webp"
                         alt="Retrato de un mandril de Mike Sunshine"
                         loading="lazy"
                         width="800"

@@ -39,12 +39,12 @@ const setCategory = (category: string) => {
                 :src="
                     painting
                         ? '/images/compositions/hero-paintings-monk.webp'
-                        : '/images/compositions/hero-sculptures-cat.webp'
+                        : '/images/compositions/hero-sculptures-alchemist.webp'
                 "
                 :alt="
                     painting
                         ? 'Sabio de túnica verde, pintura de Mike Sunshine'
-                        : 'Gato esfinge, concepto escultórico basado en una pintura de Mike Sunshine'
+                        : 'El Árabe Alquimista con turbante y frasco verde, concepto escultórico basado en una pintura de Mike Sunshine'
                 "
                 width="1536"
                 height="1024"

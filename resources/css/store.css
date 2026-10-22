@@ -568,23 +568,16 @@ textarea {
     gap: 100px;
 }
 .artist-art {
-    max-width: 430px;
-    aspect-ratio: 1.1;
-    overflow: hidden;
+    max-width: 480px;
+    aspect-ratio: 4 / 5;
     position: relative;
 }
-.artist-art::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    box-shadow: inset 0 0 70px 12px var(--bg);
-    pointer-events: none;
-}
 .artist-art img {
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
+    object-fit: contain;
+    object-position: center;
 }
 .artist-copy h2 {
     font-size: clamp(40px, 4.6vw, 64px);
