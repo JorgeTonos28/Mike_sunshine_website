@@ -75,8 +75,17 @@
     z-index: 2;
 }
 .portrait-trail {
-    fill: var(--gold);
+    fill: none;
+    stroke-linecap: round;
     transition: opacity 190ms ease;
+}
+.portrait-trail-haze {
+    stroke-width: 10;
+    opacity: 0.55;
+}
+.portrait-trail-filament {
+    stroke-width: 1.4;
+    vector-effect: non-scaling-stroke;
 }
 .portrait-light {
     position: absolute;

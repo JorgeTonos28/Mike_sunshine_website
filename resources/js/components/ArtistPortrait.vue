@@ -6,10 +6,14 @@ defineProps<{ src: string; alt: string }>();
 const id = useId();
 const portraitClip = `portrait-clip-${id}`;
 const lowerRingClip = `portrait-ring-${id}`;
+const upperRingClip = `portrait-ring-upper-${id}`;
+const trailGradient = `portrait-trail-gradient-${id}`;
+const trailBlur = `portrait-trail-blur-${id}`;
 const frame = ref<HTMLDivElement>();
 const light = ref<HTMLButtonElement>();
 const trail = ref<SVGGElement>();
 const frontTrail = ref<SVGGElement>();
+const gradient = ref<SVGLinearGradientElement>();
 const paused = ref(false);
 const reducedMotion = ref(false);
 const jumping = ref(false);
@@ -47,12 +51,16 @@ function paint() {
     light.value.style.left = `${position.x / 10}%`;
     light.value.style.top = `${position.y / 10}%`;
     light.value.style.zIndex = position.y >= 485 ? "3" : "0";
+    const tail = point(phase - 0.24);
+    const arc = `M ${tail.x} ${tail.y} A 480 445 -16 0 1 ${position.x} ${position.y}`;
+    gradient.value?.setAttribute("x1", String(tail.x));
+    gradient.value?.setAttribute("y1", String(tail.y));
+    gradient.value?.setAttribute("x2", String(position.x));
+    gradient.value?.setAttribute("y2", String(position.y));
     [trail.value, frontTrail.value].forEach((layer) => {
-        layer?.querySelectorAll("circle").forEach((spark, index) => {
-            const behind = point(phase - 0.035 * (index + 1));
-            spark.setAttribute("cx", String(behind.x));
-            spark.setAttribute("cy", String(behind.y));
-        });
+        layer
+            ?.querySelectorAll("path")
+            .forEach((path) => path.setAttribute("d", arc));
     });
 }
 
@@ -190,6 +198,32 @@ onBeforeUnmount(() => {
                 <clipPath :id="lowerRingClip">
                     <rect x="0" y="485" width="1000" height="515" />
                 </clipPath>
+                <clipPath :id="upperRingClip">
+                    <rect x="0" y="0" width="1000" height="485" />
+                </clipPath>
+                <linearGradient
+                    :id="trailGradient"
+                    ref="gradient"
+                    gradientUnits="userSpaceOnUse"
+                >
+                    <stop offset="0" stop-color="#e3b45d" stop-opacity="0" />
+                    <stop
+                        offset="0.55"
+                        stop-color="#e3b45d"
+                        stop-opacity="0.12"
+                    />
+                    <stop offset="1" stop-color="#f3ce85" stop-opacity="0.85" />
+                </linearGradient>
+                <filter
+                    :id="trailBlur"
+                    x="-100%"
+                    y="-100%"
+                    width="300%"
+                    height="300%"
+                    color-interpolation-filters="sRGB"
+                >
+                    <feGaussianBlur stdDeviation="4" />
+                </filter>
             </defs>
             <ellipse
                 class="portrait-ring"
@@ -199,13 +233,18 @@ onBeforeUnmount(() => {
                 ry="445"
                 transform="rotate(-16 500 485)"
             />
-            <g ref="trail" class="portrait-trail">
-                <circle
-                    v-for="spark in 7"
-                    :key="spark"
-                    :r="4 - spark * 0.35"
-                    :opacity="0.6 - spark * 0.07"
-                />
+            <g :clip-path="`url(#${upperRingClip})`">
+                <g
+                    ref="trail"
+                    class="portrait-trail"
+                    :stroke="`url(#${trailGradient})`"
+                >
+                    <path
+                        class="portrait-trail-haze"
+                        :filter="`url(#${trailBlur})`"
+                    />
+                    <path class="portrait-trail-filament" />
+                </g>
             </g>
         </svg>
         <button
@@ -251,13 +290,16 @@ onBeforeUnmount(() => {
                     ry="445"
                     transform="rotate(-16 500 485)"
                 />
-                <g ref="frontTrail" class="portrait-trail">
-                    <circle
-                        v-for="spark in 7"
-                        :key="spark"
-                        :r="4 - spark * 0.35"
-                        :opacity="0.6 - spark * 0.07"
+                <g
+                    ref="frontTrail"
+                    class="portrait-trail"
+                    :stroke="`url(#${trailGradient})`"
+                >
+                    <path
+                        class="portrait-trail-haze"
+                        :filter="`url(#${trailBlur})`"
                     />
+                    <path class="portrait-trail-filament" />
                 </g>
             </g>
         </svg>
