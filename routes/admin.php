@@ -20,6 +20,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'can:studio'])->grou
     Route::resource('products', ProductController::class)->except('show');
     Route::middleware('can:admin')->group(function () {
         Route::get('legal-questionnaire', fn () => response()->download(base_path('docs/cuestionario-mike.md'), 'Cuestionario-Mike-Sunshine.md', ['Content-Type' => 'text/markdown; charset=UTF-8']));
+        Route::get('about-questionnaire', fn () => response()->download(base_path('docs/cuestionario-sobre-mike.md'), 'Cuestionario-Sobre-Mike-Sunshine.md', ['Content-Type' => 'text/markdown; charset=UTF-8']))->name('about-questionnaire');
         Route::get('orders', [OrderController::class, 'index'])->name('orders');
         Route::get('orders/{order}', [OrderController::class, 'show']);
         Route::put('orders/{order}', [OrderController::class, 'update']);

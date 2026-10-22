@@ -47,6 +47,7 @@ class CatalogAdminTest extends TestCase
         $this->actingAs($editor)->get('/admin/users')->assertForbidden();
         $this->post('/admin/users', ['role' => 'admin'])->assertForbidden();
         $this->get('/admin/settings')->assertForbidden();
+        $this->get('/admin/about-questionnaire')->assertForbidden();
         $this->get('/admin/legal')->assertForbidden();
         $this->delete('/admin/products/'.Product::factory()->create()->id)->assertForbidden();
     }

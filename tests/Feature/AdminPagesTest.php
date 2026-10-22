@@ -22,5 +22,6 @@ class AdminPagesTest extends TestCase
             $this->get($path)->assertOk()->assertHeader('Cache-Control', 'no-store, private');
         }
         $this->get('/admin/legal-questionnaire')->assertOk()->assertDownload('Cuestionario-Mike-Sunshine.md');
+        $this->get('/admin/about-questionnaire')->assertOk()->assertDownload('Cuestionario-Sobre-Mike-Sunshine.md');
     }
 }

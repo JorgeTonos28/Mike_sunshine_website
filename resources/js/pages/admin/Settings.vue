@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, useForm } from "@inertiajs/vue3";
 import { computed, onUnmounted, ref, watch } from "vue";
-import { PhFloppyDisk } from "@phosphor-icons/vue";
+import { PhFloppyDisk, PhDownloadSimple } from "@phosphor-icons/vue";
 import AdminLayout from "../../layouts/AdminLayout.vue";
 import FormErrors from "../../components/FormErrors.vue";
 import type { Studio } from "../../types";
@@ -237,6 +237,10 @@ const save = () =>
                             publicarla.</small
                         >
                     </label>
+                    <a href="/admin/about-questionnaire" class="text-link"
+                        ><PhDownloadSimple :size="18" />Cuestionario para Sobre
+                        mí</a
+                    >
                 </section>
             </div>
             <div class="admin-save-row">
