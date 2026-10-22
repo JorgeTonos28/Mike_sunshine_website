@@ -8,6 +8,9 @@ Generados con la herramienta integrada de imágenes, usando las fotos suministra
 | `public/images/art/wizard.webp` | Misma foto del mago | Reproducción regenerada para catálogo. PNG maestro conservado. |
 | `public/images/art/cat.webp` | `WhatsApp Image 2026-10-19 at 9.18.53 PM (1).jpeg` | Gato esfinge. PNG maestro conservado. |
 | `public/images/art/mandrill.webp` | `WhatsApp Image 2026-10-19 at 9.18.52 PM (6).jpeg` | Mandril. PNG maestro conservado. |
+| `public/images/art/monk.webp` | `WhatsApp Image 2026-10-19 at 9.18.51 PM.jpeg` | Sabio de túnica verde, reproducción regenerada. |
+| `public/images/art/jester.webp` | `WhatsApp Image 2026-10-19 at 9.18.52 PM (1).jpeg`, únicamente la pintura derecha | Bufón, reproducción regenerada. |
+| `public/images/art/neon.webp` | `WhatsApp Image 2026-10-19 at 9.18.52 PM (5).jpeg` | Personaje de cabello violeta, conservando su lenguaje ilustrado. |
 | `public/images/design/brush-gold.png` | Color del logo y pincelada de MSW1 | Subrayado dorado con alfa. Variante `-trimmed` sin márgenes vacíos. |
 | `public/images/design/canvas.webp` | Dirección visual de MSW1 | Textura de lienzo carbón, sin personajes. PNG maestro conservado. |
 | `public/images/brand/logo-dark-trimmed.png` | `C:/Users/jorge/Downloads/MS4.png` | Variante con alfa y letras marfil para fondo oscuro, conservando el sol. Original preservado como `logo-original.png`. |
@@ -24,6 +27,8 @@ Las instrucciones incluyeron estas restricciones explícitas en todas las reprod
 **Gato:** reproducción frontal 4:5 exclusivamente del gato esfinge pintado; orejas rosas, ojos ámbar, frente naranja, grises azulados y melocotón, cuello y expresión originales. Sustituir el papel blanco por fondo carbón y preservar la textura de óleo.
 
 **Mandril:** reproducción frontal 4:5 de la pintura, orejas rojas, pelaje azul con mechones blancos, hocico acanalado azul, nariz naranja/roja, mirada hacia arriba y diente visible. Eliminar únicamente entorno, pared, mesa y perspectiva fotográfica.
+
+**Sabio, bufón e ilustración violeta:** “Use case: product-mockup. Asset: straight-on catalogue reproduction, portrait 4:5. Faithfully regenerate ONLY the existing Mike Sunshine painting in the provided photograph. Preserve character identity, facial features, exact pose, proportions, expression, colors, clothes, objects and visible paint style from the real reference. Remove only the photographed room, paper edges, easel, wall and table. Correct photographic perspective. Fill backdrop with near-black charcoal subtle painted texture. No extra objects, no invented subjects, no text, no borders, no watermark, not a sculpture.” Se precisó qué personaje corresponde a cada foto; para el bufón sólo el lienzo derecho y para el personaje violeta conservar el estilo de ilustración plana, sin realismo humano ni gafas añadidas.
 
 **Pincelada:** “ONE elegant hand-painted antique gold ochre dry brush stroke, broad to tapered left to right, expressive imperfect edge, fine visible bristle striations and slight layered pigment, muted luminous antique gold #d8a74e. Mostly horizontal slightly ascending. No text, no letters, no background, genuine alpha transparency, no shadow, no checkerboard.”
 

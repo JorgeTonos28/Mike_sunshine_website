@@ -3,7 +3,7 @@
 // Lossless layout decisions remain in source assets; this only creates delivery derivatives.
 // Run from repository root: php scripts/prepare-image-assets.php
 $root = dirname(__DIR__).'/public/images/';
-foreach (['wizard', 'cat', 'mandrill'] as $name) {
+foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon'] as $name) {
     $source = imagecreatefrompng($root.'art/'.$name.'.png');
     $width = 800;
     $height = (int) round(imagesy($source) * $width / imagesx($source));

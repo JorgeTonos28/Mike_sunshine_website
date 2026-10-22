@@ -13,7 +13,7 @@ class DemoArtworkSeeder extends Seeder
             throw new \RuntimeException('Sample artwork must not be seeded into production.');
         }
         \App\Models\StudioSetting::where('logo_path', '/images/brand/logo-dark.png')->update(['logo_path' => '/images/brand/logo-dark-trimmed.png']);
-        foreach ([['Mago de capucha violeta', 'mago-capucha-violeta', 'wizard', 'Fantasía'], ['Retrato de un mandril', 'retrato-mandril', 'mandrill', 'Criaturas'], ['Gato esfinge', 'gato-esfinge', 'cat', 'Criaturas']] as [$title, $slug, $asset, $category]) {
+        foreach ([['Mago de capucha violeta', 'mago-capucha-violeta', 'wizard', 'Fantasía'], ['Retrato de un mandril', 'retrato-mandril', 'mandrill', 'Criaturas'], ['Gato esfinge', 'gato-esfinge', 'cat', 'Criaturas'], ['Sabio de túnica verde', 'sabio-tunica-verde', 'monk', 'Personajes'], ['El bufón', 'el-bufon', 'jester', 'Fantasía'], ['Personaje de cabello violeta', 'personaje-cabello-violeta', 'neon', 'Retratos']] as [$title, $slug, $asset, $category]) {
             $product = Product::firstOrCreate(['slug' => $slug], [
                 'title' => $title, 'kind' => 'painting', 'category' => $category,
                 'summary' => 'Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.',
