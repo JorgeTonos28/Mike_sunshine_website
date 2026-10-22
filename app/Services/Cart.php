@@ -10,7 +10,7 @@ class Cart
     public function summary(Request $request): array
     {
         $cart = $request->session()->get('cart', []);
-        $products = Product::with('images')->whereIn('id', array_keys($cart))->get()->keyBy('id');
+        $products = Product::with('images')->where('is_published', true)->whereIn('id', array_keys($cart))->get()->keyBy('id');
         $items = [];
         $subtotal = 0;
         $allPriced = count($cart) > 0;

@@ -67,4 +67,14 @@ class CatalogAdminTest extends TestCase
         $this->actingAs($editor)->put('/admin/products/'.$one->id, [...$this->productData(), 'remove_images' => [$image->id]])->assertSessionHasErrors('remove_images.0');
         $this->assertDatabaseHas('product_images', ['id' => $image->id]);
     }
+
+    public function test_multipart_upload_can_clear_content_blocks(): void
+    {
+        Storage::fake('public');
+        $editor = User::factory()->create(['role' => 'editor']);
+        $data = $this->productData();
+        unset($data['content_blocks']);
+        $this->actingAs($editor)->post('/admin/products', [...$data, 'uploads' => [UploadedFile::fake()->image('new.png', 80, 80)]])->assertSessionHasNoErrors()->assertRedirect();
+        $this->assertSame([], Product::first()->content_blocks);
+    }
 }

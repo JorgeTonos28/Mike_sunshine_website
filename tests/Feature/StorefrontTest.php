@@ -35,4 +35,10 @@ class StorefrontTest extends TestCase
         $product = Product::factory()->create();
         $this->get('/obras/'.$product->slug)->assertInertia(fn (Assert $page) => $page->component('Product')->missing('product.stock')->missing('product.customer_email')->where('auth.user', null));
     }
+
+    public function test_unpublished_product_data_is_not_exposed_by_an_old_cart(): void
+    {
+        $product = Product::factory()->create(['is_published' => false, 'summary' => 'Private draft details']);
+        $this->withSession(['cart' => [$product->id => 1]])->get('/carrito')->assertInertia(fn (Assert $page) => $page->component('Cart')->where('cart.items.0.product', null));
+    }
 }

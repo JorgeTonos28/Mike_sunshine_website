@@ -8,6 +8,14 @@ use Illuminate\Validation\Rule;
 
 class ProductRequest extends FormRequest
 {
+    protected function prepareForValidation(): void
+    {
+        // FormData cannot encode an empty array; clearing all blocks must still be possible with uploads.
+        if (! $this->has('content_blocks')) {
+            $this->merge(['content_blocks' => []]);
+        }
+    }
+
     public function authorize(): bool
     {
         return $this->user()?->can('studio') ?? false;

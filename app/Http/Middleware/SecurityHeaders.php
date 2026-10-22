@@ -24,7 +24,7 @@ class SecurityHeaders
         if (app()->isProduction() && $request->isSecure()) {
             $headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains';
         }
-        if ($request->is('admin', 'admin/*', 'login', '*password*', 'auth/*', 'carrito', 'pedido/*', 'solicitar')) {
+        if ($request->user() || $request->is('admin', 'admin/*', 'login', '*password*', 'auth/*', 'carrito', 'pedido/*', 'solicitar')) {
             $headers['Cache-Control'] = 'no-store, private';
             $headers['Pragma'] = 'no-cache';
         }
