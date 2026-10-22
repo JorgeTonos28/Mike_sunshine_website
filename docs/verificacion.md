@@ -4,7 +4,7 @@ Revisión local de los días 21 y 22 de octubre de 2026 con PHP 8.4.7, Node 22.2
 
 ## Comprobaciones automatizadas
 
-- `php artisan test --compact`: 37 pruebas, 399 aserciones, todas correctas.
+- `php artisan test --compact`: 46 pruebas, 428 aserciones, todas correctas.
 - `php vendor/bin/pint --test`: correcto.
 - `npm run format:check`: correcto.
 - `npm run build`: comprobación de tipos Vue/TypeScript y compilación correctas.
@@ -35,6 +35,10 @@ En la quinta revisión se añadió `/sobre-mi`, se revisó su composición a 144
 Se verificó desde el navegador el flujo completo del retrato: iniciar sesión con una cuenta temporal local, seleccionar una foto, ver la vista previa Blob, guardar, obtener una nueva ruta `/media/{uuid}.webp` y verla en Sobre mí. Después se restauró el retrato inicial y se retiraron la cuenta, su sesión y el archivo de prueba. Las pruebas automatizadas cubren sustitución, recodificación, rechazo de archivos inválidos o demasiado grandes, rechazo de rutas arbitrarias, permisos de administrador, descarga del cuestionario y exclusión de obras privadas en la nueva galería. La migración se aplicó sobre la base local existente y se ejecuta desde cero en las pruebas.
 
 Capturas de esta revisión: `output/review/about/{cover-desktop,cover-mobile,page-desktop,admin-portrait,encargo-modal}.jpg`. El cuestionario biográfico es distinto del cuestionario de privacidad y condiciones comerciales; sus 24 preguntas alimentan los textos e imágenes de la página del artista.
+
+En la sexta revisión se ajustó el recorte del retrato al arco inferior conservando la cabeza sobre el aro. Se comprobó la luz orbital con mouse y teclado, pausa y reubicación al pulsarla. La luz y la estela se dibujan delante en la mitad inferior; la mitad superior pasa detrás del retrato. La estela usa un arco continuo con degradado y halo difuminado. Se revisaron escritorio y 390 px, sin desbordamiento ni imágenes rotas; también se abrió Sobre mí con CSP de producción activa, sin errores de consola. El código contempla movimiento reducido y limpieza de observadores, temporizadores y frames al salir de la página; no se emuló una preferencia del sistema operativo. Capturas en `output/review/orbit/`.
+
+Se añadieron pruebas del transporte Gmail con TLS obligatorio y timeout acotado, prioridad del buzón privado sobre el contacto público, destinatarios inválidos, diagnóstico sin envío, envío explícito simulado sin crear datos de clientes, bloqueo del transporte log como prueba de entrega y errores sin exposición de contraseñas. `php artisan studio:mail-test` se ejecutó en el entorno local y confirmó el transporte log. No se configuraron credenciales reales ni se envió correo externo. Los pasos para comprobar una entrega real, el panel y los avisos de la cola están en `docs/probar-panel-y-gmail.md`.
 
 ## Configuración pendiente para el lanzamiento
 
