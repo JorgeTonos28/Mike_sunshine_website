@@ -24,11 +24,11 @@ class StudioServices
                 'details' => ['El personaje y sus referencias visuales.', 'La pose, el tamaño y la base de la escultura.', 'El material y el acabado que se puedan realizar.', 'Las unidades, el presupuesto y la entrega.'],
             ],
             [
-                'slug' => 'comisiones-personalizadas', 'title' => 'Comisiones personalizadas', 'eyebrow' => 'Algo que sólo tú podrías imaginar', 'subject' => 'commission',
+                'slug' => 'encargos-personalizados', 'title' => 'Encargos personalizados', 'eyebrow' => 'Algo que sólo tú podrías imaginar', 'subject' => 'commission',
                 'intro' => 'Personajes, personas, mascotas, ideas propias o regalos únicos. Cuéntame lo que tienes en mente.',
-                'description' => 'Una comisión es una conversación entre tu idea y el universo creativo de Mike. Podemos explorar una pintura, una escultura o una propuesta que combine distintas maneras de crear.',
+                'description' => 'Un encargo empieza con una conversación entre tu idea y el universo creativo de Mike. Podemos explorar una pintura, una escultura o una propuesta que combine distintas maneras de crear.',
                 'image' => '/images/art/cat.webp', 'hero' => '/images/compositions/banner-home-arab.webp', 'cta' => 'Hablemos de tu idea',
-                'message' => 'Hola Mike, tengo una idea para una comisión personalizada. Me gustaría contarte el concepto y definir contigo si podemos convertirlo en una pintura, una escultura o una pieza especial.',
+                'message' => 'Hola Mike, tengo una idea para un encargo personalizado. Me gustaría contarte el concepto y definir contigo si podemos convertirlo en una pintura, una escultura o una pieza especial.',
                 'details' => ['La historia y la intención detrás de tu idea.', 'Las personas, personajes o mascotas que quieres representar.', 'El tipo de pieza y las referencias que te inspiran.', 'La ocasión, el presupuesto y la fecha deseada.'],
             ],
             [

@@ -14,11 +14,11 @@ const props = withDefaults(
 const emit = defineEmits<{ request: [] }>();
 const banners = {
     home: {
-        eyebrow: "Disponible para comisiones",
+        eyebrow: "Obras por encargo",
         title: "¿Una pieza a tu medida?",
         text: "Un personaje, un retrato o algo que todavía no existe. Cuéntame lo que imaginas.",
         button: "Hablemos",
-        href: "/servicios/comisiones-personalizadas",
+        href: "/servicios/encargos-personalizados",
         image: "banner-home-arab",
         features: [
             "Ideas personalizadas",

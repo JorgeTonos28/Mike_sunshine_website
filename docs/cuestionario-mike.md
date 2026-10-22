@@ -48,7 +48,7 @@ Para cada pregunta, escribe una respuesta, indica «no aplica» o marca «pendie
     Respuesta:
 17. ¿Qué métodos de pago manual aceptará, qué monedas y qué instrucciones se enviarán de forma privada? No anotar números de cuenta aquí.
     Respuesta:
-18. ¿Los precios incluyen impuestos, embalaje, seguros o envío? ¿Quién asume comisiones, cambio de moneda, aduanas e impuestos de importación?
+18. ¿Los precios incluyen impuestos, embalaje, seguros o envío? ¿Quién asume cargos bancarios, cambio de moneda, aduanas e impuestos de importación?
     Respuesta:
 19. ¿Habrá anticipos, pagos parciales o condiciones distintas para encargos? ¿Cómo se documentarán los pagos y saldos?
     Respuesta:

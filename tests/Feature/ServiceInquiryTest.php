@@ -22,6 +22,7 @@ class ServiceInquiryTest extends TestCase
             $this->get('/servicios/'.$service['slug'])->assertOk()->assertInertia(fn (Assert $page) => $page->component('Service')->where('service.slug', $service['slug'])->where('service.subject', $service['subject'])->where('service.message', $service['message']));
         }
         $this->get('/servicios/nonexistent')->assertNotFound();
+        $this->get('/servicios/comisiones-personalizadas')->assertStatus(301)->assertRedirect('/servicios/encargos-personalizados');
     }
 
     public function test_service_inquiry_is_private_and_requires_consent_and_valid_subject(): void

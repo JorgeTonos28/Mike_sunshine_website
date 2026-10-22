@@ -24,7 +24,7 @@ const inquiry = ref<InstanceType<typeof InquiryDialog>>();
     <Head title="Contacto"
         ><meta
             name="description"
-            content="Pinturas, esculturas, comisiones y colaboraciones. Cuéntale tu idea a Mike Sunshine."
+            content="Pinturas, esculturas, encargos y colaboraciones. Cuéntale tu idea a Mike Sunshine."
     /></Head>
     <StoreLayout>
         <section class="contact-v2 painted-hero">
@@ -42,7 +42,7 @@ const inquiry = ref<InstanceType<typeof InquiryDialog>>();
                     <BrushHeading title="Hablemos de tu idea" large />
                     <p class="contact-intro">
                         Me encantaría conocer tu proyecto. Estoy abierto a
-                        comisiones, colaboraciones, participación en eventos y
+                        encargos, colaboraciones, participación en eventos y
                         cualquier pregunta sobre mi trabajo. Cuéntame tu idea y
                         conversemos sobre cómo hacerla realidad.
                     </p>
@@ -90,12 +90,12 @@ const inquiry = ref<InstanceType<typeof InquiryDialog>>();
                         ><PhUser :size="30" weight="light"
                     /></span>
                     <div>
-                        <h2>Comisiones</h2>
+                        <h2>Encargos</h2>
                         <p>
                             Pinturas, esculturas 3D y proyectos personalizados.
                         </p>
                         <Link
-                            href="/servicios/comisiones-personalizadas"
+                            href="/servicios/encargos-personalizados"
                             class="text-link"
                             >Cuéntame tu idea<PhArrowRight :size="17"
                         /></Link>

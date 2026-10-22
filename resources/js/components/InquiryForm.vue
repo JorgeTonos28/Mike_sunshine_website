@@ -54,7 +54,7 @@ const submit = () =>
             >¿De qué te gustaría hablar?<select v-model="form.subject">
                 <option value="painting">Una pintura</option>
                 <option value="sculpture">Una escultura 3D</option>
-                <option value="commission">Una comisión personalizada</option>
+                <option value="commission">Un encargo personalizado</option>
                 <option value="collaboration">Un evento o colaboración</option>
                 <option value="other">Otra idea</option>
             </select></label
