@@ -99,6 +99,7 @@
     display: block;
     color: var(--muted);
     font: 400 12px/1.7 var(--sans);
+    letter-spacing: normal;
     margin-top: 12px;
 }
 .about-introduction .about-intro-lead {
