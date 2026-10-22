@@ -25,7 +25,9 @@ Para cargar las representaciones de demostración en local: `php artisan db:seed
 
 Crear el primer administrador: `php artisan studio:admin correo@ejemplo.com` (contraseña interactiva, nunca compartida en seeds). No hay registro público. Google necesita `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` y callback exacto en `GOOGLE_REDIRECT_URI`. Sólo acceden cuentas activas previamente creadas; no se guardan tokens del proveedor. Recuperación de contraseña disponible con correo configurado. En producción: HTTPS, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true` y una `APP_KEY` estable respaldada. Cambiar la clave pierde el acceso a los datos cifrados.
 
-Las obras de muestra son representaciones gráficas derivadas de referencias proporcionadas por el artista. Los precios, dimensiones y disponibilidad reales se completan desde administración. No se generan esculturas ficticias para el catálogo.
+Las obras de muestra son representaciones gráficas derivadas de referencias proporcionadas por el artista. El catálogo local incluye siete pinturas (entre ellas El Árabe Alquimista) y cuatro esculturas conceptuales solicitadas por el usuario, basadas en esas pinturas e identificadas como conceptos. Los precios, dimensiones y existencias reales se completan desde administración.
+
+Los heroes de Inicio, Pinturas, Esculturas y Contacto usan personajes distintos. Los cuatro banners tienen composiciones pictóricas y textos propios; sus PNG maestros, derivados WebP y prompts están en `public/images/compositions/` y `docs/prompts-composiciones.json`.
 
 ## Administración
 
@@ -37,9 +39,19 @@ Administradores: usuarios/roles, datos del negocio, logo/favicon/hero, redes y t
 
 El cuestionario de negocio está en [docs/cuestionario-mike.md](docs/cuestionario-mike.md), descargable también desde Páginas legales en el panel. Incluye identidad, catálogo, derechos/licencias, confirmación/pagos manuales, envíos, cancelaciones, devoluciones, privacidad, retención, proveedores y cookies. Los textos legales iniciales son provisionales, editables por bloques y con aprobación/versionado explícitos.
 
+Inicio y Contacto muestran los datos básicos y las redes configurados. El seeder de demostración completa sólo campos vacíos con contacto desechable y enlaces `/#`, según lo autorizado para revisión. El panel admite ese marcador o enlaces HTTPS. Sustituir estos datos antes del lanzamiento.
+
+## Contacto y servicios
+
+Contacto incluye formulario principal, canales con íconos y la sección “¿Qué puedes solicitar?”. Cada opción abre una página dedicada: `/servicios/pinturas`, `/servicios/esculturas-3d`, `/servicios/comisiones-personalizadas` y `/servicios/eventos-colaboraciones`. Los CTA abren un modal accesible con asunto y mensaje preparados para ese servicio; el visitante completa sus datos y consentimiento. Puede editar el mensaje. “Escríbeme ahora” abre el formulario general desde el banner de Contacto. Las consultas se guardan cifradas y generan su aviso en cola.
+
+El efecto de pincel se activa con mouse de precisión y respeta `prefers-reduced-motion`. Deja gotas sólo al moverse, limitadas a 24 elementos y retiradas en 460 ms; no hay un bucle continuo en reposo. Conserva el cursor habitual en campos de texto y modales. Se puede desactivar desde el pie; la preferencia dura durante la sesión de la página, sin cookies ni almacenamiento de seguimiento.
+
 ## Pedidos y correo
 
 Carrito en sesión, formulario de cliente/entrega, aceptación de privacidad y términos, comprobación final de disponibilidad en servidor y protección contra envíos duplicados. Los importes se toman de la base y se guardan como instantánea. Sin precio significa consulta; envío por cotizar. No se reserva inventario ni se cobra automáticamente. Mike gestiona estados, notas y disponibilidad desde el panel.
+
+La cantidad se elige en la ficha y se puede cambiar en el carrito (1 a 10 por obra y hasta 20 obras distintas). Toda obra publicada permite una solicitud aunque tenga cero existencias, esté reservada/vendida o se pida más de lo disponible. En esos casos se avisa en ficha, carrito, formulario y comprobante de que Mike contactará cuando haya disponibilidad. El servidor marca la solicitud “En espera de disponibilidad” y conserva esa condición por línea, aunque el stock cambie después. Los borradores y las obras archivadas siguen excluidos. Las existencias informan sobre disponibilidad; no se reservan al enviar una solicitud.
 
 Configurar correo SMTP y el email del estudio desde ajustes o `STUDIO_EMAIL`. Ejecutar `php artisan queue:work database --tries=5 --timeout=30` bajo un supervisor en producción. Pedido y aviso de cola se guardan en una transacción en la misma conexión de base de datos (mantener `DB_QUEUE_CONNECTION` vacío). El email sólo contiene referencia y enlace privado; los datos del cliente permanecen en el panel. Fallos se muestran en cada solicitud y admiten reintento. Local usa `MAIL_MAILER=log`, por lo que no envía correos reales. El registro persiste incluso si SMTP no está configurado.
 

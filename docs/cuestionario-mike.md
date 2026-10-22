@@ -162,3 +162,10 @@ Para cada pregunta, escribe una respuesta, indica «no aplica» o marca «pendie
 | Retención y proveedores de datos | | | |
 | Cookies / analítica / contenidos externos | | | |
 | Aprobación legal y catálogo | | | |
+# Solicitudes en espera y conceptos escultóricos
+
+- Cuando una obra no tenga existencias, ¿cómo quieres avisar al cliente cuando vuelva a estar disponible y durante cuánto tiempo conservarás esa solicitud?
+- ¿Puede el cliente cancelar una solicitud en espera en cualquier momento? ¿Por qué canal lo haría?
+- ¿Mantendrás el precio mostrado al solicitar o enviarás una nueva cotización cuando haya disponibilidad?
+- Para las esculturas conceptuales del catálogo, ¿qué materiales, medidas, acabados y métodos de fabricación puedes ofrecer realmente? ¿Qué aprobaciones necesitarás del cliente antes de producirlas?
+- ¿Qué cambios puede haber entre una imagen conceptual y la pieza final, y cómo los explicarás al cliente antes de confirmar el encargo?
