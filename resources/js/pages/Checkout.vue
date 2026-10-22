@@ -31,6 +31,15 @@ const submit = () => form.post("/solicitar", { preserveScroll: true });
                 Déjanos tus datos para confirmar los detalles de tu solicitud de
                 forma personal.
             </p>
+            <p
+                v-if="cart.items.some((item) => item.awaiting_availability)"
+                class="availability-notice checkout-availability"
+            >
+                Tu selección incluye obras pendientes de disponibilidad. Podemos
+                registrar la solicitud y Mike te contactará cuando estén
+                disponibles. El envío de este formulario no reserva piezas ni
+                realiza un cobro.
+            </p>
             <div class="checkout-grid">
                 <form class="studio-form" @submit.prevent="submit">
                     <FormErrors :errors="form.errors" />
@@ -171,6 +180,11 @@ const submit = () => form.post("/solicitar", { preserveScroll: true });
                                 {{ item.quantity }}
                                 {{ item.quantity === 1 ? "pieza" : "piezas" }}
                             </p>
+                            <small
+                                v-if="item.awaiting_availability"
+                                class="gold-text"
+                                >En espera de disponibilidad</small
+                            >
                         </div>
                     </div>
                     <div class="summary-row">

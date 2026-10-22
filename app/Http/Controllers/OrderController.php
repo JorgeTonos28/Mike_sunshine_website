@@ -28,6 +28,7 @@ class OrderController extends Controller
         $hash = hash('sha256', $request->validated('token'));
         $order = $action->handle($request->session()->get('cart', []), $request->validated(), $hash);
         $request->session()->put('receipt', $order->reference);
+        $request->session()->put('receipt_awaiting_availability', $order->status === 'awaiting_stock');
         $request->session()->forget('cart');
 
         return to_route('order.receipt');
@@ -37,6 +38,6 @@ class OrderController extends Controller
     {
         abort_unless($request->session()->has('receipt'), 404);
 
-        return Inertia::render('Receipt', ['reference' => $request->session()->get('receipt')]);
+        return Inertia::render('Receipt', ['reference' => $request->session()->get('receipt'), 'awaitingAvailability' => (bool) $request->session()->get('receipt_awaiting_availability', false)]);
     }
 }

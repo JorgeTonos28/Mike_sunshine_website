@@ -18,6 +18,9 @@ const currentImage = ref(0);
 const added = ref(false);
 const selected = computed(() => props.product.images[currentImage.value]);
 const form = useForm({ quantity: 1 });
+const awaitingAvailability = computed(
+    () => form.quantity > props.product.available_quantity,
+);
 const add = () =>
     form.post(`/carrito/${props.product.id}`, {
         preserveScroll: true,
@@ -125,12 +128,40 @@ const add = () =>
                         El estudio confirmará los detalles de la pieza y su
                         entrega antes de la compra.
                     </p>
+                    <p
+                        v-if="awaitingAvailability"
+                        class="availability-notice"
+                        role="status"
+                    >
+                        {{
+                            product.available_quantity
+                                ? `Hay ${product.available_quantity} ${product.available_quantity === 1 ? "pieza disponible" : "piezas disponibles"} ahora.`
+                                : "Esta obra no tiene existencias disponibles ahora."
+                        }}
+                        Puedes enviar tu solicitud. Mike te contactará cuando
+                        esté disponible la cantidad que necesitas.
+                    </p>
                     <FormErrors :errors="form.errors" />
                     <form
                         v-if="product.requestable"
                         class="product-add-form"
                         @submit.prevent="add"
                     >
+                        <label class="product-quantity" for="product-quantity"
+                            >Cantidad
+                            <select
+                                id="product-quantity"
+                                v-model.number="form.quantity"
+                            >
+                                <option
+                                    v-for="quantity in 10"
+                                    :key="quantity"
+                                    :value="quantity"
+                                >
+                                    {{ quantity }}
+                                </option>
+                            </select>
+                        </label>
                         <button
                             class="button gold"
                             type="submit"

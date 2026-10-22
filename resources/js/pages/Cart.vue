@@ -72,6 +72,13 @@ const change = (id: number, event: Event) =>
                                 }}
                             </p>
                             <p
+                                v-if="item.awaiting_availability"
+                                class="availability-notice"
+                            >
+                                Solicitud en espera de disponibilidad. Mike te
+                                contactará cuando pueda atender esta cantidad.
+                            </p>
+                            <p
                                 v-if="
                                     !item.product?.requestable ||
                                     item.quantity > item.max_quantity
@@ -147,7 +154,8 @@ const change = (id: number, event: Event) =>
                         >Solicitar estas obras <PhArrowRight :size="19"
                     /></Link>
                     <p v-else class="error-text">
-                        Retira las obras no disponibles para continuar.
+                        Retira las obras que fueron retiradas del catálogo para
+                        continuar.
                     </p>
                     <small>No se realiza ningún cobro en la web.</small>
                 </aside>

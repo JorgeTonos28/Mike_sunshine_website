@@ -2,7 +2,7 @@
 import { Head, Link } from "@inertiajs/vue3";
 import { PhCheck, PhArrowRight } from "@phosphor-icons/vue";
 import StoreLayout from "../layouts/StoreLayout.vue";
-defineProps<{ reference: string }>();
+defineProps<{ reference: string; awaitingAvailability: boolean }>();
 </script>
 <template>
     <Head title="Solicitud recibida" /><StoreLayout
@@ -18,6 +18,10 @@ defineProps<{ reference: string }>();
             <div class="receipt-reference">
                 <span>Tu referencia</span><strong>{{ reference }}</strong>
             </div>
+            <p v-if="awaitingAvailability" class="availability-notice">
+                Tu solicitud quedó en espera de disponibilidad. Mike te
+                contactará cuando las piezas estén disponibles.
+            </p>
             <p class="muted">
                 Todavía no se ha realizado ningún cobro ni reservado una obra.
             </p>

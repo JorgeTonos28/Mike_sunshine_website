@@ -28,6 +28,7 @@ type OrderData = {
         quantity: number;
         unit_price_minor: number | null;
         currency: string;
+        awaiting_availability: boolean;
     }[];
 };
 const props = defineProps<{ order: OrderData }>();
@@ -116,6 +117,14 @@ const form = useForm({
                                             class="gold-text"
                                             >{{ item.title }}</Link
                                         ><span v-else>{{ item.title }}</span>
+                                        <p
+                                            v-if="item.awaiting_availability"
+                                            class="gold-text small-text"
+                                        >
+                                            Pendiente de disponibilidad al
+                                            solicitar. Contactar al cliente
+                                            cuando esté disponible.
+                                        </p>
                                     </td>
                                     <td>{{ item.quantity }}</td>
                                     <td>

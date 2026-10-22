@@ -20,6 +20,7 @@ export type Artwork = {
     currency: string;
     availability: string;
     requestable: boolean;
+    available_quantity: number;
     images: ArtworkImage[];
     content_blocks: Block[] | null;
     stock?: number;
@@ -71,6 +72,7 @@ export type CartData = {
         quantity: number;
         product: Artwork | null;
         max_quantity: number;
+        awaiting_availability: boolean;
     }[];
     subtotal_minor: number | null;
 };
@@ -89,6 +91,7 @@ export const availability: Record<string, string> = {
 };
 export const orderStatuses: Record<string, string> = {
     received: "Recibida",
+    awaiting_stock: "En espera de disponibilidad",
     reviewing: "En conversación",
     confirmed: "Confirmada",
     completed: "Completada",

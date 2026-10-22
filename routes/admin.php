@@ -14,7 +14,7 @@ use Inertia\Inertia;
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'can:studio'])->group(function () {
     Route::get('/', fn () => Inertia::render('admin/Dashboard', [
-        'counts' => ['products' => Product::count(), 'published' => Product::where('is_published', true)->count(), 'orders' => request()->user()->isAdmin() ? Order::where('status', 'received')->count() : null, 'inquiries' => request()->user()->isAdmin() ? Inquiry::whereNull('read_at')->count() : null],
+        'counts' => ['products' => Product::count(), 'published' => Product::where('is_published', true)->count(), 'orders' => request()->user()->isAdmin() ? Order::whereIn('status', ['received', 'awaiting_stock'])->count() : null, 'inquiries' => request()->user()->isAdmin() ? Inquiry::whereNull('read_at')->count() : null],
         'setup' => request()->user()->isAdmin() ? ['email' => filled(StudioSetting::current()->contact_email) || filled(config('studio.email')), 'google' => filled(config('services.google.client_id'))] : null,
     ]))->name('dashboard');
     Route::resource('products', ProductController::class)->except('show');

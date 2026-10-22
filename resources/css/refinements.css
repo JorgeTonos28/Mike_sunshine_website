@@ -1,0 +1,26 @@
+.availability-notice {
+    color: #e4c48b;
+    background: #c89c4510;
+    border-left: 2px solid var(--gold);
+    padding: 13px 17px;
+    font: 400 13px/1.75 var(--sans);
+    margin-block: 18px;
+}
+.checkout-availability {
+    max-width: 760px;
+    margin-bottom: 30px;
+}
+.product-quantity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+}
+.product-quantity select {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--line);
+    padding: 11px 17px;
+    min-width: 85px;
+}
