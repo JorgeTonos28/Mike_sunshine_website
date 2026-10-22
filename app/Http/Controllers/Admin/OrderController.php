@@ -33,7 +33,7 @@ class OrderController extends Controller
 
     public function retry(Order $order)
     {
-        if ($order->notification_status !== 'sent') {
+        if ($order->notification_status === 'failed') {
             $order->update(['notification_status' => 'pending']);
             NotifyStudio::dispatch('order', $order->id)->onConnection('database');
         }
