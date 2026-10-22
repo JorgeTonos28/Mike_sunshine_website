@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/vue";
 import StoreLayout from "../layouts/StoreLayout.vue";
 import SocialLinks from "../components/SocialLinks.vue";
+import ArtistPortrait from "../components/ArtistPortrait.vue";
 import type { ArtworkImage, Shared } from "../types";
 
 defineProps<{
@@ -94,19 +95,10 @@ const process = [
                 <h1 id="about-title">Una mirada.<em>Muchas formas.</em></h1>
                 <div class="about-cover-grid">
                     <figure class="about-portrait">
-                        <div class="about-portrait-frame">
-                            <span
-                                class="about-portrait-orbit"
-                                aria-hidden="true"
-                            ></span>
-                            <img
-                                :src="portrait"
-                                :alt="`Retrato de ${studio.name}`"
-                                width="1122"
-                                height="1402"
-                                fetchpriority="high"
-                            />
-                        </div>
+                        <ArtistPortrait
+                            :src="portrait"
+                            :alt="`Retrato de ${studio.name}`"
+                        />
                         <figcaption>
                             <span>{{ studio.name }}</span
                             ><span>El artista detrás de la obra</span>
