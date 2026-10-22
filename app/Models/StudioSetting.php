@@ -8,7 +8,7 @@ class StudioSetting extends Model
 {
     protected $attributes = ['currency' => 'DOP'];
 
-    protected $fillable = ['name', 'tagline', 'bio', 'contact_email', 'phone', 'address', 'instagram_url', 'facebook_url', 'youtube_url', 'logo_path', 'favicon_path', 'currency', 'hero_title', 'hero_description', 'hero_path'];
+    protected $fillable = ['name', 'tagline', 'bio', 'contact_email', 'phone', 'address', 'instagram_url', 'facebook_url', 'youtube_url', 'logo_path', 'favicon_path', 'currency', 'hero_title', 'hero_description', 'hero_path', 'portrait_path'];
 
     public static function current(): self
     {
@@ -24,6 +24,7 @@ class StudioSetting extends Model
             'hero_description' => 'Personajes con alma. Pinturas y esculturas que exploran la imaginación, el color y el carácter.',
             'logo_path' => '/images/brand/logo-dark-trimmed.png', 'favicon_path' => '/images/brand/favicon.png',
             'hero_path' => '/images/compositions/hero-home-wizard.webp',
+            'portrait_path' => '/images/artist/mike-portrait.webp',
         ];
     }
 

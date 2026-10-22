@@ -56,6 +56,7 @@ export type Studio = {
     hero_title: string;
     hero_description: string | null;
     hero_path: string | null;
+    portrait_path: string | null;
 };
 export type Shared = {
     studio: Studio;

@@ -27,6 +27,7 @@ class SettingsRequest extends FormRequest
             'logo' => 'nullable|file|mimetypes:image/png,image/webp,image/jpeg|max:4096|dimensions:max_width=4000,max_height=4000',
             'favicon' => 'nullable|file|mimetypes:image/png,image/webp|max:1024|dimensions:max_width=1024,max_height=1024',
             'hero' => 'nullable|file|mimetypes:image/png,image/webp,image/jpeg|max:8192|dimensions:max_width=6000,max_height=6000',
+            'portrait' => 'nullable|file|mimetypes:image/png,image/webp,image/jpeg|max:8192|dimensions:max_width=6000,max_height=6000',
         ];
     }
 }

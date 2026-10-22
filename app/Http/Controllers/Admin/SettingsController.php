@@ -19,11 +19,11 @@ class SettingsController extends Controller
 
     public function update(SettingsRequest $request, ImageUpload $images)
     {
-        $data = $request->safe()->except(['logo', 'favicon', 'hero']);
+        $data = $request->safe()->except(['logo', 'favicon', 'hero', 'portrait']);
         if (Product::whereNotNull('price_minor')->where('currency', '!=', $data['currency'])->exists()) {
             throw ValidationException::withMessages(['currency' => 'Hay obras con precio en otra moneda. Quita sus precios antes de cambiar la moneda.']);
         }
-        foreach (['logo', 'favicon', 'hero'] as $field) {
+        foreach (['logo', 'favicon', 'hero', 'portrait'] as $field) {
             if ($request->hasFile($field)) {
                 $data[$field.'_path'] = $images->store($request->file($field));
             }

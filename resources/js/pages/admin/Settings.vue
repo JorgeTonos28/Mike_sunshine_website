@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, useForm } from "@inertiajs/vue3";
+import { computed, onUnmounted, ref, watch } from "vue";
 import { PhFloppyDisk } from "@phosphor-icons/vue";
 import AdminLayout from "../../layouts/AdminLayout.vue";
 import FormErrors from "../../components/FormErrors.vue";
@@ -21,13 +22,39 @@ const form = useForm({
     logo: null as File | null,
     favicon: null as File | null,
     hero: null as File | null,
+    portrait: null as File | null,
+});
+const portraitFile = ref<HTMLInputElement>();
+const portraitPreview = ref<string>();
+const portraitSource = computed(
+    () =>
+        portraitPreview.value ||
+        props.settings.portrait_path ||
+        "/images/artist/mike-portrait.webp",
+);
+watch(
+    () => form.portrait,
+    (file) => {
+        if (portraitPreview.value) URL.revokeObjectURL(portraitPreview.value);
+        portraitPreview.value =
+            file &&
+            ["image/png", "image/webp", "image/jpeg"].includes(file.type)
+                ? URL.createObjectURL(file)
+                : undefined;
+    },
+);
+onUnmounted(() => {
+    if (portraitPreview.value) URL.revokeObjectURL(portraitPreview.value);
 });
 const socials = [
     { key: "instagram_url", name: "Instagram" },
     { key: "facebook_url", name: "Facebook" },
     { key: "youtube_url", name: "YouTube" },
 ] as const;
-const pick = (field: "logo" | "favicon" | "hero", event: Event) => {
+const pick = (
+    field: "logo" | "favicon" | "hero" | "portrait",
+    event: Event,
+) => {
     form[field] = (event.target as HTMLInputElement).files?.[0] || null;
 };
 const save = () =>
@@ -37,6 +64,8 @@ const save = () =>
             form.logo = null;
             form.favicon = null;
             form.hero = null;
+            form.portrait = null;
+            if (portraitFile.value) portraitFile.value.value = "";
         },
     });
 </script>
@@ -182,6 +211,32 @@ const save = () =>
                             máximo 8 MB y 12 megapíxeles.</small
                         ></label
                     >
+                </section>
+                <section class="admin-panel">
+                    <h2>Retrato del artista</h2>
+                    <p class="muted">
+                        La foto que se muestra en la página Sobre mí.
+                    </p>
+                    <img
+                        :src="portraitSource"
+                        alt="Vista previa del retrato del artista"
+                        class="portrait-admin-preview"
+                    />
+                    <label>
+                        Nueva foto del artista
+                        <input
+                            ref="portraitFile"
+                            type="file"
+                            accept="image/png,image/webp,image/jpeg"
+                            @change="pick('portrait', $event)"
+                        />
+                        <small
+                            >PNG, WebP o JPG, hasta 8 MB y 12 megapíxeles. Un
+                            fondo transparente se integra mejor con el diseño.
+                            Revisa la vista previa y guarda la información para
+                            publicarla.</small
+                        >
+                    </label>
                 </section>
             </div>
             <div class="admin-save-row">
