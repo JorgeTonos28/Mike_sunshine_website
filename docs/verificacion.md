@@ -4,7 +4,7 @@ Revisión local de los días 21 y 22 de octubre de 2026 con PHP 8.4.7, Node 22.2
 
 ## Comprobaciones automatizadas
 
-- `php artisan test --compact`: 29 pruebas, 303 aserciones, todas correctas.
+- `php artisan test --compact`: 32 pruebas, 323 aserciones, todas correctas.
 - `php vendor/bin/pint --test`: correcto.
 - `npm run format:check`: correcto.
 - `npm run build`: comprobación de tipos Vue/TypeScript y compilación correctas.
@@ -12,7 +12,7 @@ Revisión local de los días 21 y 22 de octubre de 2026 con PHP 8.4.7, Node 22.2
 - `composer audit --locked` y `npm audit --audit-level=high`: sin vulnerabilidades reportadas en la revisión.
 - Caché de rutas generada correctamente y retirada para continuar el desarrollo.
 
-Las pruebas cubren autorización por rol, acceso local/Google simulado, bloqueo de registro público, protección del último administrador, subidas y propiedad de imágenes, bloques de contenido, borradores, precios tomados del servidor, cantidades/disponibilidad, solicitudes en espera con instantáneas, duplicados, consentimiento, cifrado de datos personales y trabajos de cola, recuperación frente a fallos de correo, cabeceras de seguridad, páginas de servicios y rechazo de enlaces sociales inseguros.
+Las pruebas cubren autorización por rol, acceso local/Google simulado, bloqueo de registro público, protección del último administrador, subidas y propiedad de imágenes, bloques de contenido, borradores, precios tomados del servidor, cantidades/disponibilidad, solicitudes en espera con instantáneas, duplicados, consentimiento, cifrado de datos personales y trabajos de cola, recuperación frente a fallos de correo, cabeceras de seguridad, páginas de servicios y rechazo de enlaces sociales inseguros. Se añadió cobertura del seeder: separación del Alquimista correcto, ejecución repetida sin duplicados, corrección de identidad conservando ID/datos comerciales y preservación de títulos, alt y contacto personalizados.
 
 ## Revisión en navegador
 
@@ -20,9 +20,13 @@ Se revisaron portada, catálogo, detalle de obra, carrito, solicitud, comprobant
 
 Se revisaron anchos de 1440, 768 y 390 píxeles, incluido el menú móvil, formularios y panel. Las vistas revisadas no presentaron desplazamiento horizontal ni imágenes rotas. La portada y la navegación de catálogo también se comprobaron en modo de producción local con CSP activa, sin errores de consola de seguridad. Las capturas de revisión permanecen en `output/review/` y no se versionan.
 
-La cuenta, el borrador, los pedidos y las consultas ficticios usados en la revisión se retiraron de la base local, junto con sus avisos pendientes. Permanecen siete pinturas y cuatro conceptos escultóricos para revisar el diseño; no tienen precios ni medidas inventadas. No se enviaron correos externos ni se procesaron pagos.
+La cuenta, el borrador, los pedidos y las consultas ficticios usados en la revisión se retiraron de la base local, junto con sus avisos pendientes. Permanecen ocho pinturas y cuatro conceptos escultóricos para revisar el diseño; no tienen precios ni medidas inventadas. No se enviaron correos externos ni se procesaron pagos.
 
 En la segunda revisión se comprobó la apertura del modal desde el banner de Contacto y desde un servicio, el mensaje predefinido y el envío real a la base local. Se solicitaron tres unidades de una escultura sin existencias desde su ficha, se conservaron en el carrito y se verificó la condición de espera tanto en el comprobante como en la instantánea del pedido. Se comprobó el pincel: aparece al mover el mouse, las gotas desaparecen en reposo y el control del pie lo desactiva. Las nuevas páginas se revisaron a 390 px sin desplazamiento horizontal ni imágenes rotas. El modal de servicios también se abrió en modo de producción local sin errores de CSP.
+
+En la tercera revisión se comprobó la rotación ascendente del pincel y su punto de clic, los banners reflejados con texto a la derecha, el mandril con alfa y silueta completa y el nuevo hero del Alquimista en Esculturas. Se revisaron Inicio a 1440/768/390 px y Esculturas a 1440/390 px, sin desbordamiento horizontal ni imágenes rotas. Se verificó la ficha `/obras/arabe-alquimista-turbante` con su imagen correcta y la opción de añadirla al carrito.
+
+Las entradas del hero tienen retrasos de 0–300 ms; el arte entra en 1000 ms y los bloques se revelan en 650 ms. En el navegador se comprobó el paso de bloques pendientes a visibles al bajar y que permanecen visibles al volver arriba. El código contempla `prefers-reduced-motion`, foco de teclado y ausencia de IntersectionObserver; no se emuló un cambio de preferencia del sistema operativo. Se comprobó Inicio con `APP_ENV=production`, CSP activa y sin errores de consola. Capturas nuevas: `output/review/adjustments/{home-artist,home-banner,sculptures-desktop}.jpg`.
 
 ## Configuración pendiente para el lanzamiento
 

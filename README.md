@@ -25,9 +25,11 @@ Para cargar las representaciones de demostración en local: `php artisan db:seed
 
 Crear el primer administrador: `php artisan studio:admin correo@ejemplo.com` (contraseña interactiva, nunca compartida en seeds). No hay registro público. Google necesita `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` y callback exacto en `GOOGLE_REDIRECT_URI`. Sólo acceden cuentas activas previamente creadas; no se guardan tokens del proveedor. Recuperación de contraseña disponible con correo configurado. En producción: HTTPS, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true` y una `APP_KEY` estable respaldada. Cambiar la clave pierde el acceso a los datos cifrados.
 
-Las obras de muestra son representaciones gráficas derivadas de referencias proporcionadas por el artista. El catálogo local incluye siete pinturas (entre ellas El Árabe Alquimista) y cuatro esculturas conceptuales solicitadas por el usuario, basadas en esas pinturas e identificadas como conceptos. Los precios, dimensiones y existencias reales se completan desde administración.
+Las obras de muestra son representaciones gráficas derivadas de referencias proporcionadas por el artista. El catálogo local incluye ocho pinturas y cuatro esculturas conceptuales solicitadas por el usuario, basadas en esas pinturas e identificadas como conceptos. El Árabe Alquimista es el personaje del turbante y el frasco verde; el personaje del gorro moteado tiene una ficha distinta. El seeder corrige la identificación anterior sin reemplazar la ficha ni sus datos comerciales y respeta títulos personalizados. Los precios, dimensiones y existencias reales se completan desde administración.
 
-Los heroes de Inicio, Pinturas, Esculturas y Contacto usan personajes distintos. Los cuatro banners tienen composiciones pictóricas y textos propios; sus PNG maestros, derivados WebP y prompts están en `public/images/compositions/` y `docs/prompts-composiciones.json`.
+Los heroes de Inicio, Pinturas, Esculturas y Contacto usan personajes distintos. Esculturas muestra una interpretación conceptual del Árabe Alquimista. Los cuatro banners tienen composiciones pictóricas y textos propios, con el personaje a la izquierda y el texto a la derecha en escritorio; las imágenes existentes se reflejan con CSS. Sus PNG maestros, derivados WebP y prompts están en `public/images/compositions/`, `docs/prompts-composiciones.json` y `docs/prompts-ajustes.json`. La sección del estudio usa un mandril con alfa, sin recorte rectangular.
+
+Inicio anima de forma escalonada los elementos del hero y revela categorías, obras, estudio y banner al entrar en pantalla. Cada elemento se revela una vez por visita mediante IntersectionObserver, sin bucle continuo. El contenido es visible por defecto si no se instala el observador; se omiten las animaciones con movimiento reducido y se revela cualquier bloque que reciba foco de teclado.
 
 ## Administración
 
@@ -45,7 +47,7 @@ Inicio y Contacto muestran los datos básicos y las redes configurados. El seede
 
 Contacto incluye formulario principal, canales con íconos y la sección “¿Qué puedes solicitar?”. Cada opción abre una página dedicada: `/servicios/pinturas`, `/servicios/esculturas-3d`, `/servicios/comisiones-personalizadas` y `/servicios/eventos-colaboraciones`. Los CTA abren un modal accesible con asunto y mensaje preparados para ese servicio; el visitante completa sus datos y consentimiento. Puede editar el mensaje. “Escríbeme ahora” abre el formulario general desde el banner de Contacto. Las consultas se guardan cifradas y generan su aviso en cola.
 
-El efecto de pincel se activa con mouse de precisión y respeta `prefers-reduced-motion`. Deja gotas sólo al moverse, limitadas a 24 elementos y retiradas en 460 ms; no hay un bucle continuo en reposo. Conserva el cursor habitual en campos de texto y modales. Se puede desactivar desde el pie; la preferencia dura durante la sesión de la página, sin cookies ni almacenamiento de seguimiento.
+El efecto de pincel apunta hacia arriba y alinea la punta con el punto de clic. Se activa con mouse de precisión y respeta `prefers-reduced-motion`. Deja gotas sólo al moverse, limitadas a 24 elementos y retiradas en 460 ms; no hay un bucle continuo en reposo. Conserva el cursor habitual en campos de texto y modales. Se puede desactivar desde el pie; la preferencia dura durante la sesión de la página, sin cookies ni almacenamiento de seguimiento.
 
 ## Pedidos y correo
 

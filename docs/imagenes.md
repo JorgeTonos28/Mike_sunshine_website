@@ -45,26 +45,34 @@ Las instrucciones incluyeron estas restricciones explícitas en todas las reprod
 
 ## Ampliación del catálogo del 22 de octubre
 
-- `public/images/art/arab-alchemist.png` y `.webp`: **El Árabe Alquimista**, a partir de `Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.52 PM.jpeg`. Se conserva el gorro amarillo, dedo levantado, rostro, barba y ropa de la pintura real. Prompt: reproducción frontal 4:5, fiel al personaje y a la pincelada; retirar papel/entorno fotografiados; fondo carbón; sin nuevos objetos, letras ni recortes de cabeza o mano.
+- `public/images/art/arab-alchemist.png` y `.webp`: **Personaje de gorro moteado**, a partir de `Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.52 PM.jpeg`. El nombre de archivo es legado: esta pintura se identificó erróneamente como El Árabe Alquimista y se corrigió tras la aclaración del usuario. Se conserva el gorro amarillo, dedo levantado, rostro, barba y ropa de la pintura real. Prompt original: reproducción frontal 4:5, fiel al personaje y a la pincelada; retirar papel/entorno fotografiados; fondo carbón; sin nuevos objetos, letras ni recortes de cabeza o mano.
 - `public/images/sculptures/{wizard,cat,monk,jester}.png` y `.webp`: cuatro interpretaciones escultóricas conceptuales basadas en los respectivos PNG regenerados de las pinturas. No se presentan como fotografías de piezas físicas existentes. Se conserva el PNG maestro y se sirve WebP.
 
 Prompt común para esculturas (herramienta integrada): “Use case: stylized-concept. Asset: portrait 4:5 product concept render for a sculpture catalogue. Reference image is Mike Sunshine's painted character. Translate THIS SAME character into a highly detailed hand-painted resin collectible bust, preserving facial identity, expression, exact silhouette, costume and palette. Clearly three-dimensional sculpted volume, visible brush-painted details on resin, realistic studio material response, warm raking key light, deep gentle shadows. Bust on a short dark bronze rectangular plinth; include entire cap/ears/topknot, hands or book if present, and whole plinth with at least 8 percent breathing room on all edges. Three-quarter front view, camera at eye level, near-black warm charcoal studio backdrop #11100e with a subtle textured floor. SINGLE bust ONLY. This is an imaginative sculpture concept based on the painting, not a photograph of an existing physical piece. No text, letters, watermark, logo, border, room, pedestal cropping or extra objects.” Se especificó el personaje y su ropa/paleta para cada referencia.
 
-El seeder local añade siete pinturas y cuatro conceptos 3D sin sobrescribir las fichas existentes. También completa sólo los campos vacíos con contacto ficticio (`.example`, teléfono 555-0100, ubicación por confirmar) y redes `/#`, según autorización del usuario. Todos se sustituyen desde administración antes de publicar.
+El seeder local añade ocho pinturas y cuatro conceptos 3D. Corrige sólo la identificación errónea conocida y conserva el ID, precios, existencias y contenido; respeta títulos/alt personalizados y reconoce imágenes ya existentes para evitar duplicarlas si cambió su slug. También completa sólo los campos vacíos con contacto ficticio (`.example`, teléfono 555-0100, ubicación por confirmar) y redes `/#`, según autorización del usuario. Todos se sustituyen desde administración antes de publicar.
 
 ## Composiciones de heroes y banners
 
-Las ocho capas de `public/images/compositions/` se generaron con la herramienta integrada y alfa. Se guardan PNG maestros y derivados WebP. Sus referencias y prompts completos están en `docs/prompts-composiciones.json`.
+Las ocho capas iniciales de `public/images/compositions/` se generaron con la herramienta integrada y alfa. Se guardan PNG maestros y derivados WebP. Sus referencias y prompts originales están en `docs/prompts-composiciones.json`; la mención al Alquimista en el prompt histórico del banner de Inicio fue una identificación errónea y corresponde al personaje del gorro moteado.
 
 | Uso | Personaje |
 | --- | --- |
 | Hero Inicio | Mago pintado, capucha violeta |
 | Hero Pinturas | Sabio de túnica verde |
-| Hero Esculturas | Gato esfinge, concepto 3D |
+| Hero Esculturas | Árabe Alquimista con turbante y frasco verde, concepto 3D; sustituye al gato |
 | Hero Contacto | Bufón pintado |
-| Banner Inicio | El Árabe Alquimista |
+| Banner Inicio | Personaje de gorro moteado |
 | Banner Pinturas | Gato esfinge pintado |
 | Banner Esculturas | Mago, concepto 3D |
 | Banner Contacto | Mandril pintado |
 
 Las instrucciones preservan personaje y paleta, añaden capas de pincel seco, impasto dorado, textura de lienzo y motas de pigmento, con margen para conservar la silueta. Los textos y controles siguen siendo HTML. No se incorporan frases motivacionales a la derecha de las imágenes. Los banners usan `object-fit: contain` y encuadres distintos a los antiguos recortes ampliados.
+
+## Correcciones de identidad y transparencia
+
+- `public/images/art/alchemist-turban.{png,webp}`: **El Árabe Alquimista**, exclusivamente el lienzo izquierdo de `Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.52 PM (1).jpeg`. Turbante crema/gris con gema turquesa, barba y bigote oscuros, túnica azul/ocre y frasco de líquido verde. El bufón del lienzo derecho no se usa en esta representación. Ficha independiente disponible para solicitudes.
+- `public/images/compositions/hero-sculptures-alchemist.{png,webp}`: interpretación escultórica conceptual de ese mismo lienzo izquierdo, sobre alfa, con capas de pinceladas y pigmento dorado. Conserva turbante, rostro, frasco y base dentro del encuadre. No acredita una escultura física existente.
+- `public/images/compositions/artist-mandrill.{png,webp}`: edición con alfa de la representación del mandril; silueta completa y margen. Se muestra con `object-fit: contain`, sin el antiguo recorte ni sombra rectangular interior.
+
+Los prompts y la cadena de edición de estos tres recursos están en `docs/prompts-ajustes.json`. Los banners existentes se reflejan con `scaleX(-1)` únicamente en la capa de imagen; texto y controles conservan su orientación. No se regeneraron para invertir la composición.

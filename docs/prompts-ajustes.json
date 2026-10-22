@@ -1,0 +1,26 @@
+[
+  {
+    "asset": "public/images/compositions/artist-mandrill.png",
+    "source": "public/images/art/mandrill.png",
+    "tool": "image_gen (integrada)",
+    "transparent_background": true,
+    "edit_chain": [
+      "Edit the attached artwork for a website. Isolate this same painted mandrill on a true transparent background, keeping its face, blue fur, red ears and muzzle, eyes and painterly texture unchanged. Remove the dark rectangular background completely. Include the whole crest, both ears and chin with generous transparent padding on all sides; complete only the existing shoulder silhouette so it is not cut off. No text, no objects, no background or shadow. Centered portrait character cutout, 4:5.",
+      "Edit the supplied transparent mandrill portrait. Keep exactly the same face, expression, red ears, long blue muzzle, fur colors and painted detail. ZOOM OUT: make this character occupy only the central 65 percent of canvas width and 75 percent of canvas height. There must be a clearly empty alpha border at least 12 percent tall ABOVE the highest crest hair tip, and 12 percent BELOW the entire bust. Complete the crest's tip if touching the source edge. Show both ears and whole chest/shoulder bust, with a rounded irregular painterly fur silhouette that ends naturally above the bottom border, NOT a rectangular cropped chest. Every visible hair and chest edge must be INSIDE the image, surrounded by transparent space. True transparent alpha background. Portrait 4:5. No new props, no type, no scenery, no gradient backdrop, no ground shadow. The crucial correction is full uncropped silhouette plus large transparent safety margins."
+    ]
+  },
+  {
+    "asset": "public/images/art/alchemist-turban.png",
+    "source": "Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.52 PM (1).jpeg",
+    "tool": "image_gen (integrada)",
+    "transparent_background": false,
+    "prompt": "Use case: faithful painting reproduction for an artist's online catalogue. This source photo contains TWO paintings. Reproduce ONLY the LEFT painting: the original turbaned alchemist holding the green flask. Absolutely exclude the jester on the right and exclude the room and studio tools. Faithfully preserve the exact LEFT character: large wrapped cream/light gray turban with ochre/gold headband and central turquoise oval jewel, expressive brown eyes, big round warm pink nose, curled black mustache and long dark gray beard, dark blue robe with gold/ochre detail, raised hand holding a round clear glass flask with bright green liquid and slender glass neck. Same pose and expression, fully visible turban, flask and shoulder/arm silhouette. Preserve Mike's painterly brushwork, muted colors, proportions, and facial identity rather than redesigning. Standalone portrait 4:5, warm off-white painted canvas background similar to the original canvas, front-on artwork reproduction without frame, no room, no text, no added objects or characters."
+  },
+  {
+    "asset": "public/images/compositions/hero-sculptures-alchemist.png",
+    "source": "Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.52 PM (1).jpeg",
+    "tool": "image_gen (integrada)",
+    "transparent_background": true,
+    "prompt": "Use case: transparent premium dark artist-website hero art, landscape 3:2. The source photo contains TWO paintings. Use ONLY the turbaned alchemist on the LEFT as the exact character reference. Ignore completely the jester on the right and the room. Create a finely hand-painted resin sculpture CONCEPT of this same alchemist, faithful to the large cream/gray wrapped turban with gold headband and turquoise central jewel, rounded pink nose, friendly expressive eyes, curled black mustache and long dark gray beard, blue and ochre robe, hand holding a translucent round glass flask of bright green liquid with a long narrow neck. Preserve the recognisable face and pose from the painting. Sculptural depth and finely carved painterly texture, elegant cinematic warm studio lighting and subtle turquoise flask glow. Complete torso bust on a discreet dark sculptural base, all edges intact, entire turban and flask inside canvas with generous 9 percent safety margins. Place sculpture entirely in the RIGHT HALF of landscape. Integrate tasteful layered charcoal dry-brush wisps, scattered ochre paint flecks and one sweeping muted gold brush arc BEHIND and around it, fading naturally into alpha; decoration sparse near edges. The LEFT 45 percent must stay fully transparent for HTML heading overlay. True transparent background everywhere else, no black rectangular backdrop, no typography, no letters, no quotes, no border, no other characters. This image is a clearly conceptual interpretation, not documentation of an existing physical artwork."
+  }
+]
