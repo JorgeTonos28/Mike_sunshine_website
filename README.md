@@ -25,6 +25,8 @@ Las obras de muestra son representaciones gráficas derivadas de referencias pro
 
 ## Administración
 
+La galería permite reordenar imágenes, elegir la portada como primera imagen y editar las descripciones accesibles desde el panel.
+
 `/admin` permite crear/editar pinturas y esculturas, publicar o guardar borradores, indicar disponibilidad, precio opcional, técnica, dimensiones, edición, año y galería. Los detalles se componen con bloques de título, párrafo, viñetas, lista numerada y tabla; no admiten HTML ejecutable. Se exige imagen para publicar. Las subidas PNG/JPG/WebP se verifican, recodifican a WebP y sirven desde `/media` sin exponer rutas internas. Máximo 8 MB y 12 megapíxeles.
 
 Administradores: usuarios/roles, datos del negocio, logo/favicon/hero, redes y textos legales. Editores: catálogo únicamente. Un administrador activo debe permanecer. Archivar una obra la oculta y conserva el historial.

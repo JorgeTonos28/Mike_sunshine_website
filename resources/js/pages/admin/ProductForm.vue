@@ -6,6 +6,8 @@ import {
     PhFloppyDisk,
     PhArrowUpRight,
     PhTrash,
+    PhArrowUp,
+    PhArrowDown,
 } from "@phosphor-icons/vue";
 import AdminLayout from "../../layouts/AdminLayout.vue";
 import FormErrors from "../../components/FormErrors.vue";
@@ -35,7 +37,24 @@ const form = useForm({
     content_blocks: (props.product?.content_blocks || []) as Block[],
     uploads: [] as File[],
     remove_images: [] as number[],
+    image_order: props.product?.images.map((image) => image.id) || [],
+    image_alts:
+        props.product?.images.map((image) => ({
+            id: image.id,
+            alt: image.alt,
+        })) || [],
 });
+const orderedImages = computed(() =>
+    form.image_order
+        .map((id) => props.product?.images.find((image) => image.id === id))
+        .filter((image) => image !== undefined),
+);
+const moveImage = (index: number, offset: number) => {
+    const target = index + offset;
+    if (target < 0 || target >= form.image_order.length) return;
+    const id = form.image_order.splice(index, 1)[0];
+    form.image_order.splice(target, 0, id);
+};
 const slugTouched = ref(false);
 const preview = ref(false);
 const archive = ref(false);
@@ -81,6 +100,13 @@ const save = () =>
                 onSuccess: () => {
                     form.uploads = [];
                     form.remove_images = [];
+                    form.image_order =
+                        props.product?.images.map((image) => image.id) || [];
+                    form.image_alts =
+                        props.product?.images.map((image) => ({
+                            id: image.id,
+                            alt: image.alt,
+                        })) || [];
                     filePreview.value.forEach(URL.revokeObjectURL);
                     filePreview.value = [];
                 },
@@ -168,7 +194,7 @@ const save = () =>
                         </p>
                         <div class="admin-image-grid">
                             <div
-                                v-for="image in product?.images || []"
+                                v-for="(image, index) in orderedImages"
                                 :key="image.id"
                                 :class="{
                                     removing: form.remove_images.includes(
@@ -181,7 +207,29 @@ const save = () =>
                                     :alt="image.alt"
                                     width="130"
                                     height="150"
-                                /><button
+                                />
+                                <div class="image-move-controls">
+                                    <button
+                                        class="icon-button"
+                                        type="button"
+                                        :disabled="index === 0"
+                                        :aria-label="`Adelantar imagen ${index + 1}`"
+                                        @click="moveImage(index, -1)"
+                                    >
+                                        <PhArrowUp :size="15" /></button
+                                    ><button
+                                        class="icon-button"
+                                        type="button"
+                                        :disabled="
+                                            index === orderedImages.length - 1
+                                        "
+                                        :aria-label="`Atrasar imagen ${index + 1}`"
+                                        @click="moveImage(index, 1)"
+                                    >
+                                        <PhArrowDown :size="15" />
+                                    </button>
+                                </div>
+                                <button
                                     type="button"
                                     @click="toggleRemoval(image.id)"
                                 >
@@ -200,6 +248,15 @@ const save = () =>
                                     height="150"
                                 /><span>Nueva imagen</span>
                             </div>
+                        </div>
+                        <div class="image-alt-fields">
+                            <label
+                                v-for="image in form.image_alts"
+                                :key="image.id"
+                                >Descripción accesible de imagen
+                                {{ form.image_order.indexOf(image.id) + 1
+                                }}<input v-model="image.alt" maxlength="255"
+                            /></label>
                         </div>
                         <label
                             >Añadir imágenes<input

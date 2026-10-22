@@ -77,4 +77,15 @@ class CatalogAdminTest extends TestCase
         $this->actingAs($editor)->post('/admin/products', [...$data, 'uploads' => [UploadedFile::fake()->image('new.png', 80, 80)]])->assertSessionHasNoErrors()->assertRedirect();
         $this->assertSame([], Product::first()->content_blocks);
     }
+
+    public function test_gallery_order_and_alt_descriptions_are_editable_for_the_product(): void
+    {
+        $product = Product::factory()->create();
+        $one = $product->images()->create(['path' => '/one.webp', 'alt' => 'One', 'position' => 0]);
+        $two = $product->images()->create(['path' => '/two.webp', 'alt' => 'Two', 'position' => 1]);
+        $editor = User::factory()->create(['role' => 'editor']);
+        $this->actingAs($editor)->put('/admin/products/'.$product->id, [...$this->productData(), 'image_order' => [$two->id, $one->id], 'image_alts' => [['id' => $two->id, 'alt' => 'Detalle del retrato']]])->assertSessionHasNoErrors();
+        $this->assertSame($two->id, $product->fresh()->images->first()->id);
+        $this->assertSame('Detalle del retrato', $two->fresh()->alt);
+    }
 }

@@ -38,6 +38,12 @@ class ProductRequest extends FormRequest
             'uploads.*' => 'required|file|mimetypes:image/jpeg,image/png,image/webp|max:8192|dimensions:max_width=6000,max_height=6000',
             'remove_images' => 'sometimes|array|max:20',
             'remove_images.*' => ['integer', Rule::exists('product_images', 'id')->where('product_id', $this->route('product')?->id ?? 0)],
+            'image_order' => 'sometimes|array|max:12',
+            'image_order.*' => ['integer', 'distinct', Rule::exists('product_images', 'id')->where('product_id', $this->route('product')?->id ?? 0)],
+            'image_alts' => 'sometimes|array|max:12',
+            'image_alts.*' => 'array:id,alt',
+            'image_alts.*.id' => ['required', 'integer', 'distinct', Rule::exists('product_images', 'id')->where('product_id', $this->route('product')?->id ?? 0)],
+            'image_alts.*.alt' => 'required|string|max:255',
             ...ContentBlocks::rules(),
         ];
     }
