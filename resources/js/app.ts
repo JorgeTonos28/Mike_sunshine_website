@@ -2,6 +2,7 @@ import "../css/app.css";
 import "../css/store.css";
 import "../css/admin.css";
 import "../css/refinements.css";
+import "../css/paint-cursor.css";
 import { createApp, h, type DefineComponent } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";

@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/vue";
 import type { Shared } from "../types";
 import SocialLinks from "../components/SocialLinks.vue";
+import PaintCursor from "../components/PaintCursor.vue";
 const page = usePage<Shared>();
 const studio = computed(() => page.props.studio);
 const menu = ref(false);
@@ -127,6 +128,7 @@ const active = (href: string) =>
                     >El estudio</Link
                 >
             </div>
+            <PaintCursor />
         </div>
     </footer>
 </template>
