@@ -148,6 +148,7 @@
     width: 100%;
     object-fit: contain;
     object-position: 80% center;
+    transform: scaleX(-1);
     pointer-events: none;
 }
 .art-banner::after {
@@ -156,7 +157,7 @@
     inset: 0;
     z-index: -1;
     background: linear-gradient(
-        90deg,
+        270deg,
         #14120e,
         #14120ef2 26%,
         #14120e77 43%,
@@ -168,6 +169,7 @@
     min-height: 440px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 .art-banner-copy {
     padding-block: 48px;
@@ -613,7 +615,8 @@ html:has(.inquiry-dialog[open]) {
         height: 300px;
         top: auto;
         bottom: 0;
-        right: 0;
+        left: 0;
+        right: auto;
         object-position: 90% center;
     }
     .art-banner::after {

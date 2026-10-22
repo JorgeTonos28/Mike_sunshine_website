@@ -20,6 +20,7 @@
 }
 .paint-cursor svg {
     display: block;
+    transform: rotate(90deg);
     filter: drop-shadow(0 1px 1px #080705);
 }
 html[data-paint-cursor],

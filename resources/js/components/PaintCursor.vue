@@ -52,7 +52,8 @@ function move(event: PointerEvent) {
     if (!frame)
         frame = requestAnimationFrame(() => {
             if (cursor.value) {
-                cursor.value.style.transform = `translate3d(${x - 4}px, ${y - 26}px, 0)`;
+                // After rotation the bristle tip is at (6, 4), the click hotspot.
+                cursor.value.style.transform = `translate3d(${x - 6}px, ${y - 4}px, 0)`;
                 cursor.value.style.opacity = "1";
             }
             frame = 0;
