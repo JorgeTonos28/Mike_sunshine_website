@@ -18,19 +18,34 @@ class DemoArtworkSeeder extends Seeder
         $settings->update(array_filter($placeholders, fn ($value, $field) => blank($settings->{$field}), ARRAY_FILTER_USE_BOTH));
         StudioSetting::where('logo_path', '/images/brand/logo-dark.png')->update(['logo_path' => '/images/brand/logo-dark-trimmed.png']);
         StudioSetting::whereIn('hero_path', ['/images/art/hero-wizard.png', '/images/art/hero-wizard.webp'])->update(['hero_path' => '/images/compositions/hero-home-wizard.webp']);
-        foreach ([['Mago de capucha violeta', 'mago-capucha-violeta', 'wizard', 'Fantasía'], ['Retrato de un mandril', 'retrato-mandril', 'mandrill', 'Criaturas'], ['Gato esfinge', 'gato-esfinge', 'cat', 'Criaturas'], ['Sabio de túnica verde', 'sabio-tunica-verde', 'monk', 'Personajes'], ['El bufón', 'el-bufon', 'jester', 'Fantasía'], ['Personaje de cabello violeta', 'personaje-cabello-violeta', 'neon', 'Retratos'], ['El Árabe Alquimista', 'el-arabe-alquimista', 'arab-alchemist', 'Originales']] as [$title, $slug, $asset, $category]) {
-            $product = Product::firstOrCreate(['slug' => $slug], [
-                'title' => $title, 'kind' => 'painting', 'category' => $category,
-                'summary' => 'Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.',
-                'is_published' => true, 'is_featured' => true, 'availability' => 'inquiry', 'stock' => 1,
-                'content_blocks' => [
-                    ['type' => 'heading', 'text' => 'Acerca de esta obra'],
-                    ['type' => 'paragraph', 'text' => 'Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra.'],
-                    ['type' => 'heading', 'text' => 'Antes de llevarla contigo'],
-                    ['type' => 'bullets', 'items' => ['Consulta técnica y dimensiones con el estudio.', 'La entrega y su coste se acuerdan de forma personal.', 'Enviar una solicitud no realiza un cobro ni reserva la obra.']],
-                ],
-            ]);
-            $product->images()->firstOrCreate(['path' => '/images/art/'.$asset.'.webp'], ['alt' => $title.' de Mike Sunshine, representación digital', 'position' => 0]);
+        // Correct only the known demo misidentification; retain its ID and business data.
+        $legacy = Product::where('kind', 'painting')->where('title', 'El Árabe Alquimista')
+            ->whereHas('images', fn ($query) => $query->where('path', '/images/art/arab-alchemist.webp'))->first();
+        if ($legacy) {
+            $correction = ['title' => 'Personaje de gorro moteado'];
+            if ($legacy->slug === 'el-arabe-alquimista' && ! Product::withTrashed()->where('slug', 'personaje-gorro-moteado')->exists()) {
+                $correction['slug'] = 'personaje-gorro-moteado';
+            }
+            $legacy->update($correction);
+            $legacy->images()->where('path', '/images/art/arab-alchemist.webp')
+                ->where('alt', 'El Árabe Alquimista de Mike Sunshine, representación digital')
+                ->update(['alt' => 'Personaje de gorro moteado de Mike Sunshine, representación digital']);
+        }
+        foreach ([['Mago de capucha violeta', 'mago-capucha-violeta', 'wizard', 'Fantasía'], ['Retrato de un mandril', 'retrato-mandril', 'mandrill', 'Criaturas'], ['Gato esfinge', 'gato-esfinge', 'cat', 'Criaturas'], ['Sabio de túnica verde', 'sabio-tunica-verde', 'monk', 'Personajes'], ['El bufón', 'el-bufon', 'jester', 'Fantasía'], ['Personaje de cabello violeta', 'personaje-cabello-violeta', 'neon', 'Retratos'], ['Personaje de gorro moteado', 'personaje-gorro-moteado', 'arab-alchemist', 'Personajes'], ['El Árabe Alquimista', 'arabe-alquimista-turbante', 'alchemist-turban', 'Originales']] as [$title, $slug, $asset, $category]) {
+            $path = '/images/art/'.$asset.'.webp';
+            $product = Product::where('kind', 'painting')->whereHas('images', fn ($query) => $query->where('path', $path))->first()
+                ?? Product::firstOrCreate(['slug' => $slug], [
+                    'title' => $title, 'kind' => 'painting', 'category' => $category,
+                    'summary' => 'Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.',
+                    'is_published' => true, 'is_featured' => true, 'availability' => 'inquiry', 'stock' => 1,
+                    'content_blocks' => [
+                        ['type' => 'heading', 'text' => 'Acerca de esta obra'],
+                        ['type' => 'paragraph', 'text' => 'Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra.'],
+                        ['type' => 'heading', 'text' => 'Antes de llevarla contigo'],
+                        ['type' => 'bullets', 'items' => ['Consulta técnica y dimensiones con el estudio.', 'La entrega y su coste se acuerdan de forma personal.', 'Enviar una solicitud no realiza un cobro ni reserva la obra.']],
+                    ],
+                ]);
+            $product->images()->firstOrCreate(['path' => $path], ['alt' => $title.' de Mike Sunshine, representación digital', 'position' => 0]);
         }
         foreach (['wizard' => 'Mago de capucha violeta', 'cat' => 'Gato esfinge', 'monk' => 'Sabio de túnica verde', 'jester' => 'El bufón'] as $asset => $title) {
             $product = Product::firstOrCreate(['slug' => 'escultura-'.$asset], [

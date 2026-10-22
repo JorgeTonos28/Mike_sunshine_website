@@ -9,7 +9,7 @@ imagealphablending($hero, false);
 imagesavealpha($hero, true);
 imagewebp($hero, $root.'art/hero-wizard.webp', 90);
 imagedestroy($hero);
-foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon', 'arab-alchemist'] as $name) {
+foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon', 'arab-alchemist', 'alchemist-turban'] as $name) {
     $source = imagecreatefrompng($root.'art/'.$name.'.png');
     $width = 800;
     $height = (int) round(imagesy($source) * $width / imagesx($source));
