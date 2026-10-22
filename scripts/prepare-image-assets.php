@@ -19,7 +19,7 @@ foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon', 'arab-alchemist
     imagedestroy($target);
     imagedestroy($source);
 }
-foreach (array_merge(glob($root.'sculptures/*.png'), glob($root.'compositions/*.png')) as $path) {
+foreach (array_merge(glob($root.'sculptures/*.png'), glob($root.'compositions/*.png'), glob($root.'artist/*.png')) as $path) {
     $source = imagecreatefrompng($path);
     imagepalettetotruecolor($source);
     imagealphablending($source, false);

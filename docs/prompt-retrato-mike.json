@@ -1,0 +1,8 @@
+{
+  "asset": "public/images/artist/mike-portrait.png",
+  "delivery": "public/images/artist/mike-portrait.webp",
+  "source": "C:/Users/jorge/AppData/Local/Temp/codex-clipboard-8b996494-1064-41b9-a239-f8f6fb888634.png",
+  "tool": "image_gen (integrada)",
+  "transparent_background": true,
+  "prompt": "Use case: background-extraction, identity-preserve. Asset: Mike Sunshine artist portrait for a premium charcoal-and-antique-gold editorial About page. Edit ONLY this supplied photograph of Mike. Remove the entire gray-and-white checkerboard background: it is an unwanted backdrop, NOT part of the portrait. Produce genuine transparent alpha, no checkerboard pixels remaining. Preserve his exact real facial identity, skin tone, beard, eyes, nose, backward black cap and small white cap emblem, ear stud, black t-shirt, existing tattoos, hand pose and gaze to the left. Keep natural photographic detail; do not turn the person into an illustration, do not beautify or reshape the face, do not invent different tattoos or jewelry. Very subtle warm studio color grade and gentle antique-gold rim lighting on existing shoulders only, still believable original photograph. Center this same waist-up portrait in a portrait 4:5 canvas with breathing space around the cap and sides; keep the head fully inside frame. Retain the original pose. Let only the lower torso edge dissolve very subtly into an irregular dry-brush alpha silhouette so it sits on the website's charcoal canvas without a hard rectangular edge. No background, no painted gold cloud, no props, no text, no letters added, no watermark, no frame. True transparency outside the person."
+}
