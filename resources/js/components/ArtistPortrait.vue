@@ -9,10 +9,16 @@ const lowerRingClip = `portrait-ring-${id}`;
 const frame = ref<HTMLDivElement>();
 const light = ref<HTMLButtonElement>();
 const trail = ref<SVGGElement>();
+const frontTrail = ref<SVGGElement>();
 const paused = ref(false);
 const reducedMotion = ref(false);
 const jumping = ref(false);
-const burst = ref<{ left: string; top: string; key: number } | null>(null);
+const burst = ref<{
+    left: string;
+    top: string;
+    zIndex: string;
+    key: number;
+} | null>(null);
 let phase = 4.05;
 let animation = 0;
 let previousTime = 0;
@@ -40,10 +46,13 @@ function paint() {
     const position = point(phase);
     light.value.style.left = `${position.x / 10}%`;
     light.value.style.top = `${position.y / 10}%`;
-    trail.value?.querySelectorAll("circle").forEach((spark, index) => {
-        const behind = point(phase - 0.035 * (index + 1));
-        spark.setAttribute("cx", String(behind.x));
-        spark.setAttribute("cy", String(behind.y));
+    light.value.style.zIndex = position.y >= 485 ? "3" : "0";
+    [trail.value, frontTrail.value].forEach((layer) => {
+        layer?.querySelectorAll("circle").forEach((spark, index) => {
+            const behind = point(phase - 0.035 * (index + 1));
+            spark.setAttribute("cx", String(behind.x));
+            spark.setAttribute("cy", String(behind.y));
+        });
     });
 }
 
@@ -113,6 +122,7 @@ function relocate() {
     burst.value = {
         left: light.value.style.left,
         top: light.value.style.top,
+        zIndex: light.value.style.zIndex,
         key: Date.now(),
     };
     syncAnimation();
@@ -214,7 +224,7 @@ onBeforeUnmount(() => {
             v-if="burst"
             :key="burst.key"
             class="portrait-light-burst"
-            :style="{ left: burst.left, top: burst.top }"
+            :style="{ left: burst.left, top: burst.top, zIndex: burst.zIndex }"
             aria-hidden="true"
             @animationend="burst = null"
         ></span>
@@ -241,6 +251,14 @@ onBeforeUnmount(() => {
                     ry="445"
                     transform="rotate(-16 500 485)"
                 />
+                <g ref="frontTrail" class="portrait-trail">
+                    <circle
+                        v-for="spark in 7"
+                        :key="spark"
+                        :r="4 - spark * 0.35"
+                        :opacity="0.6 - spark * 0.07"
+                    />
+                </g>
             </g>
         </svg>
         <button
