@@ -6,6 +6,10 @@ Galería y catálogo de pinturas y esculturas 3D. Pedidos por solicitud y confir
 
 Laravel 13 / PHP 8.3+, Inertia, Vue 3, TypeScript, Vite y Tailwind 4. SQLite para desarrollo; MySQL para despliegue.
 
+Composer resuelve sus dependencias para PHP 8.3 mediante `config.platform.php`; el entorno local también funciona con PHP 8.4. Node 22.12+.
+
+Se requieren las extensiones PHP de Laravel y GD/fileinfo para validar y recodificar imágenes, además de PDO SQLite o MySQL según la base elegida.
+
 Referencia de ingeniería: [Vamo al game](https://github.com/JorgeTonos28/Vamo_al_game). Se adoptan separación de responsabilidades, validación en servidor, autorización y cabeceras de seguridad. El proyecto es exclusivamente web responsive.
 
 ## Desarrollo
@@ -38,3 +42,15 @@ El cuestionario de negocio está en [docs/cuestionario-mike.md](docs/cuestionari
 Carrito en sesión, formulario de cliente/entrega, aceptación de privacidad y términos, comprobación final de disponibilidad en servidor y protección contra envíos duplicados. Los importes se toman de la base y se guardan como instantánea. Sin precio significa consulta; envío por cotizar. No se reserva inventario ni se cobra automáticamente. Mike gestiona estados, notas y disponibilidad desde el panel.
 
 Configurar correo SMTP y el email del estudio desde ajustes o `STUDIO_EMAIL`. Ejecutar `php artisan queue:work database --tries=5 --timeout=30` bajo un supervisor en producción. Pedido y aviso de cola se guardan en una transacción en la misma conexión de base de datos (mantener `DB_QUEUE_CONNECTION` vacío). El email sólo contiene referencia y enlace privado; los datos del cliente permanecen en el panel. Fallos se muestran en cada solicitud y admiten reintento. Local usa `MAIL_MAILER=log`, por lo que no envía correos reales. El registro persiste incluso si SMTP no está configurado.
+
+## Verificación
+
+`php artisan test`, `php vendor/bin/pint --test`, `npm run format:check` y `npm run build` (incluye typecheck). GitHub Actions repite estas comprobaciones con PHP 8.3 y Node 22, instalación limpia, migraciones y auditorías de dependencias. Fuentes alojadas en el proyecto, sin peticiones a Google Fonts. La portada conserva su PNG maestro y usa un derivado WebP con alfa para la entrega.
+
+Resultados y alcance de la revisión en [docs/verificacion.md](docs/verificacion.md).
+
+## Despliegue
+
+El document root debe apuntar a `public/`. Configurar base de datos, `.env` fuera de acceso público, `APP_URL` HTTPS, correo, clave estable, permisos de `storage` y `bootstrap/cache`. Compilar con `npm ci && npm run build`, instalar backend con `composer install --no-dev --optimize-autoloader`, ejecutar `php artisan migrate --seed --force` y `php artisan optimize`. Ejecutar el worker database con supervisor y respaldar base de datos, `storage/app/public` y la clave de cifrado de forma segura. No cargar el seeder de demostración en producción.
+
+Antes de lanzamiento: crear la cuenta de Mike, configurar Google Cloud y SMTP, completar datos del negocio, revisar imágenes/títulos/precios reales y aprobar los textos legales tras responder el cuestionario.

@@ -4,9 +4,11 @@
     "type": "project",
     "description": "Mike Sunshine artist gallery and manual order studio.",
     "keywords": ["laravel", "framework"],
-    "license": "MIT",
+    "license": "proprietary",
     "require": {
         "php": "^8.3",
+        "ext-fileinfo": "*",
+        "ext-gd": "*",
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^13.0",
         "laravel/socialite": "^5.25",

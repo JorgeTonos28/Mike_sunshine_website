@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Two\InvalidStateException;
 use Laravel\Socialite\Two\User as GoogleUser;
 use Tests\TestCase;
 
@@ -75,7 +76,7 @@ class AuthenticationTest extends TestCase
     public function test_google_invalid_state_fails_closed_and_signup_is_absent(): void
     {
         Socialite::shouldReceive('driver')->andReturnSelf();
-        Socialite::shouldReceive('user')->andThrow(new \Laravel\Socialite\Two\InvalidStateException);
+        Socialite::shouldReceive('user')->andThrow(new InvalidStateException);
         $this->get('/auth/google/callback')->assertRedirect('/login')->assertSessionHasErrors('email');
         $this->assertGuest();
         $this->post('/register', [])->assertNotFound();

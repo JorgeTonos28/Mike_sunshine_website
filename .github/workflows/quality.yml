@@ -1,0 +1,40 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: shivammathur/setup-php@2.40.0
+        with:
+          php-version: '8.3'
+          extensions: mbstring, intl, pdo_sqlite, gd, fileinfo, zip
+          coverage: none
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: composer install --no-interaction --prefer-dist --no-progress
+      - run: cp .env.example .env
+      - run: php artisan key:generate
+      - run: php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+      - run: php artisan migrate --seed --force
+      - run: npm ci
+      - run: npm run format:check
+      - run: php vendor/bin/pint --test
+      - run: php artisan test
+      - run: npm run build
+      - run: composer audit --locked --no-interaction
+      - run: npm audit --audit-level=high
