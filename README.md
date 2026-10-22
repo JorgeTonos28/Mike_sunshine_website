@@ -17,4 +17,6 @@ Referencia de ingeniería: [Vamo al game](https://github.com/JorgeTonos28/Vamo_a
 5. `npm ci && npm run build`
 6. `php artisan serve`
 
+Crear el primer administrador: `php artisan studio:admin correo@ejemplo.com` (contraseña interactiva, nunca compartida en seeds). No hay registro público. Google necesita `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` y callback exacto en `GOOGLE_REDIRECT_URI`. Sólo acceden cuentas activas previamente creadas; no se guardan tokens del proveedor. Recuperación de contraseña disponible con correo configurado. En producción: HTTPS, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true` y una `APP_KEY` estable respaldada. Cambiar la clave pierde el acceso a los datos cifrados.
+
 Las obras de muestra son representaciones gráficas derivadas de referencias proporcionadas por el artista. Los precios, dimensiones y disponibilidad reales se completan desde administración. No se generan esculturas ficticias para el catálogo.
