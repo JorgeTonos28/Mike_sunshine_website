@@ -5,7 +5,7 @@ namespace App\Jobs;
 use App\Mail\StudioMessage;
 use App\Models\Inquiry;
 use App\Models\Order;
-use App\Models\StudioSetting;
+use App\Services\StudioMailbox;
 use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
@@ -32,10 +32,7 @@ class NotifyStudio implements ShouldBeEncrypted, ShouldQueue
         if ($record->notification_status === 'sent') {
             return;
         }
-        $recipient = StudioSetting::current()->contact_email ?: config('studio.email');
-        if (! $recipient) {
-            throw new \RuntimeException('Studio recipient is not configured.');
-        }
+        $recipient = app(StudioMailbox::class)->recipient();
         $url = $this->kind === 'order' ? url('/admin/orders/'.$record->id) : url('/admin/inquiries');
         // Keep customer PII out of messages/queue logs; the authorized panel contains the details.
         Mail::to($recipient)->send(new StudioMessage($this->kind === 'order' ? 'Nueva solicitud '.$record->reference : 'Nueva consulta del sitio', $url));
