@@ -17,7 +17,7 @@ class DemoArtworkSeeder extends Seeder
         $placeholders = ['contact_email' => 'hola@mikesunshine.example', 'phone' => '+1 (809) 555-0100', 'address' => 'Ciudad del estudio, ubicación por confirmar', 'instagram_url' => '/#', 'facebook_url' => '/#', 'youtube_url' => '/#'];
         $settings->update(array_filter($placeholders, fn ($value, $field) => blank($settings->{$field}), ARRAY_FILTER_USE_BOTH));
         StudioSetting::where('logo_path', '/images/brand/logo-dark.png')->update(['logo_path' => '/images/brand/logo-dark-trimmed.png']);
-        StudioSetting::where('hero_path', '/images/art/hero-wizard.png')->update(['hero_path' => '/images/art/hero-wizard.webp']);
+        StudioSetting::whereIn('hero_path', ['/images/art/hero-wizard.png', '/images/art/hero-wizard.webp'])->update(['hero_path' => '/images/compositions/hero-home-wizard.webp']);
         foreach ([['Mago de capucha violeta', 'mago-capucha-violeta', 'wizard', 'Fantasía'], ['Retrato de un mandril', 'retrato-mandril', 'mandrill', 'Criaturas'], ['Gato esfinge', 'gato-esfinge', 'cat', 'Criaturas'], ['Sabio de túnica verde', 'sabio-tunica-verde', 'monk', 'Personajes'], ['El bufón', 'el-bufon', 'jester', 'Fantasía'], ['Personaje de cabello violeta', 'personaje-cabello-violeta', 'neon', 'Retratos'], ['El Árabe Alquimista', 'el-arabe-alquimista', 'arab-alchemist', 'Originales']] as [$title, $slug, $asset, $category]) {
             $product = Product::firstOrCreate(['slug' => $slug], [
                 'title' => $title, 'kind' => 'painting', 'category' => $category,

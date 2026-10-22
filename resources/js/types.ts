@@ -5,6 +5,19 @@ export type Block = {
     rows?: string[][];
 };
 export type ArtworkImage = { id: number; path: string; alt: string };
+export type StudioService = {
+    slug: string;
+    title: string;
+    eyebrow: string;
+    subject: string;
+    intro: string;
+    description: string;
+    image: string;
+    hero: string;
+    cta: string;
+    message: string;
+    details: string[];
+};
 export type Artwork = {
     id: number;
     title: string;

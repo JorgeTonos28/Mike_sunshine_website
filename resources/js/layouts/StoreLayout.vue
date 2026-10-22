@@ -6,11 +6,9 @@ import {
     PhList,
     PhX,
     PhArrowUpRight,
-    PhInstagramLogo,
-    PhYoutubeLogo,
-    PhFacebookLogo,
 } from "@phosphor-icons/vue";
 import type { Shared } from "../types";
+import SocialLinks from "../components/SocialLinks.vue";
 const page = usePage<Shared>();
 const studio = computed(() => page.props.studio);
 const menu = ref(false);
@@ -117,32 +115,7 @@ const active = (href: string) =>
                     >Contacto <PhArrowUpRight :size="15"
                 /></Link>
             </div>
-            <div class="social-links">
-                <a
-                    v-if="studio.instagram_url"
-                    :href="studio.instagram_url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                    ><PhInstagramLogo :size="22"
-                /></a>
-                <a
-                    v-if="studio.facebook_url"
-                    :href="studio.facebook_url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                    ><PhFacebookLogo :size="22"
-                /></a>
-                <a
-                    v-if="studio.youtube_url"
-                    :href="studio.youtube_url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube"
-                    ><PhYoutubeLogo :size="22"
-                /></a>
-            </div>
+            <SocialLinks />
         </div>
         <div class="container footer-bottom">
             <span>© {{ new Date().getFullYear() }} {{ studio.name }}</span>

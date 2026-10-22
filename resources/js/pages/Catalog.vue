@@ -33,7 +33,23 @@ const setCategory = (category: string) => {
 </script>
 <template>
     <Head :title="painting ? 'Pinturas' : 'Esculturas 3D'" /><StoreLayout>
-        <section class="catalog-hero">
+        <section class="catalog-hero painted-hero catalog-hero-v2">
+            <img
+                class="painted-hero-art"
+                :src="
+                    painting
+                        ? '/images/compositions/hero-paintings-monk.webp'
+                        : '/images/compositions/hero-sculptures-cat.webp'
+                "
+                :alt="
+                    painting
+                        ? 'Sabio de túnica verde, pintura de Mike Sunshine'
+                        : 'Gato esfinge, concepto escultórico basado en una pintura de Mike Sunshine'
+                "
+                width="1536"
+                height="1024"
+                fetchpriority="high"
+            />
             <div class="container catalog-hero-inner">
                 <div class="catalog-hero-copy">
                     <p class="eyebrow">
@@ -58,17 +74,6 @@ const setCategory = (category: string) => {
                         >{{ painting ? "Explorar obras" : "Ver colección" }}
                         <PhArrowRight :size="20"
                     /></a>
-                </div>
-                <img
-                    v-if="painting"
-                    class="catalog-art"
-                    src="/images/art/hero-wizard.webp"
-                    alt="Mago de capucha violeta, obra de Mike Sunshine"
-                    width="1536"
-                    height="1024"
-                />
-                <div v-else class="sculpture-hero-mark" aria-hidden="true">
-                    <PhCube :size="170" weight="thin" />
                 </div>
             </div>
         </section>
@@ -157,6 +162,23 @@ const setCategory = (category: string) => {
             </div>
             <Pagination :links="products.links" />
         </section>
-        <CommissionBanner />
+        <section v-if="!painting" class="sculpture-process container">
+            <div>
+                <p class="eyebrow">Del concepto a la pieza final</p>
+                <h2 class="section-title">
+                    Una nueva dimensión para tus personajes.
+                </h2>
+            </div>
+            <p>
+                La idea se explora en un modelo, se definen sus posibilidades de
+                fabricación y se conversa sobre su acabado. Las imágenes de esta
+                colección son conceptos 3D derivados de pinturas de Mike; cada
+                pieza se confirma personalmente con el estudio.
+            </p>
+            <Link href="/servicios/esculturas-3d" class="text-link"
+                >Sobre el proceso<PhArrowRight :size="19"
+            /></Link>
+        </section>
+        <CommissionBanner :variant="painting ? 'painting' : 'sculpture'" />
     </StoreLayout>
 </template>

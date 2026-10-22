@@ -22,6 +22,7 @@ Route::get('/pinturas', [StorefrontController::class, 'catalog'])->defaults('kin
 Route::get('/esculturas', [StorefrontController::class, 'catalog'])->defaults('kind', 'sculpture')->name('sculptures');
 Route::get('/obras/{product:slug}', [StorefrontController::class, 'show'])->name('product');
 Route::get('/contacto', [StorefrontController::class, 'contact'])->name('contact');
+Route::get('/servicios/{slug}', [StorefrontController::class, 'service'])->name('service');
 Route::post('/contacto', [InquiryController::class, 'store'])->middleware('throttle:public-form');
 Route::get('/carrito', [CartController::class, 'index'])->name('cart');
 Route::post('/carrito/{product}', [CartController::class, 'update'])->middleware('throttle:60,1');

@@ -109,7 +109,8 @@ const save = () =>
                         >{{ social.name
                         }}<input
                             v-model="form[social.key]"
-                            type="url"
+                            type="text"
+                            inputmode="url"
                             placeholder="https://..."
                             maxlength="255"
                     /></label>

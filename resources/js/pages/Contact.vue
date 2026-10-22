@@ -1,165 +1,186 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { Head, useForm, usePage } from "@inertiajs/vue3";
+import { computed, ref } from "vue";
+import { Head, Link, usePage } from "@inertiajs/vue3";
 import {
     PhArrowRight,
     PhEnvelopeSimple,
     PhInstagramLogo,
-    PhPaintBrush,
-    PhCube,
-    PhPhone,
-    PhMapPin,
+    PhUser,
+    PhCalendarBlank,
 } from "@phosphor-icons/vue";
 import StoreLayout from "../layouts/StoreLayout.vue";
 import BrushHeading from "../components/BrushHeading.vue";
-import FormErrors from "../components/FormErrors.vue";
-import type { Shared } from "../types";
+import InquiryForm from "../components/InquiryForm.vue";
+import InquiryDialog from "../components/InquiryDialog.vue";
+import SocialLinks from "../components/SocialLinks.vue";
+import CommissionBanner from "../components/CommissionBanner.vue";
+import type { Shared, StudioService } from "../types";
+defineProps<{ services: StudioService[] }>();
 const page = usePage<Shared>();
 const studio = computed(() => page.props.studio);
-const form = useForm({
-    name: "",
-    email: "",
-    subject: "commission",
-    message: "",
-    privacy: false,
-    website: "",
-});
-const submit = () =>
-    form.post("/contacto", {
-        preserveScroll: true,
-        onSuccess: () => form.reset(),
-    });
+const inquiry = ref<InstanceType<typeof InquiryDialog>>();
 </script>
 <template>
-    <Head title="Contacto" /><StoreLayout
-        ><section class="contact-page container">
-            <div class="contact-page-art" aria-hidden="true">
-                <img
-                    src="/images/art/hero-wizard.webp"
-                    alt=""
-                    width="1536"
-                    height="1024"
-                />
+    <Head title="Contacto"
+        ><meta
+            name="description"
+            content="Pinturas, esculturas, comisiones y colaboraciones. Cuéntale tu idea a Mike Sunshine."
+    /></Head>
+    <StoreLayout>
+        <section class="contact-v2 painted-hero">
+            <img
+                class="painted-hero-art"
+                src="/images/compositions/hero-contact-jester.webp"
+                alt="El bufón, personaje de una pintura de Mike Sunshine entre pinceladas doradas"
+                width="1536"
+                height="1024"
+                fetchpriority="high"
+            />
+            <div class="container">
+                <div class="contact-v2-copy">
+                    <p class="eyebrow">Arte con alma</p>
+                    <BrushHeading title="Hablemos de tu idea" large />
+                    <p class="contact-intro">
+                        Me encantaría conocer tu proyecto. Estoy abierto a
+                        comisiones, colaboraciones, participación en eventos y
+                        cualquier pregunta sobre mi trabajo. Cuéntame tu idea y
+                        conversemos sobre cómo hacerla realidad.
+                    </p>
+                    <InquiryForm compact />
+                </div>
             </div>
-            <div class="contact-page-copy">
-                <p class="eyebrow">Arte que empieza conversando</p>
-                <BrushHeading title="Hablemos de tu idea." large />
-                <p class="page-intro">
-                    Una pintura, una escultura, una colaboración. Cuéntame qué
-                    tienes en mente y demos forma a la conversación.
-                </p>
-                <form class="studio-form" @submit.prevent="submit">
-                    <FormErrors :errors="form.errors" /><label
-                        >Tu nombre <span aria-hidden="true">*</span
-                        ><input
-                            v-model="form.name"
-                            required
-                            autocomplete="name"
-                            maxlength="160" /></label
-                    ><label
-                        >Correo electrónico <span aria-hidden="true">*</span
-                        ><input
-                            v-model="form.email"
-                            required
-                            autocomplete="email"
-                            type="email"
-                            maxlength="255" /></label
-                    ><label
-                        >¿De qué te gustaría hablar?<select
-                            v-model="form.subject"
+        </section>
+        <section class="contact-info-strip">
+            <div class="container contact-info-grid">
+                <article>
+                    <span class="contact-info-icon"
+                        ><PhEnvelopeSimple :size="30" weight="light"
+                    /></span>
+                    <div>
+                        <h2>Correo</h2>
+                        <p>Escríbeme directamente a:</p>
+                        <a
+                            v-if="studio.contact_email"
+                            :href="'mailto:' + studio.contact_email"
+                            >{{ studio.contact_email }}</a
+                        ><button
+                            v-else
+                            class="text-link"
+                            @click="inquiry?.open()"
                         >
-                            <option value="commission">
-                                Una pieza por encargo
-                            </option>
-                            <option value="painting">Una pintura</option>
-                            <option value="sculpture">Una escultura</option>
-                            <option value="collaboration">
-                                Una colaboración
-                            </option>
-                            <option value="other">Otra idea</option>
-                        </select></label
-                    ><label
-                        >Tu mensaje <span aria-hidden="true">*</span
-                        ><textarea
-                            v-model="form.message"
-                            required
-                            minlength="10"
-                            maxlength="5000"
-                            rows="4"
-                        />
-                    </label>
-                    <div class="honey" aria-hidden="true">
-                        <label
-                            >Website<input
-                                v-model="form.website"
-                                tabindex="-1"
-                                autocomplete="off"
-                        /></label>
+                            Enviar un mensaje</button
+                        ><small v-if="studio.phone">{{ studio.phone }}</small>
                     </div>
-                    <label class="check-label"
-                        ><input
-                            v-model="form.privacy"
-                            type="checkbox"
-                            required
-                        /><span
-                            >He leído la
-                            <a href="/privacidad" target="_blank" rel="noopener"
-                                >política de privacidad</a
-                            >
-                            y autorizo el uso de mis datos para responder a esta
-                            consulta.</span
-                        ></label
-                    ><button
-                        class="button gold"
-                        type="submit"
-                        :disabled="form.processing"
-                    >
-                        {{ form.processing ? "Enviando..." : "Enviar mensaje" }}
-                        <PhArrowRight :size="19" />
-                    </button>
-                </form>
+                </article>
+                <article>
+                    <span class="contact-info-icon"
+                        ><PhInstagramLogo :size="30" weight="light"
+                    /></span>
+                    <div>
+                        <h2>Mis redes</h2>
+                        <p>Sígueme y ve mi proceso:</p>
+                        <SocialLinks /><small
+                            >Pinturas, esculturas, bocetos y más en mi día a
+                            día.</small
+                        >
+                    </div>
+                </article>
+                <article>
+                    <span class="contact-info-icon"
+                        ><PhUser :size="30" weight="light"
+                    /></span>
+                    <div>
+                        <h2>Comisiones</h2>
+                        <p>
+                            Pinturas, esculturas 3D y proyectos personalizados.
+                        </p>
+                        <Link
+                            href="/servicios/comisiones-personalizadas"
+                            class="text-link"
+                            >Cuéntame tu idea<PhArrowRight :size="17"
+                        /></Link>
+                    </div>
+                </article>
+                <article>
+                    <span class="contact-info-icon"
+                        ><PhCalendarBlank :size="30" weight="light"
+                    /></span>
+                    <div>
+                        <h2>Eventos</h2>
+                        <p>
+                            Colaboraciones, exposiciones y participación en
+                            eventos.
+                        </p>
+                        <Link
+                            href="/servicios/eventos-colaboraciones"
+                            class="text-link"
+                            >Hablemos<PhArrowRight :size="17"
+                        /></Link>
+                    </div>
+                </article>
             </div>
         </section>
-        <section class="contact-options container">
-            <div v-if="studio.phone">
-                <PhPhone :size="30" weight="light" />
-                <h2>Teléfono</h2>
-                <a :href="`tel:${studio.phone.replace(/[^+0-9]/g, '')}`">{{
-                    studio.phone
-                }}</a>
+        <section class="container section-space request-services">
+            <div class="service-section-heading">
+                <div>
+                    <p class="eyebrow">¿En qué podemos trabajar?</p>
+                    <h2 class="section-title">¿Qué puedes solicitar?</h2>
+                </div>
+                <p>
+                    Cada proyecto es una nueva historia. Ya sea una pintura, una
+                    escultura o una idea completamente original, me encanta
+                    colaborar en proyectos que den vida a personajes y mundos
+                    con alma.
+                </p>
             </div>
-            <div v-if="studio.address">
-                <PhMapPin :size="30" weight="light" />
-                <h2>El estudio</h2>
-                <p class="preserve-lines">{{ studio.address }}</p>
+            <div class="service-cards">
+                <article v-for="service in services" :key="service.slug">
+                    <Link
+                        :href="'/servicios/' + service.slug"
+                        class="service-card-image"
+                        :aria-label="service.title"
+                        ><img
+                            :src="service.image"
+                            :alt="service.title + ', arte de Mike Sunshine'"
+                            width="800"
+                            height="1000"
+                            loading="lazy"
+                            :class="{
+                                'service-sculpture-image':
+                                    service.subject === 'sculpture',
+                            }"
+                    /></Link>
+                    <h3>
+                        <Link :href="'/servicios/' + service.slug">{{
+                            service.title
+                        }}</Link>
+                    </h3>
+                    <p>{{ service.intro }}</p>
+                    <Link :href="'/servicios/' + service.slug" class="text-link"
+                        >{{ service.cta }}<PhArrowRight :size="18"
+                    /></Link>
+                </article>
             </div>
-            <div v-if="studio.contact_email">
-                <PhEnvelopeSimple :size="30" weight="light" />
-                <h2>Correo</h2>
-                <a :href="`mailto:${studio.contact_email}`">{{
-                    studio.contact_email
-                }}</a>
-            </div>
-            <div v-if="studio.instagram_url">
-                <PhInstagramLogo :size="30" weight="light" />
-                <h2>Dentro del proceso</h2>
+        </section>
+        <section
+            v-if="studio.address || studio.phone"
+            class="container contact-location"
+        >
+            <PhUser :size="24" weight="light" />
+            <div>
+                <h2>{{ studio.name }}</h2>
+                <p v-if="studio.address">{{ studio.address }}</p>
                 <a
-                    :href="studio.instagram_url"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >Sígueme en Instagram <PhArrowRight :size="18"
-                /></a>
-            </div>
-            <div>
-                <PhPaintBrush :size="30" weight="light" />
-                <h2>Pinturas</h2>
-                <p>Retratos, personajes e ideas propias.</p>
-            </div>
-            <div>
-                <PhCube :size="30" weight="light" />
-                <h2>Esculturas 3D</h2>
-                <p>Otra dimensión para tu idea.</p>
+                    v-if="studio.phone"
+                    :href="'tel:' + studio.phone.replace(/[^+0-9]/g, '')"
+                    >{{ studio.phone }}</a
+                ><small v-if="studio.contact_email?.endsWith('.example')"
+                    >Información de muestra. Los datos definitivos se
+                    actualizarán antes del lanzamiento.</small
+                >
             </div>
         </section>
+        <CommissionBanner variant="contact" @request="inquiry?.open()" />
+        <InquiryDialog ref="inquiry" />
     </StoreLayout>
 </template>

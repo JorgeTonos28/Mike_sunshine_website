@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LegalPage;
 use App\Models\Product;
+use App\Support\StudioServices;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -40,7 +41,15 @@ class StorefrontController extends Controller
 
     public function contact()
     {
-        return Inertia::render('Contact');
+        return Inertia::render('Contact', ['services' => StudioServices::all()]);
+    }
+
+    public function service(string $slug)
+    {
+        $service = collect(StudioServices::all())->firstWhere('slug', $slug);
+        abort_unless($service, 404);
+
+        return Inertia::render('Service', ['service' => $service]);
     }
 
     public function legal(string $slug)

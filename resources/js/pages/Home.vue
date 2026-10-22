@@ -9,6 +9,7 @@ import {
 import StoreLayout from "../layouts/StoreLayout.vue";
 import ArtworkCard from "../components/ArtworkCard.vue";
 import CommissionBanner from "../components/CommissionBanner.vue";
+import SocialLinks from "../components/SocialLinks.vue";
 import type { Artwork, Shared } from "../types";
 defineProps<{ products: Artwork[] }>();
 const page = usePage<Shared>();
@@ -21,7 +22,8 @@ const page = usePage<Shared>();
             rel="preload"
             as="image"
             :href="
-                page.props.studio.hero_path || '/images/art/hero-wizard.webp'
+                page.props.studio.hero_path ||
+                '/images/compositions/hero-home-wizard.webp'
             "
     /></Head>
     <StoreLayout>
@@ -30,9 +32,9 @@ const page = usePage<Shared>();
                 <img
                     :src="
                         page.props.studio.hero_path ||
-                        '/images/art/hero-wizard.webp'
+                        '/images/compositions/hero-home-wizard.webp'
                     "
-                    alt="Mago de capucha violeta, representación de una pintura de Mike Sunshine"
+                    :alt="'Arte de ' + page.props.studio.name"
                     fetchpriority="high"
                     width="1536"
                     height="1024"
@@ -128,14 +130,54 @@ const page = usePage<Shared>();
                 />
             </div>
             <div class="artist-copy">
+                <p class="eyebrow">Mike Sunshine / El estudio</p>
                 <PhPaintBrush class="gold-text" :size="34" weight="light" />
                 <h2>Más de una forma<br />de imaginar.</h2>
                 <p>{{ page.props.studio.bio }}</p>
+                <dl class="artist-contact">
+                    <div v-if="page.props.studio.contact_email">
+                        <dt>Escríbeme</dt>
+                        <dd>
+                            <a
+                                :href="
+                                    'mailto:' + page.props.studio.contact_email
+                                "
+                                >{{ page.props.studio.contact_email }}</a
+                            >
+                        </dd>
+                    </div>
+                    <div v-if="page.props.studio.phone">
+                        <dt>Teléfono</dt>
+                        <dd>
+                            <a
+                                :href="
+                                    'tel:' +
+                                    page.props.studio.phone.replace(
+                                        /[^+0-9]/g,
+                                        '',
+                                    )
+                                "
+                                >{{ page.props.studio.phone }}</a
+                            >
+                        </dd>
+                    </div>
+                    <div v-if="page.props.studio.address">
+                        <dt>El estudio</dt>
+                        <dd>{{ page.props.studio.address }}</dd>
+                    </div>
+                </dl>
+                <SocialLinks labels />
+                <p
+                    v-if="page.props.studio.contact_email?.endsWith('.example')"
+                    class="sample-contact-note"
+                >
+                    Datos de contacto de muestra, pendientes de actualizar.
+                </p>
                 <Link href="/contacto" class="text-link"
                     >Hablemos <PhArrowRight :size="19"
                 /></Link>
             </div>
         </section>
-        <CommissionBanner />
+        <CommissionBanner variant="home" />
     </StoreLayout>
 </template>
