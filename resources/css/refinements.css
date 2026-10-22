@@ -79,12 +79,13 @@
 }
 .home-hero .hero-art-layer {
     inset: 0;
-    width: 100%;
+    width: min(1440px, 100%);
     height: 100%;
+    margin-inline: auto;
 }
 .home-hero .hero-art-layer img {
     object-fit: contain;
-    object-position: right center;
+    object-position: 80% center;
 }
 .studio-socials {
     display: flex;
@@ -572,6 +573,10 @@ html:has(.inquiry-dialog[open]) {
         inset: auto -3% -10px auto;
         width: 170%;
         height: 390px;
+        margin-inline: 0;
+    }
+    .home-hero .hero-art-layer img {
+        object-position: right center;
     }
     .catalog-hero-v2 .catalog-hero-inner {
         min-height: 0;
