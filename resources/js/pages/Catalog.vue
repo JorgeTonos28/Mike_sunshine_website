@@ -121,7 +121,10 @@ const setCategory = (category: string) => {
                     {{ products.total === 1 ? "obra" : "obras" }}</span
                 >
             </form>
-            <div v-if="products.data.length" class="artwork-grid">
+            <div
+                v-if="products.data.length"
+                class="artwork-grid catalog-artwork-grid"
+            >
                 <ArtworkCard
                     v-for="product in products.data"
                     :key="product.id"
