@@ -51,3 +51,20 @@ Las instrucciones incluyeron estas restricciones explícitas en todas las reprod
 Prompt común para esculturas (herramienta integrada): “Use case: stylized-concept. Asset: portrait 4:5 product concept render for a sculpture catalogue. Reference image is Mike Sunshine's painted character. Translate THIS SAME character into a highly detailed hand-painted resin collectible bust, preserving facial identity, expression, exact silhouette, costume and palette. Clearly three-dimensional sculpted volume, visible brush-painted details on resin, realistic studio material response, warm raking key light, deep gentle shadows. Bust on a short dark bronze rectangular plinth; include entire cap/ears/topknot, hands or book if present, and whole plinth with at least 8 percent breathing room on all edges. Three-quarter front view, camera at eye level, near-black warm charcoal studio backdrop #11100e with a subtle textured floor. SINGLE bust ONLY. This is an imaginative sculpture concept based on the painting, not a photograph of an existing physical piece. No text, letters, watermark, logo, border, room, pedestal cropping or extra objects.” Se especificó el personaje y su ropa/paleta para cada referencia.
 
 El seeder local añade siete pinturas y cuatro conceptos 3D sin sobrescribir las fichas existentes. También completa sólo los campos vacíos con contacto ficticio (`.example`, teléfono 555-0100, ubicación por confirmar) y redes `/#`, según autorización del usuario. Todos se sustituyen desde administración antes de publicar.
+
+## Composiciones de heroes y banners
+
+Las ocho capas de `public/images/compositions/` se generaron con la herramienta integrada y alfa. Se guardan PNG maestros y derivados WebP. Sus referencias y prompts completos están en `docs/prompts-composiciones.json`.
+
+| Uso | Personaje |
+| --- | --- |
+| Hero Inicio | Mago pintado, capucha violeta |
+| Hero Pinturas | Sabio de túnica verde |
+| Hero Esculturas | Gato esfinge, concepto 3D |
+| Hero Contacto | Bufón pintado |
+| Banner Inicio | El Árabe Alquimista |
+| Banner Pinturas | Gato esfinge pintado |
+| Banner Esculturas | Mago, concepto 3D |
+| Banner Contacto | Mandril pintado |
+
+Las instrucciones preservan personaje y paleta, añaden capas de pincel seco, impasto dorado, textura de lienzo y motas de pigmento, con margen para conservar la silueta. Los textos y controles siguen siendo HTML. No se incorporan frases motivacionales a la derecha de las imágenes. Los banners usan `object-fit: contain` y encuadres distintos a los antiguos recortes ampliados.
