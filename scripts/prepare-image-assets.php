@@ -3,6 +3,12 @@
 // Lossless layout decisions remain in source assets; this only creates delivery derivatives.
 // Run from repository root: php scripts/prepare-image-assets.php
 $root = dirname(__DIR__).'/public/images/';
+$hero = imagecreatefrompng($root.'art/hero-wizard.png');
+imagepalettetotruecolor($hero);
+imagealphablending($hero, false);
+imagesavealpha($hero, true);
+imagewebp($hero, $root.'art/hero-wizard.webp', 90);
+imagedestroy($hero);
 foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon'] as $name) {
     $source = imagecreatefrompng($root.'art/'.$name.'.png');
     $width = 800;
@@ -20,11 +26,17 @@ imagedestroy($source);
 // Trim only empty transparent margins. Preserve the generated logo pixels.
 foreach (['brand/logo-dark.png', 'design/brush-gold.png'] as $path) {
     $source = imagecreatefrompng($root.$path);
-    $left = imagesx($source); $top = imagesy($source); $right = 0; $bottom = 0;
+    $left = imagesx($source);
+    $top = imagesy($source);
+    $right = 0;
+    $bottom = 0;
     for ($y = 0; $y < imagesy($source); $y++) {
         for ($x = 0; $x < imagesx($source); $x++) {
             if ((imagecolorat($source, $x, $y) >> 24) < 90) {
-                $left = min($left, $x); $top = min($top, $y); $right = max($right, $x); $bottom = max($bottom, $y);
+                $left = min($left, $x);
+                $top = min($top, $y);
+                $right = max($right, $x);
+                $bottom = max($bottom, $y);
             }
         }
     }

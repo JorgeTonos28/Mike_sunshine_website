@@ -21,7 +21,7 @@ const page = usePage<Shared>();
             rel="preload"
             as="image"
             :href="
-                page.props.studio.hero_path || '/images/art/hero-wizard.png'
+                page.props.studio.hero_path || '/images/art/hero-wizard.webp'
             "
     /></Head>
     <StoreLayout>
@@ -30,7 +30,7 @@ const page = usePage<Shared>();
                 <img
                     :src="
                         page.props.studio.hero_path ||
-                        '/images/art/hero-wizard.png'
+                        '/images/art/hero-wizard.webp'
                     "
                     alt="Mago de capucha violeta, representación de una pintura de Mike Sunshine"
                     fetchpriority="high"
@@ -132,7 +132,7 @@ const page = usePage<Shared>();
                 <h2>Más de una forma<br />de imaginar.</h2>
                 <p>{{ page.props.studio.bio }}</p>
                 <Link href="/contacto" class="text-link"
-                    >Conversemos <PhArrowRight :size="19"
+                    >Hablemos <PhArrowRight :size="19"
                 /></Link>
             </div>
         </section>

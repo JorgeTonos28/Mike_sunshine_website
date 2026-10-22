@@ -23,7 +23,7 @@ class StudioSetting extends Model
             'hero_title' => 'Mike Sunshine',
             'hero_description' => 'Personajes con alma. Pinturas y esculturas que exploran la imaginación, el color y el carácter.',
             'logo_path' => '/images/brand/logo-dark-trimmed.png', 'favicon_path' => '/images/brand/favicon.png',
-            'hero_path' => '/images/art/hero-wizard.png',
+            'hero_path' => '/images/art/hero-wizard.webp',
         ];
     }
 

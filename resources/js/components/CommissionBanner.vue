@@ -17,7 +17,7 @@ import { PhArrowRight } from "@phosphor-icons/vue";
                 /></Link>
             </div>
             <img
-                src="/images/art/hero-wizard.png"
+                src="/images/art/hero-wizard.webp"
                 alt=""
                 loading="lazy"
                 aria-hidden="true"

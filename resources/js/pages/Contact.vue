@@ -7,6 +7,8 @@ import {
     PhInstagramLogo,
     PhPaintBrush,
     PhCube,
+    PhPhone,
+    PhMapPin,
 } from "@phosphor-icons/vue";
 import StoreLayout from "../layouts/StoreLayout.vue";
 import BrushHeading from "../components/BrushHeading.vue";
@@ -33,7 +35,7 @@ const submit = () =>
         ><section class="contact-page container">
             <div class="contact-page-art" aria-hidden="true">
                 <img
-                    src="/images/art/hero-wizard.png"
+                    src="/images/art/hero-wizard.webp"
                     alt=""
                     width="1536"
                     height="1024"
@@ -119,6 +121,18 @@ const submit = () =>
             </div>
         </section>
         <section class="contact-options container">
+            <div v-if="studio.phone">
+                <PhPhone :size="30" weight="light" />
+                <h2>Teléfono</h2>
+                <a :href="`tel:${studio.phone.replace(/[^+0-9]/g, '')}`">{{
+                    studio.phone
+                }}</a>
+            </div>
+            <div v-if="studio.address">
+                <PhMapPin :size="30" weight="light" />
+                <h2>El estudio</h2>
+                <p class="preserve-lines">{{ studio.address }}</p>
+            </div>
             <div v-if="studio.contact_email">
                 <PhEnvelopeSimple :size="30" weight="light" />
                 <h2>Correo</h2>

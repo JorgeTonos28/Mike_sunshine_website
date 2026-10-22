@@ -11,7 +11,7 @@ class StorefrontController extends Controller
 {
     public function home()
     {
-        return Inertia::render('Home', ['products' => Product::with('images')->where('is_published', true)->orderByDesc('is_featured')->latest()->limit(4)->get()->map->publicData()]);
+        return Inertia::render('Home', ['products' => Product::with('images')->where('is_published', true)->orderByDesc('is_featured')->latest()->limit(3)->get()->map->publicData()]);
     }
 
     public function catalog(Request $request, string $kind)

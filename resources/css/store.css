@@ -1,10 +1,10 @@
-@import "@fontsource/cormorant-garamond/500.css";
-@import "@fontsource/cormorant-garamond/600.css";
-@import "@fontsource/cormorant-garamond/700.css";
-@import "@fontsource/manrope/400.css";
-@import "@fontsource/manrope/500.css";
-@import "@fontsource/manrope/600.css";
-@import "@fontsource/manrope/700.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-700.css";
+@import "@fontsource/manrope/latin-400.css";
+@import "@fontsource/manrope/latin-500.css";
+@import "@fontsource/manrope/latin-600.css";
+@import "@fontsource/manrope/latin-700.css";
 
 :root {
     color-scheme: dark;
@@ -19,6 +19,22 @@
     --error: #f0a297;
     --serif: "Cormorant Garamond", Georgia, serif;
     --sans: "Manrope", sans-serif;
+}
+#nprogress {
+    pointer-events: none;
+}
+#nprogress .bar {
+    background: var(--gold);
+    position: fixed;
+    z-index: 70;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+#nprogress .spinner,
+#nprogress .peg {
+    display: none;
 }
 * {
     box-sizing: border-box;
@@ -1520,8 +1536,8 @@ legend {
         opacity: 0.85;
     }
     .hero-art-layer img {
-        object-fit: contain;
-        object-position: center bottom;
+        object-fit: cover;
+        object-position: 64% center;
     }
     .home-hero::after {
         background:
@@ -1560,7 +1576,7 @@ legend {
         margin-bottom: 6px;
     }
     .category-preview p br {
-        display: none;
+        display: initial;
     }
     .category-symbol {
         width: 95px;
@@ -1789,7 +1805,7 @@ legend {
     }
     .contact-page-art {
         width: 100%;
-        right: -20px;
+        right: 0;
         top: 0;
         opacity: 0.1;
         height: 500px;

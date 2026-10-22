@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\StudioSetting;
 use Illuminate\Database\Seeder;
 
 class DemoArtworkSeeder extends Seeder
@@ -12,7 +13,8 @@ class DemoArtworkSeeder extends Seeder
         if (app()->isProduction()) {
             throw new \RuntimeException('Sample artwork must not be seeded into production.');
         }
-        \App\Models\StudioSetting::where('logo_path', '/images/brand/logo-dark.png')->update(['logo_path' => '/images/brand/logo-dark-trimmed.png']);
+        StudioSetting::where('logo_path', '/images/brand/logo-dark.png')->update(['logo_path' => '/images/brand/logo-dark-trimmed.png']);
+        StudioSetting::where('hero_path', '/images/art/hero-wizard.png')->update(['hero_path' => '/images/art/hero-wizard.webp']);
         foreach ([['Mago de capucha violeta', 'mago-capucha-violeta', 'wizard', 'Fantasía'], ['Retrato de un mandril', 'retrato-mandril', 'mandrill', 'Criaturas'], ['Gato esfinge', 'gato-esfinge', 'cat', 'Criaturas'], ['Sabio de túnica verde', 'sabio-tunica-verde', 'monk', 'Personajes'], ['El bufón', 'el-bufon', 'jester', 'Fantasía'], ['Personaje de cabello violeta', 'personaje-cabello-violeta', 'neon', 'Retratos']] as [$title, $slug, $asset, $category]) {
             $product = Product::firstOrCreate(['slug' => $slug], [
                 'title' => $title, 'kind' => 'painting', 'category' => $category,

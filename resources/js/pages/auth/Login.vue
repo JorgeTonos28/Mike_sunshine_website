@@ -14,7 +14,7 @@ const form = useForm({ email: "", password: "", remember: false });
     <main class="auth-page">
         <div class="auth-art">
             <img
-                src="/images/art/hero-wizard.png"
+                src="/images/art/hero-wizard.webp"
                 alt=""
                 aria-hidden="true"
                 width="1536"

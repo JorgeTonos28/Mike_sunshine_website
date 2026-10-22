@@ -62,7 +62,7 @@ const setCategory = (category: string) => {
                 <img
                     v-if="painting"
                     class="catalog-art"
-                    src="/images/art/hero-wizard.png"
+                    src="/images/art/hero-wizard.webp"
                     alt="Mago de capucha violeta, obra de Mike Sunshine"
                     width="1536"
                     height="1024"

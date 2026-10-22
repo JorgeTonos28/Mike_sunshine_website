@@ -66,7 +66,7 @@ const active = (href: string) =>
                 <Link
                     href="/carrito"
                     class="cart-link"
-                    :aria-label="`Carrito, ${page.props.cartCount} obras`"
+                    :aria-label="`Carrito, ${page.props.cartCount} ${page.props.cartCount === 1 ? 'obra' : 'obras'}`"
                     ><PhShoppingBag :size="24" weight="light" /><span
                         v-if="page.props.cartCount"
                         class="cart-count"

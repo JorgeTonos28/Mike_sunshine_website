@@ -5,6 +5,7 @@ Generados con la herramienta integrada de imágenes, usando las fotos suministra
 | Archivo final | Referencia de contenido | Uso |
 | --- | --- | --- |
 | `public/images/art/hero-wizard.png` | `Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.51 PM (1).jpeg` | Composición de hero con alfa, mago violeta. MSW1 se usó únicamente como referencia de tratamiento pictórico. |
+| `public/images/art/hero-wizard.webp` | Mismo PNG maestro | Derivado de entrega con transparencia para reducir el peso descargado, sin cambiar la composición. |
 | `public/images/art/wizard.webp` | Misma foto del mago | Reproducción regenerada para catálogo. PNG maestro conservado. |
 | `public/images/art/cat.webp` | `WhatsApp Image 2026-10-19 at 9.18.53 PM (1).jpeg` | Gato esfinge. PNG maestro conservado. |
 | `public/images/art/mandrill.webp` | `WhatsApp Image 2026-10-19 at 9.18.52 PM (6).jpeg` | Mandril. PNG maestro conservado. |
