@@ -24,7 +24,20 @@ foreach (array_merge(glob($root.'sculptures/*.png'), glob($root.'compositions/*.
     imagepalettetotruecolor($source);
     imagealphablending($source, false);
     imagesavealpha($source, true);
-    imagewebp($source, substr($path, 0, -4).'.webp', 88);
+    if (str_starts_with(basename($path), 'category-')) {
+        // Small navigation illustrations need alpha and enough detail for 2x screens.
+        $width = min(320, imagesx($source));
+        $height = (int) round(imagesy($source) * $width / imagesx($source));
+        $target = imagecreatetruecolor($width, $height);
+        imagealphablending($target, false);
+        imagesavealpha($target, true);
+        imagefill($target, 0, 0, imagecolorallocatealpha($target, 0, 0, 0, 127));
+        imagecopyresampled($target, $source, 0, 0, 0, 0, $width, $height, imagesx($source), imagesy($source));
+        imagewebp($target, substr($path, 0, -4).'.webp', 88);
+        imagedestroy($target);
+    } else {
+        imagewebp($source, substr($path, 0, -4).'.webp', 88);
+    }
     imagedestroy($source);
 }
 $source = imagecreatefrompng($root.'design/canvas.png');

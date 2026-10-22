@@ -1,0 +1,34 @@
+[
+  {
+    "asset": "public/images/art/alchemist-turban.png",
+    "source": "public/images/art/alchemist-turban.png",
+    "source_revision": "84de07aa5175cc1142202fae645dafe42491837b",
+    "tool": "image_gen (integrada)",
+    "transparent_background": false,
+    "prompt": "Use case: precise-object-edit. Edit target: the supplied existing painting reproduction. Change ONLY the pale ivory canvas background to a near-black warm charcoal painted canvas background (#11100e, very subtle dark oil texture), to match a dark art catalogue. Preserve the entire original turbaned alchemist unchanged: exact face, expression, cream gray turban and turquoise jewel, blue/ochre robe, dark beard, hands, and glass flask with green liquid. Keep all framing, proportions, painterly brushwork and lighting on the character. Make the transparent parts of the glass flask naturally reveal the new charcoal background rather than an ivory patch. Keep the turban, flask and hands fully visible. Portrait 4:5. No other changes, no text, no border, no added props, no other characters."
+  },
+  {
+    "asset": "public/images/compositions/hero-paintings-monk.png",
+    "source": "public/images/compositions/hero-paintings-monk.png",
+    "source_revision": "84de07aa5175cc1142202fae645dafe42491837b",
+    "tool": "image_gen (integrada)",
+    "transparent_background": true,
+    "prompt": "Use case: background-extraction. Edit target: this existing website hero composition. Remove ALL black/charcoal/cream background fills so there is genuine transparent alpha everywhere outside the character and the distinct gold paint strokes. Preserve exactly this same painted elderly sage, his face, topknot/hairpin/turquoise tassel, beard, green robe, extended hand with purple crystal, pipe in the other hand, and expressive golden dry brush strokes around his shoulders. Retain individual gold paint flecks and ragged brush edges but remove black canvas panels, black gradient haze and the broad solid parchment patch. No flat backdrop of ANY color. LEFT HALF must be completely transparent for website HTML text. Landscape 3:2, subject stays RIGHT HALF, all topknot/hairpin/hands/pipe fully inside the canvas with at least 7 percent transparent safety margin at every edge, gold paint also tapers to alpha before edges. Keep existing subject identity, color palette, pose, painting texture and rich gold composition; no new subjects, props, text or lettering. True transparent background, not a black rectangle, not checkerboard."
+  },
+  {
+    "asset": "public/images/compositions/category-painting-cat.png",
+    "source": "public/images/art/cat.png",
+    "source_revision": "84de07aa5175cc1142202fae645dafe42491837b",
+    "tool": "image_gen (integrada)",
+    "transparent_background": true,
+    "prompt": "Use case: background-extraction. Create a transparent cutout of this exact painted sphynx cat for a small website category thumbnail. Remove ONLY the dark rectangular canvas background. Preserve the original painted face, amber eyes, orange forehead, large pink/red ears, blue gray and peach skin and visible oil brushwork, same forward pose and proportions. Show the complete ear tips, face, long neck and shoulder bust with an irregular painterly lower edge. All of the silhouette must fit inside the canvas with 10 percent empty alpha margin on all sides; no ear tips or bust cropped by the canvas. Centered portrait 4:5, subject fills 80 percent of height, clean true alpha. No floor, no shadow, no paint splash decorations, no text, no props, no new subject, no rectangular black backdrop."
+  },
+  {
+    "asset": "public/images/compositions/category-sculpture-wizard.png",
+    "source": "public/images/sculptures/wizard.png",
+    "source_revision": "84de07aa5175cc1142202fae645dafe42491837b",
+    "tool": "image_gen (integrada)",
+    "transparent_background": true,
+    "prompt": "Use case: background-extraction. Edit target: this existing 3D resin sculpture concept of Mike Sunshine's purple hooded wizard. Remove ONLY the dark studio backdrop and ground, isolating the entire same bust AND its bronze plinth on true transparent alpha. Preserve the exact sculpted face, long white beard, purple hood and pointed curled extension with gold edging, hand with feather, open book and bronze pedestal; keep sculptural material and studio lighting. Entire sculpture and plinth must be visible inside the canvas with a 10 percent empty transparent margin on every side, no feather/book/hood/plinth cropping. Centered portrait 4:5 composition for a small website category thumbnail. No shadows on a floor, no backdrop, no extra decorations, no letters, no new objects or characters."
+  }
+]
