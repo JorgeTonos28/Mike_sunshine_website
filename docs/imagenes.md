@@ -76,3 +76,16 @@ Las instrucciones preservan personaje y paleta, añaden capas de pincel seco, im
 - `public/images/compositions/artist-mandrill.{png,webp}`: edición con alfa de la representación del mandril; silueta completa y margen. Se muestra con `object-fit: contain`, sin el antiguo recorte ni sombra rectangular interior.
 
 Los prompts y la cadena de edición de estos tres recursos están en `docs/prompts-ajustes.json`. Los banners existentes se reflejan con `scaleX(-1)` únicamente en la capa de imagen; texto y controles conservan su orientación. No se regeneraron para invertir la composición.
+
+## Fondos y miniaturas de categorías
+
+Correcciones realizadas con la herramienta integrada de imágenes, conservando la identidad, pose y estilo de los recursos anteriores. Prompts, referencias y revisión Git de los archivos usados como entrada: `docs/prompts-fondos.json`.
+
+| Recurso PNG maestro y WebP | Corrección y uso |
+| --- | --- |
+| `public/images/art/alchemist-turban.{png,webp}` | Sustituye el fondo marfil por lienzo carbón, incluido el fondo visible a través del frasco. Mantiene personaje y ficha. |
+| `public/images/compositions/hero-paintings-monk.{png,webp}` | Elimina los rellenos negros del fondo y conserva figura, pinceladas doradas y bordes con alfa. Se aplica tanto al catálogo de Pinturas como a su página de servicio. |
+| `public/images/compositions/category-painting-cat.{png,webp}` | Recorte transparente del gato pintado, con orejas, cuello y borde inferior completos. Acceso a Pinturas en Inicio. |
+| `public/images/compositions/category-sculpture-wizard.{png,webp}` | Recorte transparente del concepto escultórico del mago, conservando capucha, pluma, libro y base. Acceso a Esculturas en Inicio. |
+
+El script `scripts/prepare-image-assets.php` entrega las miniaturas `category-*` a 320 × 400 px (aproximadamente 21 y 32 kB) y conserva alfa durante el remuestreo. Los PNG maestros mantienen su resolución original. Se comprobó alfa completamente transparente (127 en GD) en las esquinas y zonas vacías izquierdas de los tres PNG transparentes y sus WebP. Las miniaturas usan `object-fit: contain`.

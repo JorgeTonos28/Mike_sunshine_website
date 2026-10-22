@@ -28,6 +28,8 @@ En la tercera revisión se comprobó la rotación ascendente del pincel y su pun
 
 Las entradas del hero tienen retrasos de 0–300 ms; el arte entra en 1000 ms y los bloques se revelan en 650 ms. En el navegador se comprobó el paso de bloques pendientes a visibles al bajar y que permanecen visibles al volver arriba. El código contempla `prefers-reduced-motion`, foco de teclado y ausencia de IntersectionObserver; no se emuló un cambio de preferencia del sistema operativo. Se comprobó Inicio con `APP_ENV=production`, CSP activa y sin errores de consola. Capturas nuevas: `output/review/adjustments/{home-artist,home-banner,sculptures-desktop}.jpg`.
 
+En la cuarta revisión se comprobó la portada con el hero centrado a 1920 y 2560 px: su capa deja de crecer a 1440 px y mantiene su posición respecto al contenedor del texto. Se revisaron los dos accesos con imágenes transparentes a 1440, 768 y 390 px, sin desbordamiento horizontal ni recortes; las miniaturas WebP conservan alfa y tienen 320 × 400 px. Se revisó el hero de Pinturas sin panel negro y la ficha del Alquimista con fondo carbón. Compilación, TypeScript, formato y sintaxis del conversor PHP correctos; sin errores de consola en las vistas revisadas. Capturas en `output/review/background-fixes/`.
+
 ## Configuración pendiente para el lanzamiento
 
 - Crear la cuenta real de Mike y configurar las credenciales/callback de Google. La conexión con Google real requiere esa configuración; las pruebas actuales simulan el proveedor y verifican su estado y sus restricciones de acceso.
