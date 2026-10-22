@@ -17,6 +17,7 @@ const nav = [
     { href: "/", label: "Inicio" },
     { href: "/pinturas", label: "Pinturas" },
     { href: "/esculturas", label: "Esculturas" },
+    { href: "/sobre-mi", label: "Sobre mí" },
     { href: "/contacto", label: "Contacto" },
 ];
 const active = (href: string) =>
@@ -112,6 +113,7 @@ const active = (href: string) =>
             <div class="footer-links">
                 <Link href="/pinturas">Pinturas</Link
                 ><Link href="/esculturas">Esculturas 3D</Link
+                ><Link href="/sobre-mi">Sobre mí</Link
                 ><Link href="/contacto"
                     >Contacto <PhArrowUpRight :size="15"
                 /></Link>

@@ -210,8 +210,8 @@ useHomeMotion(home);
                     >
                         Datos de contacto de muestra, pendientes de actualizar.
                     </p>
-                    <Link href="/contacto" class="text-link"
-                        >Hablemos <PhArrowRight :size="19"
+                    <Link href="/sobre-mi" class="text-link"
+                        >Conoce al artista <PhArrowRight :size="19"
                     /></Link>
                 </div>
             </section>

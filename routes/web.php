@@ -18,6 +18,7 @@ Route::get('/media/{filename}', function (string $filename) {
 });
 
 Route::get('/', [StorefrontController::class, 'home'])->name('home');
+Route::get('/sobre-mi', [StorefrontController::class, 'about'])->name('about');
 Route::get('/pinturas', [StorefrontController::class, 'catalog'])->defaults('kind', 'painting')->name('paintings');
 Route::get('/esculturas', [StorefrontController::class, 'catalog'])->defaults('kind', 'sculpture')->name('sculptures');
 Route::get('/obras/{product:slug}', [StorefrontController::class, 'show'])->name('product');

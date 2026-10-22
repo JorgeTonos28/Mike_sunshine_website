@@ -32,6 +32,18 @@ class StorefrontController extends Controller
         return Inertia::render('Catalog', ['kind' => $kind, 'products' => $query->paginate(12)->withQueryString()->through(fn ($p) => $p->publicData()), 'categories' => $categories, 'filters' => ['search' => $filters['search'] ?? '', 'category' => $filters['category'] ?? '', 'sort' => $filters['sort'] ?? 'recent']]);
     }
 
+    public function about()
+    {
+        $works = Product::with('images')->where('is_published', true)->whereHas('images')
+            ->orderByDesc('is_featured')->latest()->limit(3)->get()
+            ->map(fn (Product $product) => [
+                ...$product->only(['id', 'title', 'slug']),
+                'image' => $product->images->first()?->only(['id', 'path', 'alt']),
+            ]);
+
+        return Inertia::render('About', ['works' => $works]);
+    }
+
     public function show(Product $product)
     {
         abort_unless($product->is_published, 404);

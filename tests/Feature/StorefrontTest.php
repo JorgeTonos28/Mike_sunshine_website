@@ -22,7 +22,7 @@ class StorefrontTest extends TestCase
     {
         $draft = Product::factory()->create(['is_published' => false]);
         $published = Product::factory()->create();
-        foreach (['/', '/pinturas', '/esculturas', '/contacto', '/privacidad', '/terminos', '/cookies', '/carrito'] as $path) {
+        foreach (['/', '/sobre-mi', '/pinturas', '/esculturas', '/contacto', '/privacidad', '/terminos', '/cookies', '/carrito'] as $path) {
             $this->get($path)->assertOk()->assertHeader('X-Content-Type-Options', 'nosniff');
         }
         $this->get('/obras/'.$draft->slug)->assertNotFound();
