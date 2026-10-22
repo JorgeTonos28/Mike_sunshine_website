@@ -29,6 +29,8 @@ Las obras de muestra son representaciones gráficas derivadas de referencias pro
 
 Administradores: usuarios/roles, datos del negocio, logo/favicon/hero, redes y textos legales. Editores: catálogo únicamente. Un administrador activo debe permanecer. Archivar una obra la oculta y conserva el historial.
 
+El cuestionario de negocio está en [docs/cuestionario-mike.md](docs/cuestionario-mike.md), descargable también desde Páginas legales en el panel. Incluye identidad, catálogo, derechos/licencias, confirmación/pagos manuales, envíos, cancelaciones, devoluciones, privacidad, retención, proveedores y cookies. Los textos legales iniciales son provisionales, editables por bloques y con aprobación/versionado explícitos.
+
 ## Pedidos y correo
 
 Carrito en sesión, formulario de cliente/entrega, aceptación de privacidad y términos, comprobación final de disponibilidad en servidor y protección contra envíos duplicados. Los importes se toman de la base y se guardan como instantánea. Sin precio significa consulta; envío por cotizar. No se reserva inventario ni se cobra automáticamente. Mike gestiona estados, notas y disponibilidad desde el panel.
