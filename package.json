@@ -1,9 +1,0 @@
-{
-  "name": "mike-sunshine-website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "npx serve .",
-    "preview": "npx serve ."
-  }
-}
