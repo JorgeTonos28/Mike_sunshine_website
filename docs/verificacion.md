@@ -4,7 +4,7 @@ Revisión local de los días 21 y 22 de octubre de 2026 con PHP 8.4.7, Node 22.2
 
 ## Comprobaciones automatizadas
 
-- `php artisan test --compact`: 32 pruebas, 323 aserciones, todas correctas.
+- `php artisan test --compact`: 37 pruebas, 399 aserciones, todas correctas.
 - `php vendor/bin/pint --test`: correcto.
 - `npm run format:check`: correcto.
 - `npm run build`: comprobación de tipos Vue/TypeScript y compilación correctas.
@@ -29,6 +29,12 @@ En la tercera revisión se comprobó la rotación ascendente del pincel y su pun
 Las entradas del hero tienen retrasos de 0–300 ms; el arte entra en 1000 ms y los bloques se revelan en 650 ms. En el navegador se comprobó el paso de bloques pendientes a visibles al bajar y que permanecen visibles al volver arriba. El código contempla `prefers-reduced-motion`, foco de teclado y ausencia de IntersectionObserver; no se emuló un cambio de preferencia del sistema operativo. Se comprobó Inicio con `APP_ENV=production`, CSP activa y sin errores de consola. Capturas nuevas: `output/review/adjustments/{home-artist,home-banner,sculptures-desktop}.jpg`.
 
 En la cuarta revisión se comprobó la portada con el hero centrado a 1920 y 2560 px: su capa deja de crecer a 1440 px y mantiene su posición respecto al contenedor del texto. Se revisaron los dos accesos con imágenes transparentes a 1440, 768 y 390 px, sin desbordamiento horizontal ni recortes; las miniaturas WebP conservan alfa y tienen 320 × 400 px. Se revisó el hero de Pinturas sin panel negro y la ficha del Alquimista con fondo carbón. Compilación, TypeScript, formato y sintaxis del conversor PHP correctos; sin errores de consola en las vistas revisadas. Capturas en `output/review/background-fixes/`.
+
+En la quinta revisión se añadió `/sobre-mi`, se revisó su composición a 1440 y 390 px y se comprobó la navegación ampliada a 768 px, sin desbordamiento horizontal ni imágenes rotas. La página y el modal del servicio de encargos se abrieron con CSP de producción activa y sin errores de consola. Se comprobó la redirección 301 de la ruta antigua del servicio y el mensaje predefinido con «encargo». La revisión de código y contenido público guardado no encontró usos del término anterior fuera de la ruta de compatibilidad y su prueba.
+
+Se verificó desde el navegador el flujo completo del retrato: iniciar sesión con una cuenta temporal local, seleccionar una foto, ver la vista previa Blob, guardar, obtener una nueva ruta `/media/{uuid}.webp` y verla en Sobre mí. Después se restauró el retrato inicial y se retiraron la cuenta, su sesión y el archivo de prueba. Las pruebas automatizadas cubren sustitución, recodificación, rechazo de archivos inválidos o demasiado grandes, rechazo de rutas arbitrarias, permisos de administrador, descarga del cuestionario y exclusión de obras privadas en la nueva galería. La migración se aplicó sobre la base local existente y se ejecuta desde cero en las pruebas.
+
+Capturas de esta revisión: `output/review/about/{cover-desktop,cover-mobile,page-desktop,admin-portrait,encargo-modal}.jpg`. El cuestionario biográfico es distinto del cuestionario de privacidad y condiciones comerciales; sus 24 preguntas alimentan los textos e imágenes de la página del artista.
 
 ## Configuración pendiente para el lanzamiento
 

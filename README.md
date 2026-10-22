@@ -45,6 +45,14 @@ El cuestionario de negocio está en [docs/cuestionario-mike.md](docs/cuestionari
 
 Inicio y Contacto muestran los datos básicos y las redes configurados. El seeder de demostración completa sólo campos vacíos con contacto desechable y enlaces `/#`, según lo autorizado para revisión. El panel admite ese marcador o enlaces HTTPS. Sustituir estos datos antes del lanzamiento.
 
+## Sobre el artista
+
+`/sobre-mi` presenta a Mike con una composición editorial propia: apertura tipográfica, retrato, presentación, conexión entre disciplinas, proceso creativo, galería y una invitación a conversar. Tiene acceso desde la navegación, el pie y la sección del artista en Inicio. La galería muestra sólo obras publicadas con imagen, excluyendo borradores y piezas archivadas. La página también funciona con un catálogo vacío.
+
+La foto se cambia en **Información del negocio → Retrato del artista**. Incluye vista previa antes de guardar; admite PNG, WebP o JPG de hasta 8 MB y 12 megapíxeles, comprobados y recodificados como WebP. Sólo los administradores pueden modificarla. La migración añade `portrait_path` con el retrato inicial; ejecutar `php artisan migrate` al actualizar una instalación existente. La biografía breve se toma del campo «Sobre el artista» del mismo panel, compartido con Inicio.
+
+El cuestionario de 24 preguntas está en [docs/cuestionario-sobre-mike.md](docs/cuestionario-sobre-mike.md) y se descarga desde el bloque del retrato en el panel. Recoge historia, disciplinas, proceso, imágenes y voz editorial. Los demás textos de la página son una propuesta inicial; fechas, premios, clientes y citas se añadirán únicamente cuando Mike los confirme. El retrato se preparó con la herramienta integrada de imágenes; PNG maestro, WebP y prompt están documentados en [docs/imagenes.md](docs/imagenes.md).
+
 ## Contacto y servicios
 
 Contacto incluye formulario principal, canales con íconos y la sección “¿Qué puedes solicitar?”. Cada opción abre una página dedicada: `/servicios/pinturas`, `/servicios/esculturas-3d`, `/servicios/encargos-personalizados` y `/servicios/eventos-colaboraciones`. Se usa «encargo» en banners, formularios, mensajes y metadatos; la antigua ruta del servicio redirige permanentemente a la nueva. Los CTA abren un modal accesible con asunto y mensaje preparados para ese servicio; el visitante completa sus datos y consentimiento. Puede editar el mensaje. “Escríbeme ahora” abre el formulario general desde el banner de Contacto. Las consultas se guardan cifradas y generan su aviso en cola.

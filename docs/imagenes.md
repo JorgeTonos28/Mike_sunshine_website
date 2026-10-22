@@ -89,3 +89,13 @@ Correcciones realizadas con la herramienta integrada de imágenes, conservando l
 | `public/images/compositions/category-sculpture-wizard.{png,webp}` | Recorte transparente del concepto escultórico del mago, conservando capucha, pluma, libro y base. Acceso a Esculturas en Inicio. |
 
 El script `scripts/prepare-image-assets.php` entrega las miniaturas `category-*` a 320 × 400 px (aproximadamente 21 y 32 kB) y conserva alfa durante el remuestreo. Los PNG maestros mantienen su resolución original. Se comprobó alfa completamente transparente (127 en GD) en las esquinas y zonas vacías izquierdas de los tres PNG transparentes y sus WebP. Las miniaturas usan `object-fit: contain`.
+
+## Retrato de Mike para Sobre mí
+
+- Maestro: `public/images/artist/mike-portrait.png` (1122 × 1402 px).
+- Entrega: `public/images/artist/mike-portrait.webp` (aproximadamente 208 kB), conservando alfa.
+- Referencia: foto adjunta `codex-clipboard-8b996494-1064-41b9-a239-f8f6fb888634.png`.
+- Herramienta: `image_gen` integrada, con edición de la fotografía suministrada. Se retiró el damero, se conservó la identidad y pose del retrato, se aplicó un tratamiento cálido sutil y se integró el borde inferior sobre alfa. No se generó un personaje que sustituya a Mike.
+- Prompt completo y ruta de la referencia: `docs/prompt-retrato-mike.json`.
+
+La página usa el campo `portrait_path` del estudio y el recurso inicial como respaldo si falta una foto. Una sustitución desde administración pasa por la validación raster y el servicio de imágenes existente; se almacena con un nombre UUID nuevo y no requiere regenerar la página. La composición editorial, las reglas, la órbita y los textos son HTML/CSS; el lienzo oscuro y la pincelada reutilizan los recursos gráficos existentes.
