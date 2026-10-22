@@ -23,7 +23,7 @@ class CartController extends Controller
         if ($quantity === 0) {
             unset($cart[$product->id]);
         } else {
-            if (! $product->isRequestable() || $quantity > $product->stock || (! isset($cart[$product->id]) && count($cart) >= 20)) {
+            if (! $product->isRequestable() || (! isset($cart[$product->id]) && count($cart) >= 20)) {
                 throw ValidationException::withMessages(['cart' => 'No es posible añadir esa cantidad de esta obra.']);
             }
             $cart[$product->id] = $quantity;

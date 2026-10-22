@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $request->validate(['status' => 'nullable|in:received,reviewing,confirmed,completed,cancelled']);
+        $request->validate(['status' => 'nullable|in:received,awaiting_stock,reviewing,confirmed,completed,cancelled']);
 
         return Inertia::render('admin/Orders', ['orders' => Order::select(['id', 'reference', 'status', 'customer_name', 'created_at', 'notification_status'])->when($request->query('status'), fn ($q, $status) => $q->where('status', $status))->latest()->paginate(20)->withQueryString(), 'status' => $request->query('status', '')]);
     }
@@ -25,7 +25,7 @@ class OrderController extends Controller
 
     public function update(Request $request, Order $order)
     {
-        $data = $request->validate(['status' => 'required|in:received,reviewing,confirmed,completed,cancelled', 'admin_notes' => 'nullable|string|max:8000']);
+        $data = $request->validate(['status' => 'required|in:received,awaiting_stock,reviewing,confirmed,completed,cancelled', 'admin_notes' => 'nullable|string|max:8000']);
         $order->update($data);
 
         return back()->with('success', 'Solicitud actualizada. La disponibilidad de la obra se gestiona desde su ficha.');

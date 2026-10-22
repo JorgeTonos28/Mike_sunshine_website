@@ -48,10 +48,13 @@ class OrderWorkflowTest extends TestCase
         $this->assertDatabaseCount('jobs', 1);
     }
 
-    public function test_stale_stock_draft_sold_and_deleted_products_cannot_be_requested(): void
+    public function test_draft_and_deleted_products_cannot_be_requested(): void
     {
-        foreach ([['stock' => 0], ['is_published' => false], ['availability' => 'sold'], ['availability' => 'reserved']] as $changes) {
-            $product = Product::factory()->create($changes);
+        foreach ([false, true] as $deleted) {
+            $product = Product::factory()->create(['is_published' => $deleted]);
+            if ($deleted) {
+                $product->delete();
+            }
             try {
                 app(CreateOrder::class)->handle([$product->id => 1], $this->payload(), hash('sha256', Str::uuid()));
                 $this->fail('Unavailable product accepted');
@@ -59,6 +62,29 @@ class OrderWorkflowTest extends TestCase
                 $this->assertDatabaseCount('orders', 0);
             }
         }
+    }
+
+    public function test_published_out_of_stock_and_excess_quantities_create_waiting_requests_with_snapshots(): void
+    {
+        foreach ([['stock' => 0], ['availability' => 'sold'], ['availability' => 'reserved'], ['stock' => 1]] as $changes) {
+            $product = Product::factory()->create([...$changes, 'price_minor' => 25000]);
+            $order = app(CreateOrder::class)->handle([$product->id => 2], $this->payload(), hash('sha256', Str::uuid()));
+            $this->assertSame('awaiting_stock', $order->status);
+            $this->assertTrue($order->items->first()->awaiting_availability);
+            $this->assertSame(50000, $order->subtotal_minor);
+            $product->update(['stock' => 5, 'availability' => 'available']);
+            $this->assertTrue($order->fresh()->items->first()->awaiting_availability);
+        }
+    }
+
+    public function test_cart_accepts_waiting_quantities_but_keeps_quantity_and_publication_limits(): void
+    {
+        $product = Product::factory()->create(['stock' => 0]);
+        $this->post('/carrito/'.$product->id, ['quantity' => 3])->assertSessionHasNoErrors()->assertSessionHas('cart.'.$product->id, 3);
+        $this->post('/carrito/'.$product->id, ['quantity' => 11])->assertSessionHasErrors('quantity');
+        $product->update(['is_published' => false]);
+        $this->post('/carrito/'.$product->id, ['quantity' => 1])->assertSessionHasErrors('cart');
+        $this->post('/carrito/'.$product->id, ['quantity' => 0])->assertSessionHasNoErrors()->assertSessionMissing('cart.'.$product->id);
     }
 
     public function test_checkout_requires_session_token_shipping_and_consent(): void

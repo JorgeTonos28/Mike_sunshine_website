@@ -16,7 +16,7 @@ class Cart
         $allPriced = count($cart) > 0;
         foreach ($cart as $id => $quantity) {
             $product = $products->get($id);
-            $items[] = ['product_id' => (int) $id, 'quantity' => $quantity, 'product' => $product?->publicData(), 'max_quantity' => $product ? min(10, $product->stock) : 0];
+            $items[] = ['product_id' => (int) $id, 'quantity' => $quantity, 'product' => $product?->publicData(), 'max_quantity' => $product ? 10 : 0, 'awaiting_availability' => $product?->requiresAvailability($quantity) ?? false];
             $allPriced = $allPriced && $product && $product->price_minor !== null;
             $subtotal += ($product?->price_minor ?? 0) * $quantity;
         }

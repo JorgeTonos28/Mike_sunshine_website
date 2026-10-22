@@ -25,7 +25,17 @@ class Product extends Model
 
     public function isRequestable(): bool
     {
-        return $this->is_published && $this->stock > 0 && in_array($this->availability, ['available', 'inquiry']);
+        return $this->is_published;
+    }
+
+    public function availableQuantity(): int
+    {
+        return in_array($this->availability, ['available', 'inquiry']) ? max(0, $this->stock) : 0;
+    }
+
+    public function requiresAvailability(int $quantity): bool
+    {
+        return $quantity > $this->availableQuantity();
     }
 
     public function publicData(): array
@@ -33,6 +43,7 @@ class Product extends Model
         return [
             ...$this->only(['id', 'title', 'slug', 'kind', 'category', 'summary', 'technique', 'dimensions', 'edition', 'year', 'price_minor', 'currency', 'availability', 'content_blocks']),
             'requestable' => $this->isRequestable(),
+            'available_quantity' => $this->availableQuantity(),
             'images' => $this->images->map(fn (ProductImage $image) => $image->only(['id', 'path', 'alt']))->values(),
         ];
     }
