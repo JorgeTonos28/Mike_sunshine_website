@@ -26,3 +26,9 @@ Las obras de muestra son representaciones gráficas derivadas de referencias pro
 `/admin` permite crear/editar pinturas y esculturas, publicar o guardar borradores, indicar disponibilidad, precio opcional, técnica, dimensiones, edición, año y galería. Los detalles se componen con bloques de título, párrafo, viñetas, lista numerada y tabla; no admiten HTML ejecutable. Se exige imagen para publicar. Las subidas PNG/JPG/WebP se verifican, recodifican a WebP y sirven desde `/media` sin exponer rutas internas. Máximo 8 MB y 12 megapíxeles.
 
 Administradores: usuarios/roles, datos del negocio, logo/favicon/hero, redes y textos legales. Editores: catálogo únicamente. Un administrador activo debe permanecer. Archivar una obra la oculta y conserva el historial.
+
+## Pedidos y correo
+
+Carrito en sesión, formulario de cliente/entrega, aceptación de privacidad y términos, comprobación final de disponibilidad en servidor y protección contra envíos duplicados. Los importes se toman de la base y se guardan como instantánea. Sin precio significa consulta; envío por cotizar. No se reserva inventario ni se cobra automáticamente. Mike gestiona estados, notas y disponibilidad desde el panel.
+
+Configurar correo SMTP y el email del estudio desde ajustes o `STUDIO_EMAIL`. Ejecutar `php artisan queue:work database --tries=5 --timeout=30` bajo un supervisor en producción. Pedido y aviso de cola se guardan en una transacción en la misma conexión de base de datos (mantener `DB_QUEUE_CONNECTION` vacío). El email sólo contiene referencia y enlace privado; los datos del cliente permanecen en el panel. Fallos se muestran en cada solicitud y admiten reintento. Local usa `MAIL_MAILER=log`, por lo que no envía correos reales. El registro persiste incluso si SMTP no está configurado.

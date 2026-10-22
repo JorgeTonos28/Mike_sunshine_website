@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LegalController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
@@ -14,6 +15,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'can:studio'])->grou
     ]))->name('dashboard');
     Route::resource('products', ProductController::class)->except('show');
     Route::middleware('can:admin')->group(function () {
+        Route::get('orders', [OrderController::class, 'index'])->name('orders');
+        Route::get('orders/{order}', [OrderController::class, 'show']);
+        Route::put('orders/{order}', [OrderController::class, 'update']);
+        Route::post('orders/{order}/retry', [OrderController::class, 'retry'])->middleware('throttle:10,1');
+        Route::get('inquiries', [OrderController::class, 'inquiries']);
+        Route::put('inquiries/{inquiry}/read', [OrderController::class, 'read']);
         Route::get('settings', [SettingsController::class, 'edit'])->name('settings');
         Route::post('settings', [SettingsController::class, 'update']);
         Route::get('users', [UserController::class, 'index'])->name('users');
