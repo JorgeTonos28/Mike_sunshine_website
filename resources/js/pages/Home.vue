@@ -3,7 +3,6 @@ import { Head, Link, usePage } from "@inertiajs/vue3";
 import { ref } from "vue";
 import {
     PhArrowRight,
-    PhCube,
     PhEnvelopeSimple,
     PhPaintBrush,
 } from "@phosphor-icons/vue";
@@ -81,7 +80,7 @@ useHomeMotion(home);
                 <div class="container category-strip-inner">
                     <Link href="/pinturas" class="category-preview" data-reveal
                         ><img
-                            src="/images/art/cat.webp"
+                            src="/images/compositions/category-painting-cat.webp"
                             alt=""
                             width="140"
                             height="116" />
@@ -96,9 +95,11 @@ useHomeMotion(home);
                         class="category-preview"
                         data-reveal
                         style="--reveal-delay: 80ms"
-                        ><div class="category-symbol">
-                            <PhCube :size="59" weight="thin" />
-                        </div>
+                        ><img
+                            src="/images/compositions/category-sculpture-wizard.webp"
+                            alt=""
+                            width="140"
+                            height="116" />
                         <div>
                             <h2>Esculturas 3D</h2>
                             <p>
