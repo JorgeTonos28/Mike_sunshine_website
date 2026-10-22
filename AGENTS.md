@@ -6,7 +6,8 @@
 - Ingeniería de referencia: https://github.com/JorgeTonos28/Vamo_al_game. Adaptar patrones al dominio del artista; no copiar sus módulos deportivos ni dependencias ajenas al alcance.
 - Autenticación Laravel y Google mediante Socialite. Sin Auth0, aplicación móvil paralela ni pasarela de pago.
 - Referencia visual: `Mockups/MSW1.png`; el resto aporta estructura con el tema oscuro del primero.
-- No inventar obras, precios, dimensiones, disponibilidad, datos biográficos o políticas comerciales. Toda representación de una pintura debe derivarse de una referencia real de Mike. Esculturas vacías hasta recibir referencias.
+- No inventar pinturas, precios, dimensiones, datos biográficos o políticas comerciales. Toda representación de una pintura debe derivarse de una referencia real de Mike. Por solicitud del usuario se permiten esculturas conceptuales derivadas de esas pinturas, identificadas como conceptos. Los datos de contacto de muestra y redes `/#` están autorizados para la revisión local y deben sustituirse antes del lanzamiento.
+- Las obras publicadas admiten solicitudes incluso sin existencias; informar de la espera y conservar esa condición en cada pedido. No realizar reservas ni cobros automáticos.
 
 ## Arquitectura y seguridad
 

@@ -9,7 +9,7 @@ imagealphablending($hero, false);
 imagesavealpha($hero, true);
 imagewebp($hero, $root.'art/hero-wizard.webp', 90);
 imagedestroy($hero);
-foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon'] as $name) {
+foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon', 'arab-alchemist'] as $name) {
     $source = imagecreatefrompng($root.'art/'.$name.'.png');
     $width = 800;
     $height = (int) round(imagesy($source) * $width / imagesx($source));
@@ -17,6 +17,14 @@ foreach (['wizard', 'cat', 'mandrill', 'monk', 'jester', 'neon'] as $name) {
     imagecopyresampled($target, $source, 0, 0, 0, 0, $width, $height, imagesx($source), imagesy($source));
     imagewebp($target, $root.'art/'.$name.'.webp', 88);
     imagedestroy($target);
+    imagedestroy($source);
+}
+foreach (array_merge(glob($root.'sculptures/*.png'), glob($root.'compositions/*.png')) as $path) {
+    $source = imagecreatefrompng($path);
+    imagepalettetotruecolor($source);
+    imagealphablending($source, false);
+    imagesavealpha($source, true);
+    imagewebp($source, substr($path, 0, -4).'.webp', 88);
     imagedestroy($source);
 }
 $source = imagecreatefrompng($root.'design/canvas.png');

@@ -1,6 +1,6 @@
 # Recursos gráficos
 
-Generados con la herramienta integrada de imágenes, usando las fotos suministradas como referencia de contenido. No se han usado fotografías de stock ni se han inventado pinturas o esculturas para el catálogo.
+Generados con la herramienta integrada de imágenes, usando las fotos suministradas como referencia de contenido. No se han usado fotografías de stock ni se han inventado pinturas. Desde la revisión solicitada el 22 de octubre se incluyen esculturas conceptuales derivadas de esas pinturas, autorizadas expresamente por el usuario e identificadas como conceptos.
 
 | Archivo final | Referencia de contenido | Uso |
 | --- | --- | --- |
@@ -42,3 +42,12 @@ Las instrucciones incluyeron estas restricciones explícitas en todas las reprod
 ## Entrega
 
 `php scripts/prepare-image-assets.php` crea derivados WebP de las reproducciones y textura y recorta sólo márgenes alfa del logo/subrayado. No cambia el diseño de las obras. Los originales de referencia permanecen sin modificar en sus carpetas locales. `php artisan db:seed --class=DemoArtworkSeeder` crea sólo muestras locales, sin precio, medidas ni disponibilidad afirmada. No se ejecuta en producción. Mike debe revisar las reproducciones y sustituir/confirmar sus imágenes finales antes de vender.
+
+## Ampliación del catálogo del 22 de octubre
+
+- `public/images/art/arab-alchemist.png` y `.webp`: **El Árabe Alquimista**, a partir de `Muestras de pinturas/WhatsApp Image 2026-10-19 at 9.18.52 PM.jpeg`. Se conserva el gorro amarillo, dedo levantado, rostro, barba y ropa de la pintura real. Prompt: reproducción frontal 4:5, fiel al personaje y a la pincelada; retirar papel/entorno fotografiados; fondo carbón; sin nuevos objetos, letras ni recortes de cabeza o mano.
+- `public/images/sculptures/{wizard,cat,monk,jester}.png` y `.webp`: cuatro interpretaciones escultóricas conceptuales basadas en los respectivos PNG regenerados de las pinturas. No se presentan como fotografías de piezas físicas existentes. Se conserva el PNG maestro y se sirve WebP.
+
+Prompt común para esculturas (herramienta integrada): “Use case: stylized-concept. Asset: portrait 4:5 product concept render for a sculpture catalogue. Reference image is Mike Sunshine's painted character. Translate THIS SAME character into a highly detailed hand-painted resin collectible bust, preserving facial identity, expression, exact silhouette, costume and palette. Clearly three-dimensional sculpted volume, visible brush-painted details on resin, realistic studio material response, warm raking key light, deep gentle shadows. Bust on a short dark bronze rectangular plinth; include entire cap/ears/topknot, hands or book if present, and whole plinth with at least 8 percent breathing room on all edges. Three-quarter front view, camera at eye level, near-black warm charcoal studio backdrop #11100e with a subtle textured floor. SINGLE bust ONLY. This is an imaginative sculpture concept based on the painting, not a photograph of an existing physical piece. No text, letters, watermark, logo, border, room, pedestal cropping or extra objects.” Se especificó el personaje y su ropa/paleta para cada referencia.
+
+El seeder local añade siete pinturas y cuatro conceptos 3D sin sobrescribir las fichas existentes. También completa sólo los campos vacíos con contacto ficticio (`.example`, teléfono 555-0100, ubicación por confirmar) y redes `/#`, según autorización del usuario. Todos se sustituyen desde administración antes de publicar.
