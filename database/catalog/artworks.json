@@ -1,0 +1,557 @@
+{
+    "version": 1,
+    "products": [
+        {
+            "title": "Mago de capucha violeta",
+            "slug": "mago-capucha-violeta",
+            "kind": "painting",
+            "category": "Fantasía",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/wizard.webp",
+                    "alt": "Mago de capucha violeta de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Retrato de un mandril",
+            "slug": "retrato-mandril",
+            "kind": "painting",
+            "category": "Criaturas",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/mandrill.webp",
+                    "alt": "Retrato de un mandril de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Gato esfinge",
+            "slug": "gato-esfinge",
+            "kind": "painting",
+            "category": "Criaturas",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/cat.webp",
+                    "alt": "Gato esfinge de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Sabio de túnica verde",
+            "slug": "sabio-tunica-verde",
+            "kind": "painting",
+            "category": "Personajes",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/monk.webp",
+                    "alt": "Sabio de túnica verde de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "El bufón",
+            "slug": "el-bufon",
+            "kind": "painting",
+            "category": "Fantasía",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/jester.webp",
+                    "alt": "El bufón de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Personaje de cabello violeta",
+            "slug": "personaje-cabello-violeta",
+            "kind": "painting",
+            "category": "Retratos",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/neon.webp",
+                    "alt": "Personaje de cabello violeta de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Personaje de gorro moteado",
+            "slug": "personaje-gorro-moteado",
+            "kind": "painting",
+            "category": "Originales",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/arab-alchemist.webp",
+                    "alt": "Personaje de gorro moteado de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "El Árabe Alquimista",
+            "slug": "arabe-alquimista-turbante",
+            "kind": "painting",
+            "category": "Originales",
+            "summary": "Una mirada al universo pictórico de Mike Sunshine. Consulta con el estudio los detalles y la disponibilidad de esta obra.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 1,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": true,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Acerca de esta obra"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Representación digital regenerada a partir de una pintura de Mike Sunshine. El estudio confirmará los datos de la pieza, su acabado y su disponibilidad antes de cualquier compra."
+                },
+                {
+                    "type": "heading",
+                    "text": "Antes de llevarla contigo"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Consulta técnica y dimensiones con el estudio.",
+                        "La entrega y su coste se acuerdan de forma personal.",
+                        "Enviar una solicitud no realiza un cobro ni reserva la obra."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/art/alchemist-turban.webp",
+                    "alt": "El Árabe Alquimista de Mike Sunshine, representación digital",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Mago de capucha violeta en 3D",
+            "slug": "escultura-wizard",
+            "kind": "sculpture",
+            "category": "Conceptos 3D",
+            "summary": "Una interpretación escultórica conceptual basada en una pintura de Mike Sunshine. Consulta con el estudio las posibilidades de realizar esta pieza.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 0,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": false,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Del lienzo al volumen"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Imagen conceptual generada a partir de una pintura de Mike Sunshine para explorar su versión en tres dimensiones. No es una fotografía de una escultura física existente."
+                },
+                {
+                    "type": "heading",
+                    "text": "Una pieza por conversar"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Mike confirmará si se puede realizar el diseño y cuáles serían sus materiales y acabados.",
+                        "El precio, las dimensiones, los plazos y la entrega se acuerdan con el estudio.",
+                        "Puedes enviar una solicitud aunque todavía no haya existencias. Mike te contactará cuando haya disponibilidad."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/sculptures/wizard.webp",
+                    "alt": "Mago de capucha violeta, concepto de escultura 3D basado en una pintura de Mike Sunshine",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Gato esfinge en 3D",
+            "slug": "escultura-cat",
+            "kind": "sculpture",
+            "category": "Conceptos 3D",
+            "summary": "Una interpretación escultórica conceptual basada en una pintura de Mike Sunshine. Consulta con el estudio las posibilidades de realizar esta pieza.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 0,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": false,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Del lienzo al volumen"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Imagen conceptual generada a partir de una pintura de Mike Sunshine para explorar su versión en tres dimensiones. No es una fotografía de una escultura física existente."
+                },
+                {
+                    "type": "heading",
+                    "text": "Una pieza por conversar"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Mike confirmará si se puede realizar el diseño y cuáles serían sus materiales y acabados.",
+                        "El precio, las dimensiones, los plazos y la entrega se acuerdan con el estudio.",
+                        "Puedes enviar una solicitud aunque todavía no haya existencias. Mike te contactará cuando haya disponibilidad."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/sculptures/cat.webp",
+                    "alt": "Gato esfinge, concepto de escultura 3D basado en una pintura de Mike Sunshine",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "Sabio de túnica verde en 3D",
+            "slug": "escultura-monk",
+            "kind": "sculpture",
+            "category": "Conceptos 3D",
+            "summary": "Una interpretación escultórica conceptual basada en una pintura de Mike Sunshine. Consulta con el estudio las posibilidades de realizar esta pieza.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 0,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": false,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Del lienzo al volumen"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Imagen conceptual generada a partir de una pintura de Mike Sunshine para explorar su versión en tres dimensiones. No es una fotografía de una escultura física existente."
+                },
+                {
+                    "type": "heading",
+                    "text": "Una pieza por conversar"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Mike confirmará si se puede realizar el diseño y cuáles serían sus materiales y acabados.",
+                        "El precio, las dimensiones, los plazos y la entrega se acuerdan con el estudio.",
+                        "Puedes enviar una solicitud aunque todavía no haya existencias. Mike te contactará cuando haya disponibilidad."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/sculptures/monk.webp",
+                    "alt": "Sabio de túnica verde, concepto de escultura 3D basado en una pintura de Mike Sunshine",
+                    "position": 0
+                }
+            ]
+        },
+        {
+            "title": "El bufón en 3D",
+            "slug": "escultura-jester",
+            "kind": "sculpture",
+            "category": "Conceptos 3D",
+            "summary": "Una interpretación escultórica conceptual basada en una pintura de Mike Sunshine. Consulta con el estudio las posibilidades de realizar esta pieza.",
+            "technique": null,
+            "dimensions": null,
+            "edition": null,
+            "year": null,
+            "price_minor": null,
+            "currency": "DOP",
+            "stock": 0,
+            "availability": "inquiry",
+            "is_published": true,
+            "is_featured": false,
+            "content_blocks": [
+                {
+                    "type": "heading",
+                    "text": "Del lienzo al volumen"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Imagen conceptual generada a partir de una pintura de Mike Sunshine para explorar su versión en tres dimensiones. No es una fotografía de una escultura física existente."
+                },
+                {
+                    "type": "heading",
+                    "text": "Una pieza por conversar"
+                },
+                {
+                    "type": "bullets",
+                    "items": [
+                        "Mike confirmará si se puede realizar el diseño y cuáles serían sus materiales y acabados.",
+                        "El precio, las dimensiones, los plazos y la entrega se acuerdan con el estudio.",
+                        "Puedes enviar una solicitud aunque todavía no haya existencias. Mike te contactará cuando haya disponibilidad."
+                    ]
+                }
+            ],
+            "images": [
+                {
+                    "path": "/images/sculptures/jester.webp",
+                    "alt": "El bufón, concepto de escultura 3D basado en una pintura de Mike Sunshine",
+                    "position": 0
+                }
+            ]
+        }
+    ]
+}
