@@ -1,0 +1,211 @@
+/* The document keeps its native scrolling; only the desktop control is replaced. */
+html {
+    scrollbar-color: #a88349 #171510;
+}
+html::-webkit-scrollbar {
+    width: 13px;
+    height: 13px;
+}
+html::-webkit-scrollbar-track {
+    background: #171510;
+    border-left: 1px solid #39342b;
+}
+html::-webkit-scrollbar-thumb {
+    border: 3px solid #171510;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #74592f, #d9b77b 48%, #987541);
+}
+html::-webkit-scrollbar-corner {
+    background: #171510;
+}
+html[data-mixer-scrollbar] {
+    scrollbar-width: none;
+}
+html[data-mixer-scrollbar]::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+html[data-mixer-scrollbar] body {
+    padding-right: 38px;
+}
+.mixer-scrollbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    width: 38px;
+    border-left: 1px solid #3d3323;
+    background: linear-gradient(90deg, #11100e, #211d16 48%, #15130f);
+    box-shadow:
+        inset 1px 0 #e1bb6a09,
+        -5px 0 15px #00000012;
+    user-select: none;
+}
+.mixer-step {
+    position: absolute;
+    left: 5px;
+    width: 27px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    color: #bc995b;
+    border: 1px solid #4b3d28;
+    border-radius: 3px;
+    background: linear-gradient(#302a20, #17140f);
+    box-shadow:
+        0 2px 3px #0006,
+        inset 0 1px #e7c28312;
+    cursor: pointer;
+}
+.mixer-step-up {
+    top: 8px;
+}
+.mixer-step-down {
+    bottom: 8px;
+}
+.mixer-step:hover {
+    color: #f2d396;
+    border-color: #b48b48;
+}
+.mixer-step:active {
+    background: #15120d;
+    box-shadow: inset 0 2px 4px #0008;
+}
+.mixer-step:focus-visible {
+    outline: 1px solid #efc780;
+    outline-offset: 2px;
+}
+.mixer-rail {
+    position: absolute;
+    top: 44px;
+    bottom: 44px;
+    left: 4px;
+    width: 29px;
+    touch-action: none;
+    cursor: ns-resize;
+}
+.mixer-rail:focus-visible {
+    outline: 1px solid #b9955b;
+    outline-offset: 1px;
+    border-radius: 3px;
+}
+.mixer-ruler {
+    position: absolute;
+    inset: 0 0 0 1px;
+    background-image:
+        repeating-linear-gradient(
+            to bottom,
+            #b4915599 0 1px,
+            transparent 1px 48px
+        ),
+        repeating-linear-gradient(
+            to bottom,
+            #b4915566 0 1px,
+            transparent 1px 12px
+        );
+    background-size:
+        8px 100%,
+        4px 100%;
+    background-position:
+        left top,
+        right top;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+.mixer-slot {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 12px;
+    width: 5px;
+    border-radius: 5px;
+    background: #080705;
+    border-left: 1px solid #030302;
+    box-shadow:
+        1px 0 0 #cda45930,
+        inset 1px 0 2px #000;
+}
+.mixer-knob {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    width: 27px;
+    height: 48px;
+    border: 1px solid #b89a66;
+    border-radius: 4px;
+    background: linear-gradient(
+        to bottom,
+        #dfc99d 0%,
+        #b59b6c 9%,
+        #6e5c3e 12%,
+        #b49b70 17%,
+        #d9c49b 44%,
+        #8b744e 50%,
+        #b69b69 56%,
+        #d8c192 85%,
+        #79613c 93%,
+        #3d3020 100%
+    );
+    box-shadow:
+        0 4px 7px #000a,
+        inset 1px 0 #fff6,
+        inset -1px 0 #372a1c;
+    will-change: transform;
+}
+.mixer-knob::before,
+.mixer-knob::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    height: 1px;
+    background: #362b1caa;
+    box-shadow: 0 1px #f6dfad77;
+}
+.mixer-knob::before {
+    top: 14px;
+}
+.mixer-knob::after {
+    bottom: 14px;
+}
+.mixer-knob-ridge {
+    position: absolute;
+    top: 22px;
+    left: 1px;
+    right: 1px;
+    height: 3px;
+    background: #2b2115;
+    box-shadow:
+        0 -1px #fce2ac66,
+        0 1px #e5bd7644;
+}
+.mixer-rail:hover .mixer-knob,
+.is-dragging .mixer-knob,
+.mixer-rail:focus-visible .mixer-knob {
+    border-color: #f3d495;
+    box-shadow:
+        0 4px 9px #000b,
+        0 0 12px #e3b46026,
+        inset 1px 0 #fff6;
+}
+.is-dragging .mixer-knob-ridge {
+    background: #f8d58b;
+    box-shadow: 0 0 6px #ddae6480;
+}
+.mixer-scrollbar,
+.mixer-scrollbar * {
+    cursor: ns-resize !important;
+}
+.mixer-step,
+.mixer-step * {
+    cursor: pointer !important;
+}
+body:has(dialog[open]) .mixer-scrollbar {
+    visibility: hidden;
+}
+@media (forced-colors: active) {
+    html {
+        scrollbar-color: auto;
+    }
+}

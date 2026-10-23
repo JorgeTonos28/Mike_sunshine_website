@@ -42,7 +42,11 @@ function move(event: PointerEvent) {
     )
         return;
     const target = event.target instanceof Element ? event.target : null;
-    if (target?.closest("input, textarea, select, [contenteditable], dialog")) {
+    if (
+        target?.closest(
+            "input, textarea, select, [contenteditable], dialog, [data-native-cursor]",
+        )
+    ) {
         hide();
         return;
     }

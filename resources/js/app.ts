@@ -5,7 +5,9 @@ import "../css/refinements.css";
 import "../css/paint-cursor.css";
 import "../css/home-motion.css";
 import "../css/about.css";
-import { createApp, h, type DefineComponent } from "vue";
+import "../css/mixer-scrollbar.css";
+import { createApp, h, Fragment, type DefineComponent } from "vue";
+import MixerScrollbar from "./components/MixerScrollbar.vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 
@@ -17,7 +19,9 @@ createInertiaApp({
             import.meta.glob<DefineComponent>("./pages/**/*.vue"),
         ),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
+        createApp({
+            render: () => h(Fragment, [h(App, props), h(MixerScrollbar)]),
+        })
             .use(plugin)
             .mount(el);
     },
