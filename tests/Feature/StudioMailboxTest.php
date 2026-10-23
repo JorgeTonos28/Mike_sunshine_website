@@ -51,4 +51,15 @@ class StudioMailboxTest extends TestCase
         $this->assertSame('smtp.gmail.com', $transport->getStream()->getHost());
         $this->assertSame(587, $transport->getStream()->getPort());
     }
+
+    public function test_cpanel_uses_implicit_tls_on_port_465(): void
+    {
+        config(['mail.mailers.cpanel.host' => 'mail.mikesunshine.com']);
+        $transport = app('mail.manager')->mailer('cpanel')->getSymfonyTransport();
+        $this->assertTrue($transport->getStream()->isTLS());
+        $this->assertTrue($transport->isTlsRequired());
+        $this->assertSame(15.0, $transport->getStream()->getTimeout());
+        $this->assertSame('mail.mikesunshine.com', $transport->getStream()->getHost());
+        $this->assertSame(465, $transport->getStream()->getPort());
+    }
 }

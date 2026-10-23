@@ -42,17 +42,17 @@ class TestStudioMail extends Command
         $this->line('Destinatario: '.$recipient);
 
         if (in_array($transport, ['log', 'array'], true)) {
-            $this->warn('Este transporte no entrega correos reales. Configura MAIL_MAILER=gmail para probar Gmail.');
+            $this->warn('Este transporte no entrega correos reales. Configura MAIL_MAILER=cpanel o tu transporte SMTP.');
 
             return $this->option('send') ? self::FAILURE : self::SUCCESS;
         }
         if ($transport === 'smtp' && (empty($settings['username']) || empty($settings['password']))) {
-            $this->error('Faltan MAIL_USERNAME o MAIL_PASSWORD. Para Gmail usa una contraseña de aplicación.');
+            $this->error('Faltan MAIL_USERNAME o MAIL_PASSWORD. En cPanel usa la contraseña del buzón; en Gmail, una contraseña de aplicación.');
 
             return self::FAILURE;
         }
-        if ($mailer === 'gmail' && strcasecmp($from, (string) $settings['username']) !== 0) {
-            $this->error('Con el perfil Gmail, MAIL_FROM_ADDRESS debe coincidir con MAIL_USERNAME.');
+        if (in_array($mailer, ['gmail', 'cpanel'], true) && strcasecmp($from, (string) $settings['username']) !== 0) {
+            $this->error('Con este perfil, MAIL_FROM_ADDRESS debe coincidir con MAIL_USERNAME.');
 
             return self::FAILURE;
         }
@@ -73,7 +73,7 @@ class TestStudioMail extends Command
             Mail::to($recipient)->send(new StudioMailTest(url('/admin')));
         } catch (\Throwable) {
             // SMTP exceptions can contain connection/authentication details; never print their raw messages.
-            $this->error('No se pudo enviar la prueba. Revisa la contraseña de aplicación, el acceso a smtp.gmail.com:587 y los certificados TLS de PHP. No se han impreso credenciales.');
+            $this->error('No se pudo enviar la prueba. Revisa usuario y contraseña SMTP, el servidor y puerto configurados y los certificados TLS de PHP. No se han impreso credenciales.');
 
             return self::FAILURE;
         }

@@ -37,6 +37,18 @@ return [
 
     'mailers' => [
 
+        'cpanel' => [
+            'transport' => 'smtp',
+            'scheme' => 'smtps',
+            'host' => env('MAIL_HOST', 'mail.mikesunshine.com'),
+            'port' => 465,
+            'username' => env('MAIL_USERNAME', 'orders@mikesunshine.com'),
+            'password' => env('MAIL_PASSWORD'),
+            'require_tls' => true,
+            'timeout' => 15,
+            'local_domain' => env('MAIL_EHLO_DOMAIN', parse_url((string) env('APP_URL', 'http://localhost'), PHP_URL_HOST)),
+        ],
+
         'gmail' => [
             'transport' => 'smtp',
             'scheme' => 'smtp',

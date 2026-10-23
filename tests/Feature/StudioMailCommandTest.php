@@ -51,6 +51,19 @@ class StudioMailCommandTest extends TestCase
         Mail::assertNothingSent();
     }
 
+    public function test_cpanel_sends_the_test_to_orders_without_gmail_credentials(): void
+    {
+        config([
+            'mail.default' => 'cpanel', 'mail.from.address' => 'orders@mikesunshine.com',
+            'mail.mailers.cpanel.username' => 'orders@mikesunshine.com',
+            'mail.mailers.cpanel.password' => 'test-only-mailbox-password',
+            'studio.email' => 'orders@mikesunshine.com',
+        ]);
+        Mail::fake();
+        $this->artisan('studio:mail-test', ['--send' => true])->assertSuccessful();
+        Mail::assertSent(StudioMailTest::class, fn ($mail) => $mail->hasTo('orders@mikesunshine.com'));
+    }
+
     public function test_missing_credentials_wrong_sender_and_demo_recipient_are_rejected_before_sending(): void
     {
         Mail::fake();
