@@ -1,10 +1,10 @@
 # Verificación de la implementación
 
-Revisión local de los días 21 y 22 de octubre de 2026 con PHP 8.4.7, Node 22.22.1 y SQLite. Composer fija PHP 8.3 como plataforma de resolución; GitHub Actions comprueba esa versión con una instalación limpia.
+Revisión local de los días 21 al 23 de octubre de 2026 con PHP 8.4.7, Node 22.22.1 y SQLite. Composer fija PHP 8.3 como plataforma de resolución; GitHub Actions comprueba esa versión con una instalación limpia.
 
 ## Comprobaciones automatizadas
 
-- `php artisan test --compact`: 56 pruebas, 507 aserciones, todas correctas.
+- `php artisan test --compact`: 63 pruebas, 604 aserciones, todas correctas.
 - `php vendor/bin/pint --test`: correcto.
 - `npm run format:check`: correcto.
 - `npm run build`: comprobación de tipos Vue/TypeScript y compilación correctas.
@@ -44,12 +44,18 @@ En la séptima revisión se versionaron las fichas del catálogo local en `datab
 
 También se ejecutaron migraciones y el comando real con `APP_ENV=production` sobre una base SQLite temporal independiente: revisión con 12 pendientes, primera instalación con 12 creadas y segunda con 0 creadas y 12 conservadas. Esa base se retiró después de la comprobación. La base local y el servidor de producción del usuario no se modificaron. Instrucciones del despliegue y comando de carga en `docs/instalar-catalogo.md`.
 
+En la revisión del 23 de octubre se añadió el perfil SMTP de cPanel con TLS implícito obligatorio en puerto 465 y se comprobó el envío simulado a `orders@mikesunshine.com`. El diagnóstico dejó de depender de mensajes específicos de Gmail. No se introdujeron contraseñas reales ni se probó una entrega externa; los pasos de configuración y worker/cron están en `docs/correo-cpanel.md`.
+
+Se aplicó localmente la migración de identidad legal e historial de publicación y se ejecutó `studio:launch-install`: cargó nombre legal, correo público, teléfono/WhatsApp, domicilio e Instagram confirmados, y publicó las tres políticas con versión nueva. Las pruebas verifican respaldo del contenido anterior, aplicación única, conservación de ediciones posteriores, vista previa sin escritura, funcionamiento en producción, bloques válidos, autorización del nombre legal y ausencia de datos del historial en las páginas públicas.
+
+En navegador se revisaron Privacidad, Términos y Cookies sin aviso provisional ni `noindex`, además del contacto y el enlace de WhatsApp correcto. A 1440 px se comprobó el fader con Page Down, Inicio, Fin y arrastre (55% de avance); responde a la altura nueva al navegar con Inertia y se oculta al abrir un modal. A 390 px conserva la barra nativa, sin padding residual ni desbordamiento horizontal. Las páginas legales y el fader también se comprobaron con `APP_ENV=production`, CSP activa y sin errores de consola. Capturas en `output/review/launch/`. No se emuló el modo de contraste forzado del sistema operativo; su alternativa nativa está prevista en el código.
+
 ## Configuración pendiente para el lanzamiento
 
-- Crear la cuenta real de Mike y configurar las credenciales/callback de Google. La conexión con Google real requiere esa configuración; las pruebas actuales simulan el proveedor y verifican su estado y sus restricciones de acceso.
-- Configurar SMTP, destinatario del estudio y supervisor de cola; verificar la entrega de un correo real en el entorno de despliegue.
-- Completar identidad, contacto, moneda, imágenes aprobadas, títulos, precios, disponibilidad y condiciones de envío. Sustituir los datos de contacto de muestra y enlaces `/#`. Mike debe revisar los cuatro conceptos escultóricos antes de ofrecer su producción.
-- Responder `cuestionario-mike.md`, ajustar y aprobar privacidad, términos y cookies desde el panel.
+- Verificar la cuenta real de Mike; si se desea acceso con Google, configurar sus credenciales/callback. Las pruebas actuales simulan el proveedor y verifican sus restricciones.
+- Completar en el servidor SMTP de cPanel, `STUDIO_EMAIL` y worker/cron; comprobar una entrega real en el webmail.
+- Aplicar `studio:launch-install --force` en producción para cargar el contacto confirmado y publicar las tres políticas. Los textos y contactos ya se validaron en local y se mantienen editables en el panel.
+- Mike debe confirmar títulos, precios, materiales, imágenes finales, disponibilidad y las condiciones individuales de venta/envío, incluidos los cuatro conceptos escultóricos. Las respuestas restantes del cuestionario pueden afinar estos detalles sin bloquear la publicación autorizada de los textos de lanzamiento.
 - Configurar dominio, HTTPS, base de producción y copias de seguridad. Esta revisión funcional usa SQLite local y no equivale a una verificación del servidor MySQL de despliegue.
 
 El usuario ha informado de un despliegue de producción. Esta revisión no accedió a ese servidor ni ejecutó allí la carga del catálogo; se verificó el mecanismo de instalación en un entorno aislado. No se afirma una puntuación de Lighthouse ni se ha realizado una prueba de carga.

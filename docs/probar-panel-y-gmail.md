@@ -1,5 +1,7 @@
 # Probar el panel y los avisos con Gmail
 
+> La configuración elegida posteriormente para producción es `orders@mikesunshine.com` mediante cPanel. Usa [correo-cpanel.md](correo-cpanel.md) para activarla. Esta guía conserva los pasos del perfil Gmail opcional y del acceso al panel.
+
 ## Entrar en administración
 
 Desde la carpeta del proyecto, crea tu propia cuenta:
