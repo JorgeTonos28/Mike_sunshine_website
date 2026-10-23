@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 import StoreLayout from "../layouts/StoreLayout.vue";
 import BlockContent from "../components/BlockContent.vue";
-import type { Block } from "../types";
+import type { Block, Shared } from "../types";
+const studio = computed(() => usePage<Shared>().props.studio);
 defineProps<{
     page: {
         title: string;
@@ -24,6 +26,24 @@ defineProps<{
                 Texto provisional. Pendiente de completar los datos del negocio
                 y de aprobación antes del lanzamiento.
             </div>
+            <aside class="legal-identity" aria-label="Responsable y contacto">
+                <div>
+                    <span class="eyebrow">Responsable del estudio</span
+                    ><strong>{{ studio.legal_name || studio.name }}</strong>
+                    <p>{{ studio.address }}</p>
+                </div>
+                <div>
+                    <a
+                        v-if="studio.contact_email"
+                        :href="`mailto:${studio.contact_email}`"
+                        >{{ studio.contact_email }}</a
+                    ><a
+                        v-if="studio.phone"
+                        :href="`tel:${studio.phone.replace(/[^+0-9]/g, '')}`"
+                        >{{ studio.phone }}</a
+                    ><span>Versión {{ page.version }}</span>
+                </div>
+            </aside>
             <BlockContent :blocks="page.content_blocks" />
             <p class="muted legal-updated">
                 Última actualización:

@@ -7,6 +7,8 @@ import {
     PhInstagramLogo,
     PhUser,
     PhCalendarBlank,
+    PhWhatsappLogo,
+    PhMapPin,
 } from "@phosphor-icons/vue";
 import StoreLayout from "../layouts/StoreLayout.vue";
 import BrushHeading from "../components/BrushHeading.vue";
@@ -119,6 +121,30 @@ const inquiry = ref<InstanceType<typeof InquiryDialog>>();
                     </div>
                 </article>
             </div>
+        </section>
+        <section
+            class="container contact-studio-address"
+            aria-label="El estudio y sus canales"
+        >
+            <div>
+                <p class="eyebrow">Desde Santo Domingo Este</p>
+                <h2>{{ studio.legal_name || studio.name }}</h2>
+                <p v-if="studio.address">
+                    <PhMapPin :size="21" weight="light" />{{ studio.address }}
+                </p>
+                <small
+                    >Coordina cualquier visita o recogida directamente con el
+                    estudio.</small
+                >
+            </div>
+            <a
+                v-if="studio.phone"
+                class="button button-outline"
+                :href="`https://wa.me/${studio.phone.replace(/\D/g, '')}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><PhWhatsappLogo :size="22" />Hablemos por WhatsApp</a
+            >
         </section>
         <section class="container section-space request-services">
             <div class="service-section-heading">

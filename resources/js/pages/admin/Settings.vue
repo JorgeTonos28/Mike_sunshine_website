@@ -8,6 +8,7 @@ import type { Studio } from "../../types";
 const props = defineProps<{ settings: Studio }>();
 const form = useForm({
     name: props.settings.name,
+    legal_name: props.settings.legal_name || "",
     tagline: props.settings.tagline || "",
     bio: props.settings.bio || "",
     contact_email: props.settings.contact_email || "",
@@ -88,6 +89,14 @@ const save = () =>
                             required
                             maxlength="180" /></label
                     ><label
+                        >Nombre legal del responsable<input
+                            v-model="form.legal_name"
+                            maxlength="255"
+                        /><small
+                            >Se muestra en la información legal del
+                            sitio.</small
+                        ></label
+                    ><label
                         >Disciplinas / presentación breve<input
                             v-model="form.tagline"
                             maxlength="255" /></label
@@ -117,8 +126,9 @@ const save = () =>
                             type="email"
                             maxlength="255"
                         /><small
-                            >Recibirá avisos de solicitudes y se mostrará como
-                            contacto en la web.</small
+                            >Se muestra como contacto público. El buzón de
+                            avisos de órdenes se configura por separado con
+                            STUDIO_EMAIL en el servidor.</small
                         ></label
                     ><label
                         >Teléfono<input

@@ -42,6 +42,7 @@ export type Artwork = {
 };
 export type Studio = {
     name: string;
+    legal_name: string | null;
     tagline: string | null;
     bio: string | null;
     contact_email: string | null;
