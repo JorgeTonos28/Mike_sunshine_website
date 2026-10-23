@@ -41,7 +41,7 @@ Las instrucciones incluyeron estas restricciones explícitas en todas las reprod
 
 ## Entrega
 
-`php scripts/prepare-image-assets.php` crea derivados WebP de las reproducciones y textura y recorta sólo márgenes alfa del logo/subrayado. No cambia el diseño de las obras. Los originales de referencia permanecen sin modificar en sus carpetas locales. `php artisan db:seed --class=DemoArtworkSeeder` crea sólo muestras locales, sin precio, medidas ni disponibilidad afirmada. No se ejecuta en producción. Mike debe revisar las reproducciones y sustituir/confirmar sus imágenes finales antes de vender.
+`php scripts/prepare-image-assets.php` crea derivados WebP de las reproducciones y textura y recorta sólo márgenes alfa del logo/subrayado. No cambia el diseño de las obras. Los originales de referencia permanecen sin modificar en sus carpetas locales. El catálogo de ocho pinturas y cuatro esculturas conceptuales está versionado en `database/catalog/artworks.json`; `php artisan studio:catalog-install --force` permite instalarlo en producción con sus imágenes y detalles, sin modificar obras existentes. Los precios y medidas siguen pendientes y las esculturas se identifican como conceptos. El seeder `DemoArtworkSeeder` añade además contactos de muestra y permanece limitado a local. Mike debe revisar las reproducciones y sustituir/confirmar sus imágenes finales antes de vender. Pasos de instalación en [instalar-catalogo.md](instalar-catalogo.md).
 
 ## Ampliación del catálogo del 22 de octubre
 

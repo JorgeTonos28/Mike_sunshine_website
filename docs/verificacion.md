@@ -4,7 +4,7 @@ Revisión local de los días 21 y 22 de octubre de 2026 con PHP 8.4.7, Node 22.2
 
 ## Comprobaciones automatizadas
 
-- `php artisan test --compact`: 46 pruebas, 428 aserciones, todas correctas.
+- `php artisan test --compact`: 56 pruebas, 507 aserciones, todas correctas.
 - `php vendor/bin/pint --test`: correcto.
 - `npm run format:check`: correcto.
 - `npm run build`: comprobación de tipos Vue/TypeScript y compilación correctas.
@@ -40,6 +40,10 @@ En la sexta revisión se ajustó el recorte del retrato al arco inferior conserv
 
 Se añadieron pruebas del transporte Gmail con TLS obligatorio y timeout acotado, prioridad del buzón privado sobre el contacto público, destinatarios inválidos, diagnóstico sin envío, envío explícito simulado sin crear datos de clientes, bloqueo del transporte log como prueba de entrega y errores sin exposición de contraseñas. `php artisan studio:mail-test` se ejecutó en el entorno local y confirmó el transporte log. No se configuraron credenciales reales ni se envió correo externo. Los pasos para comprobar una entrega real, el panel y los avisos de la cola están en `docs/probar-panel-y-gmail.md`.
 
+En la séptima revisión se versionaron las fichas del catálogo local en `database/catalog/artworks.json`, con ocho pinturas y cuatro esculturas conceptuales, sin exportar usuarios, contactos, pedidos ni credenciales. `studio:catalog-install` carga únicamente obras faltantes y sus imágenes. Las pruebas cubren producción, revisión sin escritura, ejecución repetida, conservación de precios/textos/borradores/archivadas, detección de obras renombradas por imagen, errores de formato, rutas inseguras, imágenes ausentes, rollback completo y páginas públicas con las ocho pinturas y cuatro esculturas. Se conservó el seeder local de contactos y las correcciones de identidad existentes, usando el mismo catálogo.
+
+También se ejecutaron migraciones y el comando real con `APP_ENV=production` sobre una base SQLite temporal independiente: revisión con 12 pendientes, primera instalación con 12 creadas y segunda con 0 creadas y 12 conservadas. Esa base se retiró después de la comprobación. La base local y el servidor de producción del usuario no se modificaron. Instrucciones del despliegue y comando de carga en `docs/instalar-catalogo.md`.
+
 ## Configuración pendiente para el lanzamiento
 
 - Crear la cuenta real de Mike y configurar las credenciales/callback de Google. La conexión con Google real requiere esa configuración; las pruebas actuales simulan el proveedor y verifican su estado y sus restricciones de acceso.
@@ -48,4 +52,4 @@ Se añadieron pruebas del transporte Gmail con TLS obligatorio y timeout acotado
 - Responder `cuestionario-mike.md`, ajustar y aprobar privacidad, términos y cookies desde el panel.
 - Configurar dominio, HTTPS, base de producción y copias de seguridad. Esta revisión funcional usa SQLite local y no equivale a una verificación del servidor MySQL de despliegue.
 
-No se ha publicado un servidor de producción. No se afirma una puntuación de Lighthouse ni se ha realizado una prueba de carga.
+El usuario ha informado de un despliegue de producción. Esta revisión no accedió a ese servidor ni ejecutó allí la carga del catálogo; se verificó el mecanismo de instalación en un entorno aislado. No se afirma una puntuación de Lighthouse ni se ha realizado una prueba de carga.

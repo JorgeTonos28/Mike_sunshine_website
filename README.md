@@ -21,7 +21,9 @@ Referencia de ingeniería: [Vamo al game](https://github.com/JorgeTonos28/Vamo_a
 5. `npm ci && npm run build`
 6. `php artisan serve`
 
-Para cargar las representaciones de demostración en local: `php artisan db:seed --class=DemoArtworkSeeder`. Este seeder se bloquea en producción. Las carpetas originales `Mockups/` y `Muestras de pinturas/` permanecen locales; los recursos usados están versionados en `public/images`. Procedencia y prompts en `docs/imagenes.md`.
+Las ocho pinturas y cuatro esculturas conceptuales preparadas están versionadas en `database/catalog/artworks.json`, con sus imágenes en `public/images/art/` y `public/images/sculptures/`. Para cargarlas en producción después de actualizar el despliegue: **`php artisan studio:catalog-install --force`**. `--dry-run` permite revisar sin guardar. Es repetible: sólo crea obras faltantes y conserva las existentes, incluso borradores y archivadas. No importa usuarios, pedidos ni datos del negocio. Instrucciones: [docs/instalar-catalogo.md](docs/instalar-catalogo.md).
+
+Para completar también los datos de contacto desechables de la revisión local: `php artisan db:seed --class=DemoArtworkSeeder`. Ese seeder sigue bloqueado en producción y usa el mismo catálogo. Las carpetas originales `Mockups/` y `Muestras de pinturas/` permanecen locales; los recursos usados están versionados en `public/images`. Procedencia y prompts en `docs/imagenes.md`.
 
 Crear el primer administrador: `php artisan studio:admin correo@ejemplo.com` (contraseña interactiva, nunca compartida en seeds). No hay registro público. Google necesita `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` y callback exacto en `GOOGLE_REDIRECT_URI`. Sólo acceden cuentas activas previamente creadas; no se guardan tokens del proveedor. Recuperación de contraseña disponible con correo configurado. En producción: HTTPS, `APP_DEBUG=false`, `SESSION_SECURE_COOKIE=true` y una `APP_KEY` estable respaldada. Cambiar la clave pierde el acceso a los datos cifrados.
 
@@ -79,6 +81,6 @@ Resultados y alcance de la revisión en [docs/verificacion.md](docs/verificacion
 
 ## Despliegue
 
-El document root debe apuntar a `public/`. Configurar base de datos, `.env` fuera de acceso público, `APP_URL` HTTPS, correo, clave estable, permisos de `storage` y `bootstrap/cache`. Compilar con `npm ci && npm run build`, instalar backend con `composer install --no-dev --optimize-autoloader`, ejecutar `php artisan migrate --seed --force` y `php artisan optimize`. Ejecutar el worker database con supervisor y respaldar base de datos, `storage/app/public` y la clave de cifrado de forma segura. No cargar el seeder de demostración en producción.
+El document root debe apuntar a `public/`. Configurar base de datos, `.env` fuera de acceso público, `APP_URL` HTTPS, correo, clave estable, permisos de `storage` y `bootstrap/cache`. Compilar con `npm ci && npm run build`, instalar backend con `composer install --no-dev --optimize-autoloader`, ejecutar `php artisan migrate --seed --force`, `php artisan studio:catalog-install --force` y `php artisan optimize`. El instalador del catálogo es repetible y conserva las ediciones del panel. Ejecutar el worker database con supervisor y respaldar base de datos, `storage/app/public` y la clave de cifrado de forma segura. No cargar el seeder de contactos de demostración en producción.
 
 Antes de lanzamiento: crear la cuenta de Mike, configurar Google Cloud y SMTP, completar datos del negocio, revisar imágenes/títulos/precios reales y aprobar los textos legales tras responder el cuestionario.
