@@ -21,6 +21,7 @@ class SettingsRequest extends FormRequest
 
         return [
             'name' => 'required|string|max:180', 'tagline' => 'nullable|string|max:255', 'bio' => 'nullable|string|max:8000',
+            'legal_name' => 'nullable|string|max:255',
             'contact_email' => 'nullable|email|max:255', 'phone' => 'nullable|string|max:60', 'address' => 'nullable|string|max:1000',
             'instagram_url' => $socialUrl, 'facebook_url' => $socialUrl, 'youtube_url' => $socialUrl,
             'currency' => 'required|in:DOP,USD,EUR', 'hero_title' => 'required|string|max:80', 'hero_description' => 'nullable|string|max:400',

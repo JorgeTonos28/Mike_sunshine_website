@@ -8,7 +8,7 @@ class StudioSetting extends Model
 {
     protected $attributes = ['currency' => 'DOP'];
 
-    protected $fillable = ['name', 'tagline', 'bio', 'contact_email', 'phone', 'address', 'instagram_url', 'facebook_url', 'youtube_url', 'logo_path', 'favicon_path', 'currency', 'hero_title', 'hero_description', 'hero_path', 'portrait_path'];
+    protected $fillable = ['name', 'legal_name', 'tagline', 'bio', 'contact_email', 'phone', 'address', 'instagram_url', 'facebook_url', 'youtube_url', 'logo_path', 'favicon_path', 'currency', 'hero_title', 'hero_description', 'hero_path', 'portrait_path'];
 
     public static function current(): self
     {

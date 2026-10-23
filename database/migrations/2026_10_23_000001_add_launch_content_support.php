@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::table('studio_settings', function (Blueprint $table) {
+            $table->string('legal_name')->nullable();
+        });
+        Schema::create('site_releases', function (Blueprint $table) {
+            $table->id();
+            $table->string('key')->unique();
+            $table->json('previous_content');
+            $table->timestamp('installed_at');
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('site_releases');
+        Schema::table('studio_settings', fn (Blueprint $table) => $table->dropColumn('legal_name'));
+    }
+};
